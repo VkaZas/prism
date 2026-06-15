@@ -685,6 +685,41 @@ button {
   text-decoration-color: var(--accent);
 }
 
+/* —— 帖内小标题（一句话核心 / 图片解读 / 为什么重要 / 延伸知识 …）：彩色凸显 —— */
+.article-body .ps {
+  margin-top: var(--space-5);
+}
+.article-body .post-label {
+  display: block;
+  margin: 0 0 4px;
+  font-weight: 600;
+  font-size: 0.95em;
+  letter-spacing: 0.01em;
+  color: var(--label-c, var(--accent));
+}
+.article-body .post-label::before {
+  content: "";
+  display: inline-block;
+  width: 3px;
+  height: 0.92em;
+  margin-right: 8px;
+  vertical-align: -1px;
+  border-radius: 1px;
+  background: currentColor;
+}
+.article-body .ps--core   { --label-c: #2563eb; }
+.article-body .ps--why    { --label-c: #c2410c; }
+.article-body .ps--image  { --label-c: #0f766e; }
+.article-body .ps--learn  { --label-c: #7c3aed; }
+.article-body .ps--data   { --label-c: #4338ca; }
+.article-body .ps--source { --label-c: #6b6a64; }
+:root[data-theme="dark"] .article-body .ps--core   { --label-c: #7aa2ff; }
+:root[data-theme="dark"] .article-body .ps--why    { --label-c: #fb923c; }
+:root[data-theme="dark"] .article-body .ps--image  { --label-c: #2dd4bf; }
+:root[data-theme="dark"] .article-body .ps--learn  { --label-c: #a78bfa; }
+:root[data-theme="dark"] .article-body .ps--data   { --label-c: #a5b4fc; }
+:root[data-theme="dark"] .article-body .ps--source { --label-c: #9a988f; }
+
 /* —— 列表 —— */
 .article-body ul,
 .article-body ol {

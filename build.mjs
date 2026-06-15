@@ -649,6 +649,28 @@ function stripLeadingH1(md) {
   return md.replace(/^﻿?\s*#[ \t]+.*(?:\r?\n)+/, '');
 }
 
+// 帖内小标签分类（一句话核心 / 图片解读 / 为什么重要 / 延伸知识 …）→ 类型或 null。
+function classifyLabel(t) {
+  const s = t.trim();
+  if (/^一句话/.test(s)) return 'core';
+  if (/^原文/.test(s)) return 'source';
+  if (/^(背景|关键数据|数据梳理)/.test(s)) return 'data';
+  if (/^(图片解读|图表解读|图解)/.test(s)) return 'image';
+  if (/^(为什么重要|为何重要|对市场|对经济|市场含义|经济含义|投资含义|含义与影响)/.test(s)) return 'why';
+  if (/^(延伸知识|延伸阅读|知识延伸)/.test(s)) return 'learn';
+  return null;
+}
+
+// 把「<p><strong>已知小标签</strong>」标成可着色小标题（仅命中已知标签，避免误伤普通加粗）。
+function tagPostLabels(html) {
+  return html.replace(/<p><strong>([^<]{1,40}?)<\/strong>/g, (m, text) => {
+    const type = classifyLabel(text);
+    return type
+      ? `<p class="ps ps--${type}"><strong class="post-label">${text}</strong>`
+      : m;
+  });
+}
+
 /* ------------------------------------------------------------------ *
  * 单篇解析
  * ------------------------------------------------------------------ */
@@ -658,8 +680,9 @@ function parsePost(filePath, date, mdLib) {
   // 1) 抽 base64 图（替换为相对路径；HTML 内不残留 data:image）
   const { md: mdNoB64, images, count: imgCount } = extractImages(raw, date);
 
-  // 2) 渲染 + h2 注入 id + TOC（去掉与页面大标题重复的首个 H1）
-  const { html: bodyHtml, toc } = renderWithToc(stripLeadingH1(mdNoB64), mdLib);
+  // 2) 渲染 + h2 注入 id + TOC（去重复 H1）+ 帖内小标题着色
+  const { html: renderedBody, toc } = renderWithToc(stripLeadingH1(mdNoB64), mdLib);
+  const bodyHtml = tagPostLabels(renderedBody);
 
   // 3) 各类提取（基于已抽图的 markdown）
   const overview = extractOverviewBlock(mdNoB64);
