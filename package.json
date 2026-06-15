@@ -1,0 +1,13 @@
+{
+  "name": "nanbanqiu-daily",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "南半球聊财经每日Summary — 静态站点构建器（jason_解读 系列 → Medium 风格博客）",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "devDependencies": {
+    "markdown-it": "^14.1.0"
+  }
+}
