@@ -458,6 +458,7 @@ function pageHead({ title, description, canonicalPath, ogType }) {
 <link rel="canonical" href="${escAttr(canonical)}">
 <meta property="og:url" content="${escAttr(canonical)}">
 <link rel="alternate" type="application/rss+xml" title="${escAttr(SITE_NAME)}" href="./feed.xml">
+<link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <script>${THEME_INIT_SCRIPT}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -751,6 +752,7 @@ function main() {
   // 4) 复制 styles.css / app.js（不存在则告警跳过）
   copyAsset('styles.css');
   copyAsset('app.js');
+  copyAsset('favicon.svg');
 
   // 5) 汇总
   const totalImgs = posts.reduce((s, p) => s + p.imgCount, 0);
