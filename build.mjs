@@ -230,7 +230,7 @@ function extractImages(md, date) {
   const images = [];
   let dirEnsured = false;
 
-  const out = md.replace(re, (whole, alt, type, data) => {
+  let out = md.replace(re, (whole, alt, type, data) => {
     idx += 1;
     const ext = EXT_MAP[type.toLowerCase()] || 'png';
     const fileName = `img${idx}.${ext}`;
@@ -251,6 +251,27 @@ function extractImages(md, date) {
       // 单图失败：保留原 alt 文本，丢掉 data:URI（绝不让 data:image 残留进 HTML）。
       console.warn(`  [warn] ${date} 第 ${idx} 张图解码/写入失败，已跳过：${e.message}`);
       return alt ? `*[图片未能解析：${alt}]*` : '';
+    }
+  });
+
+  // 外部图片引用：![alt](jason_images/<date>/<file>) → 复制源文件到 docs/assets/<date>/<file>，
+  // 并改写为 ./assets/<date>/<file>（与 base64 抽出的图统一放 assets 下，路径才正确）。
+  const extRe = /!\[([^\]]*)\]\(\s*((?:\.\/)?jason_images\/[^)\s]+)\s*\)/gi;
+  out = out.replace(extRe, (whole, alt, ref) => {
+    const cleanRef = ref.replace(/^\.\//, '');            // jason_images/2026-06-14/post1_img1.png
+    const rest = cleanRef.replace(/^jason_images\//, ''); // 2026-06-14/post1_img1.png
+    const srcFile = path.join(SRC_DIR, cleanRef);
+    const destRel = `./assets/${rest}`;
+    const destFile = path.join(ASSETS_DIR, rest);
+    try {
+      if (!fs.existsSync(srcFile)) throw new Error('源图片不存在');
+      fs.mkdirSync(path.dirname(destFile), { recursive: true });
+      fs.copyFileSync(srcFile, destFile);
+      images.push(destRel);
+      return `![${alt}](${destRel})`;
+    } catch (e) {
+      console.warn(`  [warn] ${date} 外部图 ${cleanRef} 复制失败，已跳过：${e.message}`);
+      return alt ? `*[图片缺失：${alt}]*` : '';
     }
   });
 
@@ -697,6 +718,7 @@ function main() {
 
   // 确保输出目录结构
   fs.mkdirSync(OUT_DIR, { recursive: true });
+  fs.rmSync(ASSETS_DIR, { recursive: true, force: true }); // 清掉上次构建的旧图，避免孤儿残留
   fs.mkdirSync(ASSETS_DIR, { recursive: true });
 
   // 1) 收集匹配文件，按日期降序
