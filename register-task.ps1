@@ -1,6 +1,6 @@
 ﻿# register-task.ps1 — 注册 Windows 计划任务，每天 19:30 自动发布
 #
-# 任务名:  nanbanqiu-daily-publish
+# 任务名:  prism-daily-publish
 # 触发:    每天 19:30
 # 动作:    powershell -NoProfile -ExecutionPolicy Bypass -File <此目录>\publish.ps1
 # 身份:    当前用户（这样能复用已缓存的 Git 凭据；只在用户登录时运行）
@@ -10,7 +10,7 @@
 
 $ErrorActionPreference = 'Stop'
 
-$taskName   = 'nanbanqiu-daily-publish'
+$taskName   = 'prism-daily-publish'
 $publishPs1 = Join-Path $PSScriptRoot 'publish.ps1'
 
 if (-not (Test-Path -LiteralPath $publishPs1)) {
