@@ -22,7 +22,7 @@
   --fs-body: 17.5px;          /* 正文 17–18px */
   --lh-body: 1.85;
   --fs-meta: 13px;            /* 等宽元信息 */
-  --measure-article: 640px;   /* 文章正文测量宽 */
+  --measure-article: 1040px;  /* 文章正文测量宽（加宽，减少两侧留白） */
   --measure-feed: 720px;      /* 信息流测量宽 */
   --thumb-size: 96px;         /* 信息流缩略图 */
 
