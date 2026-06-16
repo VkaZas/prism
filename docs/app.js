@@ -148,29 +148,65 @@
       overlayImg.alt = '';
       overlay.appendChild(overlayImg);
 
-      // 点击覆盖层任意处（含图片）即关闭。
-      overlay.addEventListener('click', closeLightbox);
+      var closeBtn = document.createElement('button');
+      closeBtn.type = 'button';
+      closeBtn.className = 'lightbox-close';
+      closeBtn.setAttribute('aria-label', '关闭');
+      closeBtn.innerHTML = '&times;';
+      overlay.appendChild(closeBtn);
+
+      var hint = document.createElement('div');
+      hint.className = 'lightbox-hint';
+      hint.textContent = '点击图片放大／缩小 · Esc 关闭';
+      overlay.appendChild(hint);
+
+      // 点图片：在「适配视图」与「原始尺寸」之间切换（放大看细节），不关闭。
+      overlayImg.addEventListener('click', function (e) {
+        e.stopPropagation();
+        toggleZoom();
+      });
+      // 点背景空白处：关闭。
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) closeLightbox();
+      });
+      closeBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        closeLightbox();
+      });
 
       document.body.appendChild(overlay);
       return overlay;
     }
 
+    function toggleZoom() {
+      if (!overlay) return;
+      var zoomed = overlay.classList.toggle('lightbox--zoomed');
+      if (zoomed) {
+        // 放大后从左上角开始，便于滚动平移查看图中细节。
+        overlay.scrollTop = 0;
+        overlay.scrollLeft = 0;
+      }
+    }
+
     function openLightbox(srcImg) {
       ensureOverlay();
-      // 优先用全分辨率原图（若有 data-full），否则用 img 自身 src。
+      // 用图片自身 src（已是抽出的全分辨率原图）；如有 data-full 则优先。
       var full =
         srcImg.getAttribute('data-full') ||
         srcImg.currentSrc ||
         srcImg.src;
       overlayImg.src = full;
       overlayImg.alt = srcImg.alt || '';
+      overlay.classList.remove('lightbox--zoomed'); // 每次打开先回到适配视图
       overlay.classList.add('lightbox--open');
+      document.documentElement.classList.add('lightbox-open'); // 锁背景滚动
       document.addEventListener('keydown', onKeydown);
     }
 
     function closeLightbox() {
       if (!overlay) return;
-      overlay.classList.remove('lightbox--open');
+      overlay.classList.remove('lightbox--open', 'lightbox--zoomed');
+      document.documentElement.classList.remove('lightbox-open');
       document.removeEventListener('keydown', onKeydown);
       // 释放大图引用，避免占用内存（base64/大图常见）。
       if (overlayImg) overlayImg.removeAttribute('src');

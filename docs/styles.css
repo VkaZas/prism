@@ -957,7 +957,7 @@ button {
   object-fit: contain;
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.12);
-  cursor: default;
+  cursor: zoom-in;
   /* 入场微缩放 */
   transform: scale(0.985);
   transition: transform 0.2s ease;
@@ -966,11 +966,42 @@ button {
   transform: scale(1);
 }
 
+/* 放大态：图片按原始尺寸显示，覆盖层可滚动平移以看清图中细节 */
+.lightbox--zoomed {
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow: auto;
+  cursor: default;
+}
+.lightbox--zoomed img {
+  max-width: none;
+  max-height: none;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  cursor: zoom-out;
+}
+
+/* 操作提示（放大态/适配态都显示，固定在底部居中） */
+.lightbox-hint {
+  position: fixed;
+  left: 50%;
+  bottom: var(--space-4);
+  transform: translateX(-50%);
+  z-index: 2;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 /* 灯箱可选关闭按钮（若 JS 注入 .lightbox-close 则成形） */
 .lightbox-close {
-  position: absolute;
+  position: fixed;
   top: var(--space-4);
   right: var(--space-4);
+  z-index: 2;
   width: 40px;
   height: 40px;
   display: inline-flex;
