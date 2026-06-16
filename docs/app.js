@@ -135,6 +135,31 @@
     var overlay = null; // 复用单一覆盖层
     var overlayImg = null;
 
+    // 缩放/平移状态：图片始终以中心为基准缩放，放大后可拖动平移。
+    var scale = 1, tx = 0, ty = 0;
+    var MIN = 1, MAX = 6;
+    var dragging = false, moved = false, sx = 0, sy = 0, stx = 0, sty = 0;
+
+    function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+
+    function applyTransform() {
+      if (!overlayImg) return;
+      overlayImg.style.transform =
+        'translate(' + tx + 'px,' + ty + 'px) scale(' + scale + ')';
+      overlayImg.style.cursor =
+        scale > 1 ? (dragging ? 'grabbing' : 'grab') : 'zoom-in';
+    }
+
+    function resetView() { scale = 1; tx = 0; ty = 0; applyTransform(); }
+
+    function zoomBy(factor) {
+      var ns = clamp(scale * factor, MIN, MAX);
+      if (ns === scale) return;
+      scale = ns;
+      if (scale === 1) { tx = 0; ty = 0; } // 回到 1x 自动复位居中
+      applyTransform();
+    }
+
     function ensureOverlay() {
       if (overlay) return overlay;
       overlay = document.createElement('div');
@@ -157,13 +182,44 @@
 
       var hint = document.createElement('div');
       hint.className = 'lightbox-hint';
-      hint.textContent = '点击图片放大／缩小 · Esc 关闭';
+      hint.textContent = '滚轮缩放 · 拖动平移 · 双击复位 · Esc 关闭';
       overlay.appendChild(hint);
 
-      // 点图片：在「适配视图」与「原始尺寸」之间切换（放大看细节），不关闭。
+      // 滚轮：以中心为基准放大/缩小（图片留在中央）。
+      overlay.addEventListener('wheel', function (e) {
+        e.preventDefault();
+        zoomBy(e.deltaY < 0 ? 1.15 : 1 / 1.15);
+      }, { passive: false });
+
+      // 放大后按住拖动平移。
+      overlayImg.addEventListener('mousedown', function (e) {
+        if (scale <= 1) return;
+        e.preventDefault();
+        dragging = true; moved = false;
+        sx = e.clientX; sy = e.clientY; stx = tx; sty = ty;
+        applyTransform();
+      });
+      window.addEventListener('mousemove', function (e) {
+        if (!dragging) return;
+        tx = stx + (e.clientX - sx);
+        ty = sty + (e.clientY - sy);
+        if (Math.abs(e.clientX - sx) > 3 || Math.abs(e.clientY - sy) > 3) moved = true;
+        applyTransform();
+      });
+      window.addEventListener('mouseup', function () {
+        if (dragging) { dragging = false; applyTransform(); }
+      });
+
+      // 单击图片：适配态 → 放大进入（居中）；已放大时单击不再继续放大，
+      // 缩放交给滚轮、复位交给双击。拖动结束的 mouseup 不当作点击。
       overlayImg.addEventListener('click', function (e) {
         e.stopPropagation();
-        toggleZoom();
+        if (moved) { moved = false; return; }
+        if (scale <= 1) zoomBy(2);
+      });
+      overlayImg.addEventListener('dblclick', function (e) {
+        e.stopPropagation();
+        resetView();
       });
       // 点背景空白处：关闭。
       overlay.addEventListener('click', function (e) {
@@ -178,16 +234,6 @@
       return overlay;
     }
 
-    function toggleZoom() {
-      if (!overlay) return;
-      var zoomed = overlay.classList.toggle('lightbox--zoomed');
-      if (zoomed) {
-        // 放大后从左上角开始，便于滚动平移查看图中细节。
-        overlay.scrollTop = 0;
-        overlay.scrollLeft = 0;
-      }
-    }
-
     function openLightbox(srcImg) {
       ensureOverlay();
       // 用图片自身 src（已是抽出的全分辨率原图）；如有 data-full 则优先。
@@ -197,7 +243,7 @@
         srcImg.src;
       overlayImg.src = full;
       overlayImg.alt = srcImg.alt || '';
-      overlay.classList.remove('lightbox--zoomed'); // 每次打开先回到适配视图
+      resetView(); // 每次打开回到适配、居中
       overlay.classList.add('lightbox--open');
       document.documentElement.classList.add('lightbox-open'); // 锁背景滚动
       document.addEventListener('keydown', onKeydown);
@@ -205,9 +251,10 @@
 
     function closeLightbox() {
       if (!overlay) return;
-      overlay.classList.remove('lightbox--open', 'lightbox--zoomed');
+      overlay.classList.remove('lightbox--open');
       document.documentElement.classList.remove('lightbox-open');
       document.removeEventListener('keydown', onKeydown);
+      resetView();
       // 释放大图引用，避免占用内存（base64/大图常见）。
       if (overlayImg) overlayImg.removeAttribute('src');
     }

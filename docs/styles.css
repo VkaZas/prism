@@ -941,6 +941,7 @@ button {
   -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   cursor: zoom-out;
+  overflow: hidden;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
@@ -958,28 +959,10 @@ button {
   border-radius: var(--radius-md);
   border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: zoom-in;
-  /* 入场微缩放 */
-  transform: scale(0.985);
-  transition: transform 0.2s ease;
-}
-.lightbox--open img {
-  transform: scale(1);
-}
-
-/* 放大态：图片按原始尺寸显示，覆盖层可滚动平移以看清图中细节 */
-.lightbox--zoomed {
-  align-items: flex-start;
-  justify-content: flex-start;
-  overflow: auto;
-  cursor: default;
-}
-.lightbox--zoomed img {
-  max-width: none;
-  max-height: none;
-  width: auto;
-  height: auto;
-  border-radius: 0;
-  cursor: zoom-out;
+  transform-origin: center center;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
 }
 
 /* 操作提示（放大态/适配态都显示，固定在底部居中） */
