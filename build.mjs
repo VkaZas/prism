@@ -305,11 +305,25 @@ function extractOverviewBlock(md) {
 
 /** 标题提取（spec §5.4）。 */
 function extractTitle(md, overview, date) {
-  // 1) 速览区块中第一处粗体 **…**
+  // 1) 速览区块取标题候选：跳过「上午档/下午档/傍晚档…」时段分组头与含「帖N–M」的分组标签；
+  //    若第一处粗体是分组头被跳过，则优先采用作者的「一句话(记忆/核心)：…」主线作标题。
   let candidate = '';
   if (overview) {
-    const m = /\*\*([^*]+?)\*\*/.exec(overview);
-    if (m) candidate = m[1];
+    const reBold = /\*\*([^*]+?)\*\*/g;
+    let m, first = '';
+    while ((m = reBold.exec(overview)) !== null) {
+      const t = m[1].trim();
+      if (!first) first = t;
+      if (/^[一-龥]{1,5}档(?:[（(]|——|\s|$)/.test(t)) continue;
+      if (/帖\s*\d+\s*[–\-~至]\s*\d+/.test(t)) continue;
+      candidate = t;
+      break;
+    }
+    if (candidate && candidate !== first) {
+      const mt = /一句话[^*\n：:]{0,8}[：:]\s*\*\*([^*]+?)\*\*/.exec(overview);
+      if (mt) candidate = mt[1];
+    }
+    if (!candidate) candidate = first;
   }
   // 2) 回退：速览首段首句
   if (!candidate) {
@@ -318,8 +332,8 @@ function extractTitle(md, overview, date) {
   }
   if (candidate) {
     candidate = candidate.trim()
-      .replace(/^一句话(核心)?[:：]\s*/, '')          // 去前缀「一句话：」「一句话核心：」
-      .replace(/^第[一二三四五六七八九十]+\s*[条点](?:[是为][:：，,、]?|[:：，,、])\s*/, '') // 去「第一条是」「第二点：」
+      .replace(/^一句话[^：:＊*]{0,4}[:：]\s*/, '')     // 去前缀「一句话：」「一句话核心：」「一句话记忆：」
+      .replace(/^第[一二三四五六七八九十\d]+\s*(?:条|点|个|大|项)?\s*(?:主线|主题|看点|要点|线索|线)?\s*(?:[是为][:：]?|[:：])\s*/, '') // 去「第一条是/第一条主线是/第二点：」
       .replace(/^第[一二三四五六七八九十]+\s*[，,、]\s*/, '')               // 去「第一，」「第二、」
       .replace(/^[（(]\s*\d+\s*[)）]\s*/, '')        // 去「（1）」
       .replace(/^\d+\s*[.、)）]\s*/, '')              // 去「1. / 1、」
@@ -330,7 +344,7 @@ function extractTitle(md, overview, date) {
     if (/^[「『]/.test(candidate) && !/[」』]/.test(candidate)) candidate = candidate.replace(/^[「『]/, '');
     if (/[」』]$/.test(candidate) && !/[「『]/.test(candidate)) candidate = candidate.replace(/[」』]$/, '');
     candidate = candidate.trim();
-    candidate = truncateSmart(candidate, 40);
+    candidate = truncateSmart(candidate, 40).replace(/[，、；,;\s]+$/, '');
   }
   // 3) 终极回退
   if (!candidate) candidate = `每日解读 · ${date}`;
@@ -653,9 +667,9 @@ function stripLeadingH1(md) {
 function classifyLabel(t) {
   const s = t.trim();
   if (/^一句话/.test(s)) return 'core';
-  if (/^原文/.test(s)) return 'source';
+  if (/^(原文|帖子原文)/.test(s)) return 'source';
   if (/^(背景|关键数据|数据梳理)/.test(s)) return 'data';
-  if (/^(图片解读|图表解读|图解)/.test(s)) return 'image';
+  if (/^(图片解读|图表解读|图解|配图)/.test(s)) return 'image';
   if (/^(为什么重要|为何重要|对市场|对经济|市场含义|经济含义|投资含义|含义与影响)/.test(s)) return 'why';
   if (/^(延伸知识|延伸阅读|知识延伸)/.test(s)) return 'learn';
   return null;
@@ -663,12 +677,20 @@ function classifyLabel(t) {
 
 // 把「<p><strong>已知小标签</strong>」标成可着色小标题（仅命中已知标签，避免误伤普通加粗）。
 function tagPostLabels(html) {
-  return html.replace(/<p><strong>([^<]{1,40}?)<\/strong>/g, (m, text) => {
+  // 旧格式：<p><strong>小标签：</strong>…（如「一句话核心：」「配图（…）：」）
+  html = html.replace(/<p><strong>([^<]{1,50}?)<\/strong>/g, (m, text) => {
     const type = classifyLabel(text);
     return type
       ? `<p class="ps ps--${type}"><strong class="post-label">${text}</strong>`
       : m;
   });
+  // 新格式：### 小标题 → <h3>…</h3>（06-17 起改用 H3 作小标题，h4 同理）
+  html = html.replace(/<h([34])([^>]*)>([^<]{1,50}?)<\/h\1>/g, (m, lvl, attrs, text) => {
+    const type = classifyLabel(text);
+    if (!type) return m;
+    return `<h${lvl}${attrs} class="post-label ps--${type}">${text}</h${lvl}>`;
+  });
+  return html;
 }
 
 /* ------------------------------------------------------------------ *
