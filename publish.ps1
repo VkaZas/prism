@@ -44,6 +44,13 @@ else {
     git commit -m $message
     if ($LASTEXITCODE -ne 0) { throw "git commit 失败 (退出码 $LASTEXITCODE)。" }
 
+    # 先与远端同步：其它会话/设备可能已推送（如研究页），把本次发布 rebase 到最新之上，
+    # 避免 push 被拒（否则 commit 会卡在本地、不会上线）。生成内容与外部新增多为不同文件，
+    # 一般可无冲突自动 rebase；若真有冲突则停止，交人工处理。
+    Write-Host "[publish] 同步远端 (git pull --rebase origin main)..."
+    git pull --rebase origin main
+    if ($LASTEXITCODE -ne 0) { throw "git pull --rebase 失败（可能有冲突）。请手动处理后再发布。" }
+
     Write-Host "[publish] 推送到远端..."
     git push
     if ($LASTEXITCODE -ne 0) { throw "git push 失败 (退出码 $LASTEXITCODE)。检查网络与 Git 凭据（见 README 故障排查）。" }
