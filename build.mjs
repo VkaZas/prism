@@ -39,6 +39,21 @@ const SITE_NAME = '南半球聊财经每日Summary';
 const SITE_TAGLINE = '每日帖子深度解读 · 宏观财经的体系化阅读';
 const SITE_SOURCE_DEFAULT = '南半球聊财经';
 
+// 深度研究板块：独立研究页（不走每日 markdown 构建），手工登记于此。
+// 这些页位于 docs/research/，build 不会清理（只清 assets/ 与重写每日产物），
+// 故每日自动重建后此板块依旧保留。新增研究页：放进 docs/research/ 再在此追加一条。
+const RESEARCH = [
+  {
+    url: 'research/amd-ai-cost-teardown.html',
+    kicker: '供应链拆解 · 投研',
+    title: 'AMD Instinct — AI 加速器成本拆解',
+    blurb:
+      '从 AMD 辐射到每一层硅：HBM 内存堆栈、TSMC 计算 die 与 CoWoS 先进封装、'
+      + '$3.0M 整机架的成本结构与供应商依赖。每个数字带可核验来源。',
+    meta: ['2026·06', '源支撑 BOM', '约 8 分钟'],
+  },
+];
+
 // 文件名匹配：^jason_解读_(YYYY-MM-DD).md$
 const FILE_RE = /^jason_解读_(\d{4}-\d{2}-\d{2})\.md$/;
 
@@ -506,6 +521,25 @@ function pageHead({ title, description, canonicalPath, ogType }) {
  * 页面生成
  * ------------------------------------------------------------------ */
 
+/** 深度研究板块（首页，daily feed 之上）。无条目时返回空串。 */
+function renderResearchSection() {
+  if (!RESEARCH.length) return '';
+  const cards = RESEARCH.map((r) => {
+    const meta = (r.meta || []).map((m) => `<span>${esc(m)}</span>`).join('');
+    return `  <a class="research-card" href="./${escAttr(r.url)}">
+    <div class="rc-kicker">${esc(r.kicker)}</div>
+    <h3 class="rc-title">${esc(r.title)}</h3>
+    <p class="rc-blurb">${esc(r.blurb)}</p>
+    <div class="rc-meta">${meta}</div>
+  </a>`;
+  }).join('\n');
+  return `<section class="research" aria-label="深度研究">
+  <div class="research-head"><h2>深度研究</h2><span class="research-rule"></span></div>
+${cards}
+</section>
+`;
+}
+
 /** 首页 index.html（§4.3）。 */
 function renderIndex(posts) {
   const items = posts.map((p) => {
@@ -557,6 +591,7 @@ ${siteHeader(false)}
   <h1 class="masthead-title">南半球聊财经<span class="site-name-en"> 每日 Summary</span></h1>
   <p class="masthead-tagline">${esc(SITE_TAGLINE)}</p>
 </section>
+${renderResearchSection()}
 <div class="feed-tools">
   <input id="feed-filter" class="feed-filter" type="search" placeholder="按日期或关键词筛选…" aria-label="筛选">
 </div>
