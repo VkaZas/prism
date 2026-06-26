@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>登录超时，请重新登录 — 南半球聊财经每日Summary</title>
-<meta name="description" content="自动任务尝试打开「南半球聊财经」星球页面（https://wx.zsxq.com/group/28518511148841）。">
-<meta property="og:title" content="登录超时，请重新登录 — 南半球聊财经每日Summary">
-<meta property="og:description" content="自动任务尝试打开「南半球聊财经」星球页面（https://wx.zsxq.com/group/28518511148841）。">
+<title>公开的「加入星球」预览页 — 南半球聊财经每日Summary</title>
+<meta name="description" content="抓取脚本打开 https://wx.zsxq.com/group/28518511148841 后，页面返回的是公开的「加入星球」预览页（顶部显示「¥404 / 加入星球 / 加入星球72小时内无条件退款」），">
+<meta property="og:title" content="公开的「加入星球」预览页 — 南半球聊财经每日Summary">
+<meta property="og:description" content="抓取脚本打开 https://wx.zsxq.com/group/28518511148841 后，页面返回的是公开的「加入星球」预览页（顶部显示「¥404 / 加入星球 / 加入星球72小时内无条件退款」），">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="南半球聊财经每日Summary">
-<link rel="canonical" href="https://vkazas.github.io/prism/2026-06-24.html">
-<meta property="og:url" content="https://vkazas.github.io/prism/2026-06-24.html">
+<link rel="canonical" href="https://vkazas.github.io/prism/2026-06-25.html">
+<meta property="og:url" content="https://vkazas.github.io/prism/2026-06-25.html">
 <link rel="alternate" type="application/rss+xml" title="南半球聊财经每日Summary" href="./feed.xml">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
@@ -29,40 +29,36 @@
   </nav>
 </header>
 <main class="article">
-  <div class="article-meta">2026 · 06 · 24　·　来源星球 南半球聊财经　·　约 1 分钟</div>
-  <h1 class="article-title">登录超时，请重新登录</h1>
+  <div class="article-meta">2026 · 06 · 25　·　来源星球 南半球聊财经　·　约 1 分钟</div>
+  <h1 class="article-title">公开的「加入星球」预览页</h1>
   <nav class="toc" aria-label="本期目录">
     <button class="toc-toggle" type="button" aria-expanded="false">本期目录</button>
     <ol class="toc-list">
       <li><a href="#sec-1">情况说明</a></li>
-      <li><a href="#sec-2">备注</a></li>
-      <li><a href="#sec-3">建议</a></li>
+      <li><a href="#sec-2">如何恢复每日抓取</a></li>
     </ol>
   </nav>
   <div class="article-body">
 <blockquote>
-<p>⚠️ <strong>今日因星球未登录，无法抓取帖子。</strong></p>
+<p>⚠️ <strong>今日未能抓取</strong>：知识星球网页端当前<strong>未登录</strong>，无法读取「南半球聊财经」的会员帖子。本报告仅说明情况，<strong>不含</strong>当天帖子解读。</p>
 </blockquote>
 <h2 id="sec-1">情况说明</h2>
+<p>抓取脚本打开 <code>https://wx.zsxq.com/group/28518511148841</code> 后，页面返回的是<strong>公开的「加入星球」预览页</strong>（顶部显示「¥404 / 加入星球 / 加入星球72小时内无条件退款」），而不是登录会员看到的帖子信息流。</p>
+<p>进一步核对浏览器状态确认确为未登录：</p>
 <ul>
-<li>自动任务尝试打开「南半球聊财经」星球页面（<code>https://wx.zsxq.com/group/28518511148841</code>）。</li>
-<li>页面首次加载后被重定向到 <strong>「登录超时，请重新登录」</strong> 的扫码登录页；重新打开星球链接后，落到的是 <strong>非会员的公开介绍/加入页</strong>（显示「加入星球 ¥404」「精选主题预览」），而不是会员动态流（页面没有「点击发表主题」编辑框）。</li>
-<li>这说明浏览器里的知识星球 <strong>登录会话已过期</strong>。按 SOP 约定，自动任务 <strong>不尝试登录、不扫码、不绕过</strong>，因此今天无法读取会员可见的帖子内容。</li>
+<li>该域名下<strong>只有一个分析用 Cookie</strong>（<code>sensorsdata2015jssdkcross</code>），<strong>缺少知识星球的登录/会话 Cookie</strong>。</li>
+<li>页面右上角无用户头像，正文出现「加入星球」按钮和价格。</li>
+<li>页面里的「精选主题预览」只放了几条<strong>几个月前的引流旧帖</strong>（2026/3/31、2026/2/15、2026/1/26），并非今天的内容。</li>
 </ul>
-<h2 id="sec-2">备注</h2>
-<ul>
-<li>星球介绍区显示星主「<strong>Jason不跪</strong>」状态为「<strong>今天活跃过</strong>」，意味着他今天大概率有发帖；只是当前登录态下读不到正文。</li>
-<li>浏览器本地时区为 <strong>America/Los_Angeles（美西）</strong>，本地日期 <strong>2026-06-24</strong>。</li>
-</ul>
-<h2 id="sec-3">建议</h2>
-<p>请在浏览器中重新登录知识星球（手机 App 扫码），保持登录态后再手动跑一次本任务，即可正常抓取并解读 Jason 不跪今天的帖子。</p>
+<p>按任务安全约定：<strong>不尝试登录、不扫码、不绕过</strong>，因此到此为止。</p>
+<h2 id="sec-2">如何恢复每日抓取</h2>
+<p>请在该浏览器里手动登录知识星球（打开 <a href="https://wx.zsxq.com">https://wx.zsxq.com</a> 扫码或账号登录），确认能看到「南半球聊财经」的帖子信息流后，再让我重跑今天的抓取即可。明早 8 点的定时任务在登录态正常时会自动恢复。</p>
 <hr>
-<p><em>本报告由自动任务在未登录状态下生成，仅说明抓取失败原因，不含当日帖子内容。</em></p>
+<p><em>生成时间：2026-06-25（脚本运行于 trading_analysis 项目的 Jason 每日跟读任务）</em></p>
 
   </div>
   <nav class="post-nav">
-    <a class="post-nav-prev" href="./2026-06-23.html">← 06 · 23</a>
-    <a class="post-nav-next" href="./2026-06-25.html">06 · 25 →</a>
+    <a class="post-nav-prev" href="./2026-06-24.html">← 06 · 24</a>
   </nav>
   <footer class="article-footer">
     <p>本文为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。</p>
