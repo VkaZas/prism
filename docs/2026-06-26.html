@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>公开的「加入星球」预览页 — 南半球聊财经每日Summary</title>
-<meta name="description" content="抓取脚本打开 https://wx.zsxq.com/group/28518511148841 后，页面返回的是公开的「加入星球」预览页（顶部显示「¥404 / 加入星球 / 加入星球72小时内无条件退款」），">
-<meta property="og:title" content="公开的「加入星球」预览页 — 南半球聊财经每日Summary">
-<meta property="og:description" content="抓取脚本打开 https://wx.zsxq.com/group/28518511148841 后，页面返回的是公开的「加入星球」预览页（顶部显示「¥404 / 加入星球 / 加入星球72小时内无条件退款」），">
+<title>非会员的「加入星球」预览页 — 南半球聊财经每日Summary</title>
+<meta name="description" content="定时任务今早访问 https://wx.zsxq.com/group/28518511148841 时，页面渲染的是非会员的「加入星球」预览页（显示 ￥404 加入按钮 + 「精选主题预览」），而不是会员才能看到的帖子时间线。">
+<meta property="og:title" content="非会员的「加入星球」预览页 — 南半球聊财经每日Summary">
+<meta property="og:description" content="定时任务今早访问 https://wx.zsxq.com/group/28518511148841 时，页面渲染的是非会员的「加入星球」预览页（显示 ￥404 加入按钮 + 「精选主题预览」），而不是会员才能看到的帖子时间线。">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="南半球聊财经每日Summary">
-<link rel="canonical" href="https://vkazas.github.io/prism/2026-06-25.html">
-<meta property="og:url" content="https://vkazas.github.io/prism/2026-06-25.html">
+<link rel="canonical" href="https://vkazas.github.io/prism/2026-06-26.html">
+<meta property="og:url" content="https://vkazas.github.io/prism/2026-06-26.html">
 <link rel="alternate" type="application/rss+xml" title="南半球聊财经每日Summary" href="./feed.xml">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
@@ -29,37 +29,69 @@
   </nav>
 </header>
 <main class="article">
-  <div class="article-meta">2026 · 06 · 25　·　来源星球 南半球聊财经　·　约 1 分钟</div>
-  <h1 class="article-title">公开的「加入星球」预览页</h1>
+  <div class="article-meta">2026 · 06 · 26　·　来源星球 南半球聊财经　·　约 1 分钟</div>
+  <h1 class="article-title">非会员的「加入星球」预览页</h1>
   <nav class="toc" aria-label="本期目录">
     <button class="toc-toggle" type="button" aria-expanded="false">本期目录</button>
     <ol class="toc-list">
-      <li><a href="#sec-1">情况说明</a></li>
-      <li><a href="#sec-2">如何恢复每日抓取</a></li>
+      <li><a href="#sec-1">发生了什么</a></li>
+      <li><a href="#sec-2">怎么修（约 1 分钟）</a></li>
     </ol>
   </nav>
   <div class="article-body">
 <blockquote>
-<p>⚠️ <strong>今日未能抓取</strong>：知识星球网页端当前<strong>未登录</strong>，无法读取「南半球聊财经」的会员帖子。本报告仅说明情况，<strong>不含</strong>当天帖子解读。</p>
+<p>⚠️ <strong>今日未能抓取</strong>：知识星球网页端当前处于<strong>未登录状态</strong>，无法读取「南半球聊财经」的帖子内容。本报告为情况说明，非内容解读。</p>
 </blockquote>
-<h2 id="sec-1">情况说明</h2>
-<p>抓取脚本打开 <code>https://wx.zsxq.com/group/28518511148841</code> 后，页面返回的是<strong>公开的「加入星球」预览页</strong>（顶部显示「¥404 / 加入星球 / 加入星球72小时内无条件退款」），而不是登录会员看到的帖子信息流。</p>
-<p>进一步核对浏览器状态确认确为未登录：</p>
-<ul>
-<li>该域名下<strong>只有一个分析用 Cookie</strong>（<code>sensorsdata2015jssdkcross</code>），<strong>缺少知识星球的登录/会话 Cookie</strong>。</li>
-<li>页面右上角无用户头像，正文出现「加入星球」按钮和价格。</li>
-<li>页面里的「精选主题预览」只放了几条<strong>几个月前的引流旧帖</strong>（2026/3/31、2026/2/15、2026/1/26），并非今天的内容。</li>
-</ul>
-<p>按任务安全约定：<strong>不尝试登录、不扫码、不绕过</strong>，因此到此为止。</p>
-<h2 id="sec-2">如何恢复每日抓取</h2>
-<p>请在该浏览器里手动登录知识星球（打开 <a href="https://wx.zsxq.com">https://wx.zsxq.com</a> 扫码或账号登录），确认能看到「南半球聊财经」的帖子信息流后，再让我重跑今天的抓取即可。明早 8 点的定时任务在登录态正常时会自动恢复。</p>
+<h2 id="sec-1">发生了什么</h2>
+<p>定时任务今早访问 <code>https://wx.zsxq.com/group/28518511148841</code> 时，页面渲染的是<strong>非会员的「加入星球」预览页</strong>（显示 ￥404 加入按钮 + 「精选主题预览」），而不是会员才能看到的帖子时间线。</p>
+<p>经核查，原因是<strong>浏览器里的知识星球登录会话已过期（掉登录）</strong>，而<strong>不是</strong>会员到期：</p>
+<table>
+<thead>
+<tr>
+<th>检查项</th>
+<th>结果</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>会员是否有效</td>
+<td>✅ 有效</td>
+<td>缓存数据显示 <code>paid: true</code>，会员有效期 <strong>2026-05-25 → 2027-05-25</strong>，<code>need_renew: false</code></td>
+</tr>
+<tr>
+<td>浏览器登录态</td>
+<td>❌ 已掉登录</td>
+<td>当前页面无知识星球登录令牌（cookie 只剩分析用的 <code>sensorsdata</code>），页面回退到公开预览页</td>
+</tr>
+<tr>
+<td>上次活跃时间</td>
+<td>2026-06-23</td>
+<td>缓存里记录的最后一次登录会话活跃日，之后会话已失效</td>
+</tr>
+<tr>
+<td>群组 ID</td>
+<td>✅ 正确</td>
+<td><code>target_group</code> 仍指向 28518511148841「南半球聊财经」，URL 无误</td>
+</tr>
+</tbody>
+</table>
+<p>按本任务的安全约定，<strong>未登录时不尝试登录、不扫码、不绕过付费墙、不替用户加入/付款</strong>，因此今日内容未抓取。</p>
+<h2 id="sec-2">怎么修（约 1 分钟）</h2>
+<ol>
+<li>在 Chrome 里打开 <code>https://wx.zsxq.com/</code>，用微信扫码或原有方式<strong>重新登录</strong>知识星球。</li>
+<li>确认能进到「南半球聊财经」看到帖子时间线（不是「加入星球」页）。</li>
+<li>之后定时任务即可正常抓取；也可手动跟我说一句「重新跑一下 Jason 今天的解读」立即补抓。</li>
+</ol>
+<blockquote>
+<p>会员本身没问题（已付费到 2027-05-25），只是网页端需要重新登录一次即可恢复。</p>
+</blockquote>
 <hr>
-<p><em>生成时间：2026-06-25（脚本运行于 trading_analysis 项目的 Jason 每日跟读任务）</em></p>
+<p><em>报告生成时间：2026-06-26（美西）· 本次为登录态异常的情况说明，未读取任何帖子内容。</em></p>
 
   </div>
   <nav class="post-nav">
-    <a class="post-nav-prev" href="./2026-06-24.html">← 06 · 24</a>
-    <a class="post-nav-next" href="./2026-06-26.html">06 · 26 →</a>
+    <a class="post-nav-prev" href="./2026-06-25.html">← 06 · 25</a>
   </nav>
   <footer class="article-footer">
     <p>本文为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。</p>

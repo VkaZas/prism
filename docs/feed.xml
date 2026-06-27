@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 26 Jun 2026 02:30:03 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jun 2026 02:30:03 GMT</lastBuildDate>
+    <item>
+      <title>非会员的「加入星球」预览页</title>
+      <link>https://vkazas.github.io/prism/2026-06-26.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-06-26.html</guid>
+      <pubDate>Fri, 26 Jun 2026 18:00:00 GMT</pubDate>
+      <description>定时任务今早访问 https://wx.zsxq.com/group/28518511148841 时，页面渲染的是非会员的「加入星球」预览页（显示 ￥404 加入按钮 + 「精选主题预览」），而不是会员才能看到的帖子时间线。</description>
+    </item>
     <item>
       <title>公开的「加入星球」预览页</title>
       <link>https://vkazas.github.io/prism/2026-06-25.html</link>
