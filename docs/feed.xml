@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 24 Aug 2026 02:30:04 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 02:30:04 GMT</lastBuildDate>
+    <item>
+      <title>非会员预览/加入页</title>
+      <link>https://vkazas.github.io/prism/2026-08-24.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-24.html</guid>
+      <pubDate>Mon, 24 Aug 2026 18:00:00 GMT</pubDate>
+      <description>自动任务尝试打开知识星球「南半球聊财经」（group/28518511148841）时，页面返回的是非会员预览/加入页（显示 ¥404「加入星球」按钮，只有精选主题预览，没有当天信息流）。</description>
+    </item>
     <item>
       <title>非会员的「加入星球」落地页</title>
       <link>https://vkazas.github.io/prism/2026-08-23.html</link>
@@ -208,13 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-06-21.html</guid>
       <pubDate>Sun, 21 Jun 2026 18:00:00 GMT</pubDate>
       <description>今天 Jason 的 10 条帖子可以串成两条主线。</description>
-    </item>
-    <item>
-      <title>资金流向与美元资产</title>
-      <link>https://vkazas.github.io/prism/2026-06-20.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-06-20.html</guid>
-      <pubDate>Sat, 20 Jun 2026 18:00:00 GMT</pubDate>
-      <description>今天 9 帖，主线有四条：（1）资金流向与美元资产——Brad Setser 拆解亚洲贸易盈余如何回流美国、外资更爱企业债和股票、英国成了美债边际买家；（2）发达国家的结构性困境——加拿大人均 GDP 增速 G7 垫底被韩国反超、</description>
     </item>
   </channel>
 </rss>
