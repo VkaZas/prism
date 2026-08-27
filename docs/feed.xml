@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 26 Aug 2026 02:30:04 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 27 Aug 2026 02:30:03 GMT</lastBuildDate>
+    <item>
+      <title>非会员预览 / 加入星球页面</title>
+      <link>https://vkazas.github.io/prism/2026-08-26.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-26.html</guid>
+      <pubDate>Wed, 26 Aug 2026 18:00:00 GMT</pubDate>
+      <description>今天（2026-08-26）自动跑该任务时，打开知识星球「南半球聊财经」页面（https://wx.zsxq.com/group/28518511148841），显示的是非会员预览 / 加入星球页面，而不是登录后的星球内容流：</description>
+    </item>
     <item>
       <title>未能抓取</title>
       <link>https://vkazas.github.io/prism/2026-08-25.html</link>
@@ -208,13 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-06-23.html</guid>
       <pubDate>Tue, 23 Jun 2026 18:00:00 GMT</pubDate>
       <description>今天 Jason 的帖子集中在三条主线。</description>
-    </item>
-    <item>
-      <title>美联储转鹰</title>
-      <link>https://vkazas.github.io/prism/2026-06-22.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-06-22.html</guid>
-      <pubDate>Mon, 22 Jun 2026 18:00:00 GMT</pubDate>
-      <description>今天 Jason 集中转发了多家投行/媒体的研究，可以串成五条主线：</description>
     </item>
   </channel>
 </rss>
