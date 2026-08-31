@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 30 Aug 2026 02:30:04 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2026 02:30:04 GMT</lastBuildDate>
+    <item>
+      <title>宏观 / 消费与货币政策</title>
+      <link>https://vkazas.github.io/prism/2026-08-30.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-30.html</guid>
+      <pubDate>Sun, 30 Aug 2026 18:00:00 GMT</pubDate>
+      <description>从露出的开头看，今天 Jason 的主题偏宏观 / 消费与货币政策：一是国内消费端疲软（北京、上海消费信心与就业满意度走弱，自制图表佐证）；二是海外方面引用 Robin Brooks 谈杰克逊霍尔（Jackson Hole）鹰派信号、</description>
+    </item>
     <item>
       <title>今日未能抓取到帖子内容。</title>
       <link>https://vkazas.github.io/prism/2026-08-29.html</link>
@@ -208,13 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-06-27.html</guid>
       <pubDate>Sat, 27 Jun 2026 18:00:00 GMT</pubDate>
       <description>定时任务今天打开了星球页面 https://wx.zsxq.com/group/28518511148841，但检测到当前 Chrome 浏览器未登录知识星球，因此页面显示的是非会员预览版，而不是会员可见的帖子流。判断依据：</description>
-    </item>
-    <item>
-      <title>非会员的「加入星球」预览页</title>
-      <link>https://vkazas.github.io/prism/2026-06-26.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-06-26.html</guid>
-      <pubDate>Fri, 26 Jun 2026 18:00:00 GMT</pubDate>
-      <description>定时任务今早访问 https://wx.zsxq.com/group/28518511148841 时，页面渲染的是非会员的「加入星球」预览页（显示 ￥404 加入按钮 + 「精选主题预览」），而不是会员才能看到的帖子时间线。</description>
     </item>
   </channel>
 </rss>
