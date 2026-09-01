@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Mon, 31 Aug 2026 02:30:04 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 01 Sep 2026 02:30:04 GMT</lastBuildDate>
+    <item>
+      <title>非会员预览页 / 付费墙</title>
+      <link>https://vkazas.github.io/prism/2026-08-31.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-31.html</guid>
+      <pubDate>Mon, 31 Aug 2026 18:00:00 GMT</pubDate>
+      <description>今天（2026-08-31）自动任务打开知识星球「南半球聊财经」（group 28518511148841）时，页面返回的是非会员预览页 / 付费墙，而不是会员内容流：</description>
+    </item>
     <item>
       <title>宏观 / 消费与货币政策</title>
       <link>https://vkazas.github.io/prism/2026-08-30.html</link>
@@ -208,13 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-06-28.html</guid>
       <pubDate>Sun, 28 Jun 2026 18:00:00 GMT</pubDate>
       <description>今天打开星球页面 https://wx.zsxq.com/group/28518511148841 时，显示的是非会员的「加入星球」预览页，而不是会员才能看到的帖子动态流。判断依据：</description>
-    </item>
-    <item>
-      <title>未登录知识星球</title>
-      <link>https://vkazas.github.io/prism/2026-06-27.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-06-27.html</guid>
-      <pubDate>Sat, 27 Jun 2026 18:00:00 GMT</pubDate>
-      <description>定时任务今天打开了星球页面 https://wx.zsxq.com/group/28518511148841，但检测到当前 Chrome 浏览器未登录知识星球，因此页面显示的是非会员预览版，而不是会员可见的帖子流。判断依据：</description>
     </item>
   </channel>
 </rss>
