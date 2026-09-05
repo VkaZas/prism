@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>星球加入/付费预览页 — 南半球聊财经每日Summary</title>
-<meta name="description" content="今天（2026-09-03）自动跑任务时，打开 https://wx.zsxq.com/group/28518511148841 后，页面显示的是星球加入/付费预览页，而不是会员帖子信息流：">
-<meta property="og:title" content="星球加入/付费预览页 — 南半球聊财经每日Summary">
-<meta property="og:description" content="今天（2026-09-03）自动跑任务时，打开 https://wx.zsxq.com/group/28518511148841 后，页面显示的是星球加入/付费预览页，而不是会员帖子信息流：">
+<title>状态 — 南半球聊财经每日Summary</title>
+<meta name="description" content="状态：无法抓取当天帖子。">
+<meta property="og:title" content="状态 — 南半球聊财经每日Summary">
+<meta property="og:description" content="状态：无法抓取当天帖子。">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="南半球聊财经每日Summary">
-<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-03.html">
-<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-03.html">
+<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-04.html">
+<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-04.html">
 <link rel="alternate" type="application/rss+xml" title="南半球聊财经每日Summary" href="./feed.xml">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
@@ -29,41 +29,29 @@
   </nav>
 </header>
 <main class="article">
-  <div class="article-meta">2026 · 09 · 03　·　来源星球 南半球聊财经　·　约 1 分钟</div>
-  <h1 class="article-title">星球加入/付费预览页</h1>
+  <div class="article-meta">2026 · 09 · 04　·　来源星球 南半球聊财经　·　约 1 分钟</div>
+  <h1 class="article-title">状态</h1>
   <nav class="toc" aria-label="本期目录">
     <button class="toc-toggle" type="button" aria-expanded="false">本期目录</button>
     <ol class="toc-list">
-      <li><a href="#sec-1">⚠️ 今日抓取状态：无法访问星球内容</a></li>
-      <li><a href="#sec-2">需要用户处理</a></li>
+      <li><a href="#sec-1">⚠️ 今日抓取失败：知识星球未登录</a></li>
+      <li><a href="#sec-2">如何恢复</a></li>
     </ol>
   </nav>
   <div class="article-body">
-<h2 id="sec-1">⚠️ 今日抓取状态：无法访问星球内容</h2>
-<p>今天（2026-09-03）自动跑任务时，打开 <code>https://wx.zsxq.com/group/28518511148841</code> 后，页面显示的是<strong>星球加入/付费预览页</strong>，而不是会员帖子信息流：</p>
-<ul>
-<li>页面顶部是「南半球聊财经 · ￥404 · 加入星球」的付费入口；</li>
-<li>正文区只有「精选主题预览」（对非会员展示的少量历史精选帖，最新一条时间戳还是 <code>2026/3/31</code>），看不到当天的完整信息流；</li>
-<li>说明当前浏览器里的知识星球账号<strong>没有该星球的有效会员权限</strong>（会员到期、退出、或未登录到有会员的账号）。</li>
-</ul>
-<p>按任务 SOP 的安全红线：<strong>不尝试登录、不扫码、不绕过付费墙</strong>，因此今日无法抓取 Jason 不跪当天发布的帖子。</p>
-<h2 id="sec-2">需要用户处理</h2>
-<p>要恢复每日跟读，请在浏览器里确认：</p>
-<ol>
-<li>用<strong>有「南半球聊财经」会员权限的账号</strong>登录知识星球（<code>wx.zsxq.com</code>）；</li>
-<li>打开星球页面时应直接看到帖子信息流（最上面是最新帖），而不是「加入星球 ￥404」的付费页；</li>
-<li>如果是会员已到期，需要先续费；确认权限恢复后，明天的定时任务即可正常抓取。</li>
-</ol>
+<h2 id="sec-1">⚠️ 今日抓取失败：知识星球未登录</h2>
+<p><strong>状态</strong>：无法抓取当天帖子。</p>
+<p><strong>原因</strong>：打开 <code>https://wx.zsxq.com/group/28518511148841</code> 后，页面显示的是<strong>非会员预览页</strong>（顶部为「加入星球 ¥404」按钮，正文只有一段「精选主题预览」，没有会员的最新帖子流）。检查浏览器 Cookie 确认当前 Chrome 会话<strong>没有知识星球的登录凭据</strong>（无 <code>zsxq_access_token</code> / <code>access_token</code>，只有一个分析用的 <code>sensorsdata</code> cookie）。重新加载页面后状态不变。</p>
+<p><strong>处理</strong>：按任务 SOP 的安全红线，未尝试登录、扫码或任何绕过操作，也未做任何写操作，直接生成本说明报告并结束。</p>
+<h2 id="sec-2">如何恢复</h2>
+<p>请在这台电脑的 Chrome 里手动登录知识星球（打开 <a href="http://wx.zsxq.com">wx.zsxq.com</a> 扫码或账号登录），确认能看到「南半球聊财经」的帖子流后，再重新触发本任务即可正常抓取当天 Jason 不跪的帖子并生成解读。</p>
 <blockquote>
-<p>备注：页面上 Jason 不跪显示「今天活跃过」，说明他今天大概率有发帖，只是因为权限问题当前账号看不到。权限恢复后可回补当天内容。</p>
+<p>备注：星球页面显示 Jason 不跪「今天活跃过」，说明星主今天大概率有更新，只是当前会话无权限读取。恢复登录后重跑即可补上。</p>
 </blockquote>
-<hr>
-<p><em>本报告由定时任务 <code>jason-zsxq-daily-digest</code> 自动生成。抓取失败原因：星球会员权限缺失（付费预览页）。</em></p>
 
   </div>
   <nav class="post-nav">
-    <a class="post-nav-prev" href="./2026-09-02.html">← 09 · 02</a>
-    <a class="post-nav-next" href="./2026-09-04.html">09 · 04 →</a>
+    <a class="post-nav-prev" href="./2026-09-03.html">← 09 · 03</a>
   </nav>
   <footer class="article-footer">
     <p>本文为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。</p>
