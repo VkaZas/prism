@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>日期 — 南半球聊财经每日Summary</title>
-<meta name="description" content="日期：2026-09-07（周一，浏览器本地时区为美西 PDT）">
-<meta property="og:title" content="日期 — 南半球聊财经每日Summary">
-<meta property="og:description" content="日期：2026-09-07（周一，浏览器本地时区为美西 PDT）">
+<title>非会员的「加入星球」预览页 — 南半球聊财经每日Summary</title>
+<meta name="description" content="今天的自动抓取任务未能获取 Jason 不跪的帖子。原因如下：">
+<meta property="og:title" content="非会员的「加入星球」预览页 — 南半球聊财经每日Summary">
+<meta property="og:description" content="今天的自动抓取任务未能获取 Jason 不跪的帖子。原因如下：">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="南半球聊财经每日Summary">
-<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-07.html">
-<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-07.html">
+<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-08.html">
+<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-08.html">
 <link rel="alternate" type="application/rss+xml" title="南半球聊财经每日Summary" href="./feed.xml">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
@@ -29,48 +29,41 @@
   </nav>
 </header>
 <main class="article">
-  <div class="article-meta">2026 · 09 · 07　·　来源星球 南半球聊财经　·　约 1 分钟</div>
-  <h1 class="article-title">日期</h1>
+  <div class="article-meta">2026 · 09 · 08　·　来源星球 南半球聊财经　·　约 1 分钟</div>
+  <h1 class="article-title">非会员的「加入星球」预览页</h1>
   <nav class="toc" aria-label="本期目录">
     <button class="toc-toggle" type="button" aria-expanded="false">本期目录</button>
     <ol class="toc-list">
-      <li><a href="#sec-1">⚠️ 今日状态：无法抓取（星球未加入 / 内容付费墙）</a></li>
+      <li><a href="#sec-1">⚠️ 今日抓取失败：星球未登录 / 无访问权限</a></li>
+      <li><a href="#sec-2">未采取的动作</a></li>
+      <li><a href="#sec-3">建议</a></li>
     </ol>
   </nav>
   <div class="article-body">
-<h2 id="sec-1">⚠️ 今日状态：无法抓取（星球未加入 / 内容付费墙）</h2>
-<p><strong>日期</strong>：2026-09-07（周一，浏览器本地时区为美西 PDT）
-<strong>目标星球</strong>：南半球聊财经（星主 Jason 不跪）
-<strong>结果</strong>：<strong>今日未能抓取到 Jason 不跪的帖子。</strong></p>
-<h3>情况说明</h3>
-<p>用 Claude in Chrome 打开 <code>https://wx.zsxq.com/group/28518511148841</code> 后，页面渲染出来的是<strong>非会员预览页 / 加入星球页</strong>，而不是正常的帖子信息流。具体表现：</p>
+<h2 id="sec-1">⚠️ 今日抓取失败：星球未登录 / 无访问权限</h2>
+<p>今天的自动抓取任务未能获取 Jason 不跪的帖子。原因如下：</p>
 <ul>
-<li>页面顶部大按钮为 <strong>「加入星球 ￥404」</strong>（本期低至 ¥1.1/天，有效期一年）。</li>
-<li>只显示「星球介绍」和「精选主题预览」两个区块，没有当天的最新帖子流。</li>
-<li>检查浏览器 Cookie：<strong>未发现知识星球的会员访问令牌</strong>（access token），说明当前会话没有该星球的会员访问权限。</li>
-<li>星主 Jason 不跪 头像旁标注「今天活跃过」，说明他今天<strong>确实有发帖</strong>，但内容被付费墙挡住，非会员看不到正文。</li>
+<li>打开星球页面 <code>https://wx.zsxq.com/group/28518511148841</code> 后，页面显示的是<strong>非会员的「加入星球」预览页</strong>（顶部有「¥404 加入星球」按钮），而不是会员的帖子信息流。</li>
+<li>浏览器 Cookie 中<strong>没有有效的访问令牌</strong>（<code>zsxq_access_token</code> 缺失）。</li>
+<li>通过页面自身会话调用星球 topics 接口返回 <strong>HTTP 401 Unauthorized</strong>，确认当前会话未通过身份验证。</li>
+<li>本地 <code>localStorage</code> 里记录的是<strong>另一个星球</strong>（group id <code>28882458824441</code>）的状态，当前目标星球（<code>28518511148841</code>，南半球聊财经）无会话数据。</li>
 </ul>
-<h3>为什么没有强行抓取</h3>
-<p>按项目 SOP 与安全红线：</p>
-<ul>
-<li><strong>不尝试登录、扫码或绕过付费墙</strong>。</li>
-<li><strong>不输入任何凭据、不点击「加入星球」等付费/不可逆按钮</strong>。</li>
-<li>直接调用 <code>api.zsxq.com</code> 会被服务端以「非官方工具」（code 1059）拒绝，且在无会员令牌时也拿不到数据。</li>
-</ul>
-<h3>需要用户处理</h3>
-<p>要恢复每日跟读，请在浏览器里确认以下任一项：</p>
+<p>综合判断：浏览器当前<strong>未以「南半球聊财经」会员身份登录</strong>（可能是登录已掉、会员到期，或换了账号）。</p>
+<h2 id="sec-2">未采取的动作</h2>
+<p>按任务安全红线，<strong>没有</strong>尝试登录、扫码或以任何方式绕过验证，也没有做任何写操作（点赞/评论/发帖）。</p>
+<h2 id="sec-3">建议</h2>
+<p>请在浏览器里手动打开 <code>https://wx.zsxq.com/group/28518511148841</code>，确认：</p>
 <ol>
-<li><strong>用已加入「南半球聊财经」的知识星球账号登录</strong> Claude 使用的这个 Chrome（当前会话看到的是未加入/未登录该星球的状态）。</li>
-<li>如果会员<strong>已过期</strong>，需要续费后才能看到帖子流（这一步请用户自己在知识星球里完成，Claude 不代付）。</li>
+<li>是否已登录知识星球账号；</li>
+<li>该账号是否仍是「南半球聊财经」的有效会员（页面应显示帖子信息流，而不是「加入星球」按钮）。</li>
 </ol>
-<p>确认后，明天的 scheduled task 会自动重新抓取；或用户随时可以让我立即重跑一次。</p>
+<p>确认登录/会员状态正常后，可重新运行本任务即可正常抓取当日帖子。</p>
 <hr>
-<p><em>本报告由 scheduled task <code>jason-zsxq-daily-digest</code> 自动生成。今日因内容不可访问，未包含帖子解读与图片。</em></p>
+<p><em>生成时间：2026-09-08 18:34（美西本地时区）</em></p>
 
   </div>
   <nav class="post-nav">
-    <a class="post-nav-prev" href="./2026-09-06.html">← 09 · 06</a>
-    <a class="post-nav-next" href="./2026-09-08.html">09 · 08 →</a>
+    <a class="post-nav-prev" href="./2026-09-07.html">← 09 · 07</a>
   </nav>
   <footer class="article-footer">
     <p>本文为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。</p>
