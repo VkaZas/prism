@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>公开预览 / 加入星球的付费墙页面 — 南半球聊财经每日Summary</title>
-<meta name="description" content="今天（2026-09-12）自动跑「南半球聊财经」每日跟读任务时，打开星球页面">
-<meta property="og:title" content="公开预览 / 加入星球的付费墙页面 — 南半球聊财经每日Summary">
-<meta property="og:description" content="今天（2026-09-12）自动跑「南半球聊财经」每日跟读任务时，打开星球页面">
+<title>「加入星球 ¥404」的非会员预览页 — 南半球聊财经每日Summary</title>
+<meta name="description" content="今天（2026-09-13，美西时间）自动运行时，浏览器打开南半球聊财经星球">
+<meta property="og:title" content="「加入星球 ¥404」的非会员预览页 — 南半球聊财经每日Summary">
+<meta property="og:description" content="今天（2026-09-13，美西时间）自动运行时，浏览器打开南半球聊财经星球">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="南半球聊财经每日Summary">
-<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-12.html">
-<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-12.html">
+<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-13.html">
+<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-13.html">
 <link rel="alternate" type="application/rss+xml" title="南半球聊财经每日Summary" href="./feed.xml">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
@@ -29,66 +29,58 @@
   </nav>
 </header>
 <main class="article">
-  <div class="article-meta">2026 · 09 · 12　·　来源星球 南半球聊财经　·　约 1 分钟</div>
-  <h1 class="article-title">公开预览 / 加入星球的付费墙页面</h1>
+  <div class="article-meta">2026 · 09 · 13　·　来源星球 南半球聊财经　·　约 1 分钟</div>
+  <h1 class="article-title">「加入星球 ¥404」的非会员预览页</h1>
   <nav class="toc" aria-label="本期目录">
     <button class="toc-toggle" type="button" aria-expanded="false">本期目录</button>
     <ol class="toc-list">
       <li><a href="#sec-1">情况说明</a></li>
-      <li><a href="#sec-2">未做的事（遵守安全红线）</a></li>
-      <li><a href="#sec-3">建议</a></li>
+      <li><a href="#sec-2">需要用户操作</a></li>
+      <li><a href="#sec-3">今日 Jason 不跪发帖</a></li>
     </ol>
   </nav>
   <div class="article-body">
 <blockquote>
-<p>⚠️ <strong>今日无法抓取：知识星球未登录</strong></p>
+<p>⚠️ <strong>今日抓取失败：知识星球未登录（会话过期）</strong></p>
 </blockquote>
 <h2 id="sec-1">情况说明</h2>
-<p>今天（2026-09-12）自动跑「南半球聊财经」每日跟读任务时，打开星球页面
-<code>https://wx.zsxq.com/group/28518511148841</code>，浏览器显示的是<strong>公开预览 / 加入星球的付费墙页面</strong>（页面顶部为「加入星球 ¥404」按钮 + 星球介绍 + 精选主题预览），而不是会员的帖子信息流。</p>
-<p>自检结果：</p>
+<p>今天（2026-09-13，美西时间）自动运行时，浏览器打开南半球聊财经星球
+（<code>https://wx.zsxq.com/group/28518511148841</code>）后，页面只显示**「加入星球 ¥404」的非会员预览页**，
+而不是会员帖子流。</p>
+<p>技术确认（网络请求）：</p>
 <table>
 <thead>
 <tr>
-<th>检查项</th>
-<th>结果</th>
+<th>接口</th>
+<th>状态码</th>
+<th>含义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>页面标题</td>
-<td>南半球聊财经-Jason不跪-知识星球（正常加载）</td>
+<td><code>api.zsxq.com/v2/settings</code></td>
+<td><strong>401</strong></td>
+<td>用户会话未认证 / 已过期</td>
 </tr>
 <tr>
-<td>登录态（access token cookie）</td>
-<td>❌ 未检测到有效会员会话</td>
-</tr>
-<tr>
-<td>页面内容</td>
-<td>付费墙 / 加入星球预览页，非会员信息流</td>
-</tr>
-<tr>
-<td>localStorage</td>
-<td>残留有历史用户键（uid 28882458824441），但当前会话已失效</td>
+<td><code>pub-api.zsxq.com/v2/groups/...</code></td>
+<td>200</td>
+<td>页面回退到<strong>公开预览</strong>接口（非会员数据）</td>
 </tr>
 </tbody>
 </table>
-<p>也就是说，<strong>知识星球的登录会话已过期</strong>，浏览器当前是以「未登录 / 非会员」身份访问，看不到星主 Jason 不跪当天的帖子内容。</p>
-<h2 id="sec-2">未做的事（遵守安全红线）</h2>
-<p>按任务 SOP 约定，遇到未登录 / 要求扫码登录时，<strong>不尝试登录、不绕过付费墙、不输入任何凭据</strong>，直接如实汇报并结束，因此今天：</p>
-<ul>
-<li>没有抓取到任何帖子正文或图片</li>
-<li>没有生成逐帖解读</li>
-<li>没有做任何写操作（未点赞 / 未评论 / 未发帖）</li>
-</ul>
-<h2 id="sec-3">建议</h2>
-<p>想恢复每日跟读，请在浏览器里<strong>手动重新登录知识星球</strong>（微信扫码登录 <code>wx.zsxq.com</code>）。登录后再手动重跑本任务，或等明早 8 点的自动跑（前提是届时会话仍有效）。</p>
-<p>知识星球的登录会话有时效，过一段时间会自动登出——如果这个每日任务经常报「未登录」，可以考虑在跑任务前先确认一次登录态。</p>
+<p><code>api.zsxq.com</code> 的鉴权接口返回 401，说明浏览器里的知识星球<strong>登录会话已失效</strong>，
+因此页面退回到了公开的「加入星球」预览页，抓不到星主当天的帖子内容。</p>
+<p>首页卡片显示 Jason 不跪「<strong>今天活跃过</strong>」，所以他今天<strong>很可能有发帖</strong>，只是当前会话看不到。</p>
+<h2 id="sec-2">需要用户操作</h2>
+<p>按 SOP 约定，自动任务<strong>不尝试登录或绕过</strong>。请用户在浏览器里手动重新登录知识星球
+（<code>wx.zsxq.com</code>，微信/手机号登录），登录后再让我重跑今天的解读即可正常抓取。</p>
+<h2 id="sec-3">今日 Jason 不跪发帖</h2>
+<p>无法获取（未登录）。</p>
 
   </div>
   <nav class="post-nav">
-    <a class="post-nav-prev" href="./2026-09-11.html">← 09 · 11</a>
-    <a class="post-nav-next" href="./2026-09-13.html">09 · 13 →</a>
+    <a class="post-nav-prev" href="./2026-09-12.html">← 09 · 12</a>
   </nav>
   <footer class="article-footer">
     <p>本文为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。</p>
