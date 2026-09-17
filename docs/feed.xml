@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 16 Sep 2026 02:30:04 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 17 Sep 2026 02:30:04 GMT</lastBuildDate>
+    <item>
+      <title>付费加入页 / 精选预览页</title>
+      <link>https://vkazas.github.io/prism/2026-09-16.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-09-16.html</guid>
+      <pubDate>Wed, 16 Sep 2026 18:00:00 GMT</pubDate>
+      <description>今天（2026-09-16）自动跑任务时，浏览器打开星球页面 https://wx.zsxq.com/group/28518511148841，只显示付费加入页 / 精选预览页（顶部是「￥404 加入星球」按钮），而不是会员动态流。</description>
+    </item>
     <item>
       <title>状态</title>
       <link>https://vkazas.github.io/prism/2026-09-15.html</link>
@@ -208,13 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-07-24.html</guid>
       <pubDate>Fri, 24 Jul 2026 18:00:00 GMT</pubDate>
       <description>今天 Jason 的推送有一条非常清晰的主线：油价重新站上 100 美元，正在重写全球宏观的剧本。围绕这个核心，他从三个层面铺开：</description>
-    </item>
-    <item>
-      <title>中国财政与地方债</title>
-      <link>https://vkazas.github.io/prism/2026-07-23.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-07-23.html</guid>
-      <pubDate>Thu, 23 Jul 2026 18:00:00 GMT</pubDate>
-      <description>今天 Jason 的 20 条帖子可以归成四条主线。</description>
     </item>
   </channel>
 </rss>
