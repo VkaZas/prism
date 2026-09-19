@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>原因：知识星球未登录 — 南半球聊财经每日Summary</title>
-<meta name="description" content="原因：知识星球未登录">
-<meta property="og:title" content="原因：知识星球未登录 — 南半球聊财经每日Summary">
-<meta property="og:description" content="原因：知识星球未登录">
+<title>「加入星球 ¥404」的付费预览页 — 南半球聊财经每日Summary</title>
+<meta name="description" content="今天（2026-09-18）运行每日跟读任务时，打开星球页面">
+<meta property="og:title" content="「加入星球 ¥404」的付费预览页 — 南半球聊财经每日Summary">
+<meta property="og:description" content="今天（2026-09-18）运行每日跟读任务时，打开星球页面">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="南半球聊财经每日Summary">
-<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-17.html">
-<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-17.html">
+<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-18.html">
+<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-18.html">
 <link rel="alternate" type="application/rss+xml" title="南半球聊财经每日Summary" href="./feed.xml">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
@@ -29,36 +29,38 @@
   </nav>
 </header>
 <main class="article">
-  <div class="article-meta">2026 · 09 · 17　·　来源星球 南半球聊财经　·　约 1 分钟</div>
-  <h1 class="article-title">原因：知识星球未登录</h1>
+  <div class="article-meta">2026 · 09 · 18　·　来源星球 南半球聊财经　·　约 1 分钟</div>
+  <h1 class="article-title">「加入星球 ¥404」的付费预览页</h1>
   <nav class="toc" aria-label="本期目录">
     <button class="toc-toggle" type="button" aria-expanded="false">本期目录</button>
     <ol class="toc-list">
-      <li><a href="#sec-1">⚠️ 今日无法抓取</a></li>
-      <li><a href="#sec-2">🔧 如何恢复</a></li>
+      <li><a href="#sec-1">⚠️ 今日无法抓取（星球未登录）</a></li>
+      <li><a href="#sec-2">如何恢复每日抓取</a></li>
     </ol>
   </nav>
   <div class="article-body">
-<h2 id="sec-1">⚠️ 今日无法抓取</h2>
-<p><strong>原因：知识星球未登录</strong></p>
-<p>今天（2026-09-17）自动跑「南半球聊财经」抓取任务时，浏览器打开星球页面
-<code>https://wx.zsxq.com/group/28518511148841</code> 显示的是<strong>公开的「加入星球」预览页</strong>（￥404 / 加入星球 / 精选主题预览），而不是会员帖子流。</p>
-<p>技术核查：页面 Cookie 里<strong>没有 <code>zsxq_access_token</code></strong>（登录态令牌），只有一个 sensorsdata 埋点 cookie，说明当前 Chrome 会话<strong>未登录知识星球</strong>（或会员会话已过期）。</p>
-<p>按任务安全规则，未登录时<strong>不尝试登录、不扫码、不绕过</strong>，因此今天没有抓取到 Jason 不跪的任何帖子。</p>
-<h2 id="sec-2">🔧 如何恢复</h2>
-<ol>
-<li>在同一个 Chrome 里手动打开 <code>https://wx.zsxq.com/</code>，用微信扫码/账号重新登录知识星球。</li>
-<li>确认能看到「南半球聊财经」的正常帖子流（而不是「加入星球」价格页）。</li>
-<li>登录后，明天早上的定时任务会自动恢复正常；若想补今天的内容，登录后跟我说一声「重跑一下 Jason 今天的解读」即可手动补抓。</li>
-</ol>
-<blockquote>
-<p>备注：页面上仍显示「Jason 不跪 · 今天活跃过」，说明星主今天大概率有更新，只是当前登录态下抓不到正文。恢复登录后可补读。</p>
-</blockquote>
+<h2 id="sec-1">⚠️ 今日无法抓取（星球未登录）</h2>
+<p>今天（2026-09-18）运行每日跟读任务时，打开星球页面
+<code>https://wx.zsxq.com/group/28518511148841</code>，页面显示的是**「加入星球 ¥404」的付费预览页**，而不是会员可见的帖子信息流：</p>
+<ul>
+<li>页面顶部是星球介绍 + 加入按钮 + 价格（¥404 / 有效期一年），下方只有「精选主题预览」（几条旧帖，日期停留在 2026/3/31），看不到当天的完整帖子流。</li>
+<li>检查浏览器 Cookie：只有一个 <code>sensorsdata</code> 埋点分析 Cookie，<strong>没有知识星球的登录 / 会话凭据</strong>，<code>history_login_id</code> 为空。</li>
+</ul>
+<p>这两点都指向同一个结论：<strong>当前浏览器里知识星球处于未登录（或会话已过期）状态</strong>，因此无法读取星主「Jason 不跪」今天发布的帖子。</p>
+<p>按任务约定，遇到未登录 / 需扫码登录的情况，<strong>不尝试登录、不绕过付费墙</strong>，直接生成本说明并结束。</p>
+<h2 id="sec-2">如何恢复每日抓取</h2>
+<p>请在<strong>同一个 Chrome 浏览器</strong>里手动完成一次知识星球登录（扫码登录微信 / 知乎账号），确认能看到星球的帖子信息流（而不是「加入星球」价格页）。登录状态会保存在浏览器里，之后的每日自动任务即可正常抓取。</p>
+<ul>
+<li>登录入口：直接访问 <code>https://wx.zsxq.com/</code>，按提示扫码登录。</li>
+<li>登录后回到 <code>https://wx.zsxq.com/group/28518511148841</code> 应看到 Jason 不跪的帖子列表，而非付费预览页。</li>
+</ul>
+<p>登录恢复后，下一次 8 点的自动任务（或手动重跑本任务）就能正常产出当天的逐帖中文解读。</p>
+<hr>
+<p><em>本报告由每日跟读任务 <code>jason-zsxq-daily-digest</code> 自动生成 · 2026-09-18</em></p>
 
   </div>
   <nav class="post-nav">
-    <a class="post-nav-prev" href="./2026-09-16.html">← 09 · 16</a>
-    <a class="post-nav-next" href="./2026-09-18.html">09 · 18 →</a>
+    <a class="post-nav-prev" href="./2026-09-17.html">← 09 · 17</a>
   </nav>
   <footer class="article-footer">
     <p>本文为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。</p>
