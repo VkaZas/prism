@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>「加入星球 ¥404」的付费预览页 — 南半球聊财经每日Summary</title>
-<meta name="description" content="今天（2026-09-18）运行每日跟读任务时，打开星球页面">
-<meta property="og:title" content="「加入星球 ¥404」的付费预览页 — 南半球聊财经每日Summary">
-<meta property="og:description" content="今天（2026-09-18）运行每日跟读任务时，打开星球页面">
+<title>访客/未加入视图 — 南半球聊财经每日Summary</title>
+<meta name="description" content="用 Claude in Chrome 打开了 https://wx.zsxq.com/group/28518511148841。">
+<meta property="og:title" content="访客/未加入视图 — 南半球聊财经每日Summary">
+<meta property="og:description" content="用 Claude in Chrome 打开了 https://wx.zsxq.com/group/28518511148841。">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="南半球聊财经每日Summary">
-<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-18.html">
-<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-18.html">
+<link rel="canonical" href="https://vkazas.github.io/prism/2026-09-19.html">
+<meta property="og:url" content="https://vkazas.github.io/prism/2026-09-19.html">
 <link rel="alternate" type="application/rss+xml" title="南半球聊财经每日Summary" href="./feed.xml">
 <link rel="icon" type="image/svg+xml" href="./favicon.svg">
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
@@ -29,39 +29,46 @@
   </nav>
 </header>
 <main class="article">
-  <div class="article-meta">2026 · 09 · 18　·　来源星球 南半球聊财经　·　约 1 分钟</div>
-  <h1 class="article-title">「加入星球 ¥404」的付费预览页</h1>
+  <div class="article-meta">2026 · 09 · 19　·　来源星球 南半球聊财经　·　约 1 分钟</div>
+  <h1 class="article-title">访客/未加入视图</h1>
   <nav class="toc" aria-label="本期目录">
     <button class="toc-toggle" type="button" aria-expanded="false">本期目录</button>
     <ol class="toc-list">
-      <li><a href="#sec-1">⚠️ 今日无法抓取（星球未登录）</a></li>
-      <li><a href="#sec-2">如何恢复每日抓取</a></li>
+      <li><a href="#sec-1">情况说明</a></li>
+      <li><a href="#sec-2">需要用户做的（下次跑之前）</a></li>
     </ol>
   </nav>
   <div class="article-body">
-<h2 id="sec-1">⚠️ 今日无法抓取（星球未登录）</h2>
-<p>今天（2026-09-18）运行每日跟读任务时，打开星球页面
-<code>https://wx.zsxq.com/group/28518511148841</code>，页面显示的是**「加入星球 ¥404」的付费预览页**，而不是会员可见的帖子信息流：</p>
+<blockquote>
+<p>⚠️ <strong>今日抓取失败：知识星球 Web 会话未登录（token 已过期），无法读取「南半球聊财经」的帖子内容。</strong></p>
+</blockquote>
+<h2 id="sec-1">情况说明</h2>
 <ul>
-<li>页面顶部是星球介绍 + 加入按钮 + 价格（¥404 / 有效期一年），下方只有「精选主题预览」（几条旧帖，日期停留在 2026/3/31），看不到当天的完整帖子流。</li>
-<li>检查浏览器 Cookie：只有一个 <code>sensorsdata</code> 埋点分析 Cookie，<strong>没有知识星球的登录 / 会话凭据</strong>，<code>history_login_id</code> 为空。</li>
-</ul>
-<p>这两点都指向同一个结论：<strong>当前浏览器里知识星球处于未登录（或会话已过期）状态</strong>，因此无法读取星主「Jason 不跪」今天发布的帖子。</p>
-<p>按任务约定，遇到未登录 / 需扫码登录的情况，<strong>不尝试登录、不绕过付费墙</strong>，直接生成本说明并结束。</p>
-<h2 id="sec-2">如何恢复每日抓取</h2>
-<p>请在<strong>同一个 Chrome 浏览器</strong>里手动完成一次知识星球登录（扫码登录微信 / 知乎账号），确认能看到星球的帖子信息流（而不是「加入星球」价格页）。登录状态会保存在浏览器里，之后的每日自动任务即可正常抓取。</p>
+<li>用 Claude in Chrome 打开了 <code>https://wx.zsxq.com/group/28518511148841</code>。</li>
+<li>页面渲染出的是<strong>访客/未加入视图</strong>（显示「加入星球 ￥404」「精选主题预览」），而不是会员的正常帖子流。</li>
+<li>核查网络请求确认原因：
 <ul>
-<li>登录入口：直接访问 <code>https://wx.zsxq.com/</code>，按提示扫码登录。</li>
-<li>登录后回到 <code>https://wx.zsxq.com/group/28518511148841</code> 应看到 Jason 不跪的帖子列表，而非付费预览页。</li>
+<li><code>api.zsxq.com/v2/settings</code> → <strong>HTTP 401 Unauthorized</strong>（会员接口鉴权失败）</li>
+<li>页面只能改用公开接口 <code>pub-api.zsxq.com/v2/groups/...</code> → 200（这是不需要登录的公共预览数据）</li>
 </ul>
-<p>登录恢复后，下一次 8 点的自动任务（或手动重跑本任务）就能正常产出当天的逐帖中文解读。</p>
+</li>
+<li>也就是说，浏览器里这个知识星球的<strong>登录会话（access token）已经过期</strong>。本地缓存里虽然还留着「已付费、会员有效期至 2027-05-25」的旧记录，但那是上次会话的残留，当前 API 已不认这个身份。</li>
+</ul>
+<p>按任务 SOP 的安全红线：<strong>不尝试登录、不扫码、不绕过鉴权</strong>，因此今日无法抓取 Jason 不跪的帖子。</p>
+<h2 id="sec-2">需要用户做的（下次跑之前）</h2>
+<p>请在浏览器（Claude 用的这个 Chrome）里手动重新登录知识星球：</p>
+<ol>
+<li>打开 <code>https://wx.zsxq.com</code>；</li>
+<li>用微信扫码 / 账号重新登录；</li>
+<li>确认能进入「南半球聊财经」并看到帖子流（不再是「加入星球」页面）。</li>
+</ol>
+<p>登录后本任务下次自动运行即可正常抓取；也可以登录完让我立刻重跑今天这一期。</p>
 <hr>
-<p><em>本报告由每日跟读任务 <code>jason-zsxq-daily-digest</code> 自动生成 · 2026-09-18</em></p>
+<p><em>本文件由 scheduled task <code>jason-zsxq-daily-digest</code> 自动生成。日期：2026-09-19。今日因会话未登录（API 401）未能抓取帖子。</em></p>
 
   </div>
   <nav class="post-nav">
-    <a class="post-nav-prev" href="./2026-09-17.html">← 09 · 17</a>
-    <a class="post-nav-next" href="./2026-09-19.html">09 · 19 →</a>
+    <a class="post-nav-prev" href="./2026-09-18.html">← 09 · 18</a>
   </nav>
   <footer class="article-footer">
     <p>本文为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。</p>
