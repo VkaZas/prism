@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 20 Sep 2026 02:30:04 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 02:30:04 GMT</lastBuildDate>
+    <item>
+      <title>加入星球（¥404）的付费预览页</title>
+      <link>https://vkazas.github.io/prism/2026-09-20.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-09-20.html</guid>
+      <pubDate>Sun, 20 Sep 2026 18:00:00 GMT</pubDate>
+      <description>今天（2026-09-20）跑定时任务时，浏览器打开</description>
+    </item>
     <item>
       <title>访客/未加入视图</title>
       <link>https://vkazas.github.io/prism/2026-09-19.html</link>
@@ -208,13 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-18.html</guid>
       <pubDate>Tue, 18 Aug 2026 18:00:00 GMT</pubDate>
       <description>今天（2026-08-18）尝试打开知识星球「南半球聊财经」群组页面（https://wx.zsxq.com/group/28518511148841）时，浏览器会话只能看到 非会员预览页（付费墙），无法进入会员时间线，</description>
-    </item>
-    <item>
-      <title>状态</title>
-      <link>https://vkazas.github.io/prism/2026-08-17.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-17.html</guid>
-      <pubDate>Mon, 17 Aug 2026 18:00:00 GMT</pubDate>
-      <description>状态：本次定时任务运行时，Claude in Chrome 浏览器扩展未连接 / 不可达，因此无法打开知识星球「南半球聊财经」页面抓取 Jason 不跪当天的帖子。</description>
     </item>
   </channel>
 </rss>
