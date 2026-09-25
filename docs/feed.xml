@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 24 Sep 2026 02:30:04 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 25 Sep 2026 02:30:04 GMT</lastBuildDate>
+    <item>
+      <title>非会员的「加入星球 ¥404」预览页</title>
+      <link>https://vkazas.github.io/prism/2026-09-25.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-09-25.html</guid>
+      <pubDate>Fri, 25 Sep 2026 18:00:00 GMT</pubDate>
+      <description>今天（2026-09-25）跑「南半球聊财经」每日跟读任务时，浏览器（Windows 上的 Chrome）打开</description>
+    </item>
     <item>
       <title>非会员的星球介绍/加入页</title>
       <link>https://vkazas.github.io/prism/2026-09-23.html</link>
@@ -208,13 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-26.html</guid>
       <pubDate>Wed, 26 Aug 2026 18:00:00 GMT</pubDate>
       <description>今天（2026-08-26）自动跑该任务时，打开知识星球「南半球聊财经」页面（https://wx.zsxq.com/group/28518511148841），显示的是非会员预览 / 加入星球页面，而不是登录后的星球内容流：</description>
-    </item>
-    <item>
-      <title>未能抓取</title>
-      <link>https://vkazas.github.io/prism/2026-08-25.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-25.html</guid>
-      <pubDate>Tue, 25 Aug 2026 18:00:00 GMT</pubDate>
-      <description>今日未能抓取 Jason 不跪的帖子。</description>
     </item>
   </channel>
 </rss>
