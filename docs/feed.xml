@@ -5,7 +5,21 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 01 Oct 2026 02:30:04 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 02 Oct 2026 02:30:05 GMT</lastBuildDate>
+    <item>
+      <title>背景铺垫</title>
+      <link>https://vkazas.github.io/prism/2026-10-02.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-10-02.html</guid>
+      <pubDate>Fri, 02 Oct 2026 18:00:00 GMT</pubDate>
+      <description>以下只是根据上面片段做的背景铺垫，帮助你先有个印象；等能看到全文和图后再做正式深入解读。</description>
+    </item>
+    <item>
+      <title>非会员的「加入星球 ￥404」预览页</title>
+      <link>https://vkazas.github.io/prism/2026-10-01.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-10-01.html</guid>
+      <pubDate>Thu, 01 Oct 2026 18:00:00 GMT</pubDate>
+      <description>本次定时任务运行时间：UTC 2026-10-01 03:31（美西约 2026-09-30 20:31）。</description>
+    </item>
     <item>
       <title>非会员的「加入星球 ¥404」预览页 + 精选主题预览</title>
       <link>https://vkazas.github.io/prism/2026-09-26.html</link>
@@ -201,20 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-29.html</guid>
       <pubDate>Sat, 29 Aug 2026 18:00:00 GMT</pubDate>
       <description>今日未能抓取到帖子内容。</description>
-    </item>
-    <item>
-      <title>未能抓取到</title>
-      <link>https://vkazas.github.io/prism/2026-08-28.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-28.html</guid>
-      <pubDate>Fri, 28 Aug 2026 18:00:00 GMT</pubDate>
-      <description>今日未能抓取到 Jason 不跪的帖子，原因：当前浏览器账号不是该星球的有效会员。</description>
-    </item>
-    <item>
-      <title>星球加入/预览页</title>
-      <link>https://vkazas.github.io/prism/2026-08-27.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-08-27.html</guid>
-      <pubDate>Thu, 27 Aug 2026 18:00:00 GMT</pubDate>
-      <description>今天（2026-08-27）尝试打开「南半球聊财经」星球页面（https://wx.zsxq.com/group/28518511148841）时，浏览器显示的是星球加入/预览页（顶部为「加入星球 ¥404」按钮、下方为「精选主题预览」），</description>
     </item>
   </channel>
 </rss>
