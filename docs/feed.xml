@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 06 Oct 2026 02:30:05 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 07 Oct 2026 02:30:04 GMT</lastBuildDate>
+    <item>
+      <title>该星球对当前账号显示为&quot;非会员预览页&quot;</title>
+      <link>https://vkazas.github.io/prism/2026-10-07.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-10-07.html</guid>
+      <pubDate>Wed, 07 Oct 2026 18:00:00 GMT</pubDate>
+      <description>今天的自动跟读任务在打开知识星球「南半球聊财经」时，该星球对当前账号显示为&quot;非会员预览页&quot;：页面只出现「加入星球 ¥404 / 有效期：一年」的付费入口和几条&quot;精选主题预览&quot;（最新一条还停留在 2026/3/31），看不到星主当天的帖子流。</description>
+    </item>
     <item>
       <title>非会员的「加入星球 ￥404」付费预览页</title>
       <link>https://vkazas.github.io/prism/2026-10-06.html</link>
@@ -208,13 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-09-03.html</guid>
       <pubDate>Thu, 03 Sep 2026 18:00:00 GMT</pubDate>
       <description>今天（2026-09-03）自动跑任务时，打开 https://wx.zsxq.com/group/28518511148841 后，页面显示的是星球加入/付费预览页，而不是会员帖子信息流：</description>
-    </item>
-    <item>
-      <title>地缘与供应链、中美利差、能源与伊朗局势</title>
-      <link>https://vkazas.github.io/prism/2026-09-02.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-09-02.html</guid>
-      <pubDate>Wed, 02 Sep 2026 18:00:00 GMT</pubDate>
-      <description>今天（美西时间约 3 小时前）Jason 不跪连发 3 条短评，均为转述海外财经媒体（zerohedge / bloomberg）的宏观信号，主题围绕地缘与供应链、中美利差、能源与伊朗局势三条线：G20 联合公报罕见「19 比 1」难产、</description>
     </item>
   </channel>
 </rss>
