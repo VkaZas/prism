@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/</link>
     <description>每日帖子深度解读 · 宏观财经的体系化阅读</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 07 Oct 2026 02:30:04 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 08 Oct 2026 02:30:05 GMT</lastBuildDate>
+    <item>
+      <title>非会员的「加入星球 ￥404」付费预览页</title>
+      <link>https://vkazas.github.io/prism/2026-10-08.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-10-08.html</guid>
+      <pubDate>Thu, 08 Oct 2026 18:00:00 GMT</pubDate>
+      <description>今天打开知识星球「南半球聊财经」（Jason 不跪）时，页面仍然是非会员的「加入星球 ￥404」付费预览页，刷不出当天的会员帖子流。按安全规定，本次未尝试登录、未扫码、未支付、未做任何写操作。</description>
+    </item>
     <item>
       <title>该星球对当前账号显示为&quot;非会员预览页&quot;</title>
       <link>https://vkazas.github.io/prism/2026-10-07.html</link>
@@ -208,13 +215,6 @@
       <guid isPermaLink="true">https://vkazas.github.io/prism/2026-09-04.html</guid>
       <pubDate>Fri, 04 Sep 2026 18:00:00 GMT</pubDate>
       <description>状态：无法抓取当天帖子。</description>
-    </item>
-    <item>
-      <title>星球加入/付费预览页</title>
-      <link>https://vkazas.github.io/prism/2026-09-03.html</link>
-      <guid isPermaLink="true">https://vkazas.github.io/prism/2026-09-03.html</guid>
-      <pubDate>Thu, 03 Sep 2026 18:00:00 GMT</pubDate>
-      <description>今天（2026-09-03）自动跑任务时，打开 https://wx.zsxq.com/group/28518511148841 后，页面显示的是星球加入/付费预览页，而不是会员帖子信息流：</description>
     </item>
   </channel>
 </rss>
