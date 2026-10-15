@@ -68,18 +68,18 @@ const CHANNELS = [
   {
     id: 'ainews',
     tab: 'AI News',
-    siteName: 'AI News 每日解读',
-    nameHtml: 'AI News<span class="site-name-en"> 每日解读</span>',
-    tagline: 'Latent Space《AINews》中文解读 · 每天 X 上的 AI 圈动态',
+    siteName: 'AI News 每日八卦',
+    nameHtml: 'AI News<span class="site-name-en"> 每日八卦</span>',
+    tagline: 'X 上的 AI 圈爆料、八卦与热议 · 每日中文整理',
     srcDir: path.join(SRC_DIR, 'ainews'),
     fileRe: /^ainews_(\d{4}-\d{2}-\d{2})(-\d+)?\.md$/, // 同一天两期时第二期带 -2
     outSub: 'ainews',
     sourceLabel: '来源',
-    sourceDefault: 'Latent Space · AINews',
+    sourceDefault: 'X · Latent Space AINews',
     countUnit: '条',
     skipFailures: false,
-    footerNote: '本栏目是对 Latent Space《AINews》公开部分的中文学习性解读，观点归原作者，详情以原文为准。',
-    articleNote: '本文是对 Latent Space《AINews》公开部分的中文学习性解读，观点归原作者，详情以原文为准。',
+    footerNote: '本栏目整理自 X 上的公开帖子和 Latent Space《AINews》公开部分。传闻和爆料未经证实，观点归原作者，详情以原帖为准。',
+    articleNote: '本文整理自公开帖子。传闻和爆料未经证实，观点归原作者，详情以原帖为准。',
   },
 ];
 
