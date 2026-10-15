@@ -42,6 +42,11 @@ const SITE_SOURCE_DEFAULT = '南半球聊财经';
 // 文件名匹配：^jason_解读_(YYYY-MM-DD).md$
 const FILE_RE = /^jason_解读_(\d{4}-\d{2}-\d{2})\.md$/;
 
+// 「未能抓取」通知（星球未登录 / 会员到期时定时任务生成的说明）不发布。
+// 判定：开头有失败字样，且全文没有正式解读才有的「帖子原文 / 一句话核心」小节。
+const FAIL_HEAD_RE = /未能抓取|无法抓取|抓取失败|抓取状态：|未能获取|无法访问星球|加入星球\s*[¥￥]\s*404|非会员|抓取受限/;
+const REAL_POST_RE = /帖子原文|一句话核心/;
+
 /* ------------------------------------------------------------------ *
  * 小工具
  * ------------------------------------------------------------------ */
@@ -698,6 +703,7 @@ function tagPostLabels(html) {
  * ------------------------------------------------------------------ */
 function parsePost(filePath, date, mdLib) {
   const raw = fs.readFileSync(filePath, 'utf8');
+  if (FAIL_HEAD_RE.test(raw.slice(0, 1500)) && !REAL_POST_RE.test(raw)) return null; // 失败通知，跳过
 
   // 1) 抽 base64 图（替换为相对路径；HTML 内不残留 data:image）
   const { md: mdNoB64, images, count: imgCount } = extractImages(raw, date);
@@ -785,15 +791,21 @@ function main() {
 
   // 2) 逐篇解析（单篇 try/catch 跳过不中断）
   const posts = [];
+  const skipped = [];
   for (const e of entries) {
     try {
       const post = parsePost(e.path, e.date, mdLib);
+      if (!post) {
+        skipped.push(e.date);
+        continue;
+      }
       posts.push(post);
       console.log(`  ✓ ${e.date}　标题「${post.title}」　图 ${post.imgCount}　帖 ${post.postCount}　约 ${post.minutes} 分钟`);
     } catch (err) {
       console.error(`  ✗ ${e.date} 解析失败，已跳过：${err && err.stack ? err.stack : err}`);
     }
   }
+  if (skipped.length) console.log(`  跳过「未能抓取」通知 ${skipped.length} 篇：${skipped.join(', ')}`);
 
   // posts 已是降序（entries 降序 + 顺序 push）。相邻导航定义：
   //   数组按日期【降序】排列：posts[i-1] 比 posts[i] 新，posts[i+1] 比 posts[i] 旧。
@@ -809,6 +821,15 @@ function main() {
       articleCount += 1;
     } catch (err) {
       console.error(`  ✗ ${post.date} 写页失败，已跳过：${err && err.stack ? err.stack : err}`);
+    }
+  }
+
+  // 清掉不再发布的旧文章页（如被跳过的失败通知）；只动根目录下 <日期>.html，不碰 research/ 等
+  const live = new Set(posts.map((p) => `${p.date}.html`));
+  for (const name of fs.readdirSync(OUT_DIR)) {
+    if (/^\d{4}-\d{2}-\d{2}\.html$/.test(name) && !live.has(name)) {
+      fs.rmSync(path.join(OUT_DIR, name));
+      console.log(`  删除旧文章页 docs/${name}`);
     }
   }
 
