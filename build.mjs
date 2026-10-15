@@ -30,7 +30,6 @@ const __dirname = path.dirname(__filename);
 const SRC_DIR = path.resolve(__dirname, '..', 'daily_summaries'); // 源 md（与 cwd 无关）
 const SRC_ASSETS = path.resolve(__dirname, 'src');                // styles.css / app.js 源
 const OUT_DIR = path.resolve(__dirname, 'docs');                  // 构建输出 = GH Pages 根
-const ASSETS_DIR = path.join(OUT_DIR, 'assets');                  // 抽出的图片
 
 // 仅用于 feed.xml / og: / canonical 的【绝对】链接；用户一次性设置 SITE_URL。
 const SITE_URL = (process.env.SITE_URL || 'https://vkazas.github.io/prism').replace(/\/+$/, '');
@@ -46,6 +45,48 @@ const FILE_RE = /^jason_解读_(\d{4}-\d{2}-\d{2})\.md$/;
 // 判定：开头有失败字样，且全文没有正式解读才有的「帖子原文 / 一句话核心」小节。
 const FAIL_HEAD_RE = /未能抓取|无法抓取|抓取失败|抓取状态：|未能获取|无法访问星球|加入星球\s*[¥￥]\s*404|非会员|抓取受限/;
 const REAL_POST_RE = /帖子原文|一句话核心/;
+
+// 栏目：各自的源目录 / 输出子目录 / 首页 / RSS，页头用标签切换。
+// 南半球聊财经留在站点根目录，旧链接不变；新栏目放子目录。
+const CHANNELS = [
+  {
+    id: 'nbq',
+    tab: '南半球聊财经',
+    siteName: SITE_NAME,
+    nameHtml: '南半球聊财经<span class="site-name-en"> 每日 Summary</span>',
+    tagline: SITE_TAGLINE,
+    srcDir: SRC_DIR,
+    fileRe: FILE_RE,
+    outSub: '',
+    sourceLabel: '来源星球',
+    sourceDefault: SITE_SOURCE_DEFAULT,
+    countUnit: '帖',
+    skipFailures: true,
+    footerNote: '本站内容为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。',
+    articleNote: '本文为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。',
+  },
+  {
+    id: 'ainews',
+    tab: 'AI News',
+    siteName: 'AI News 每日解读',
+    nameHtml: 'AI News<span class="site-name-en"> 每日解读</span>',
+    tagline: 'Latent Space《AINews》中文解读 · 每天 X 上的 AI 圈动态',
+    srcDir: path.join(SRC_DIR, 'ainews'),
+    fileRe: /^ainews_(\d{4}-\d{2}-\d{2})(-\d+)?\.md$/, // 同一天两期时第二期带 -2
+    outSub: 'ainews',
+    sourceLabel: '来源',
+    sourceDefault: 'Latent Space · AINews',
+    countUnit: '条',
+    skipFailures: false,
+    footerNote: '本栏目是对 Latent Space《AINews》公开部分的中文学习性解读，观点归原作者，详情以原文为准。',
+    articleNote: '本文是对 Latent Space《AINews》公开部分的中文学习性解读，观点归原作者，详情以原文为准。',
+  },
+];
+
+/** 从栏目页面回到站点根目录的相对前缀（styles.css / app.js / favicon.svg 只放根目录一份）。 */
+function rootRel(ch) {
+  return ch.outSub ? '../' : './';
+}
 
 /* ------------------------------------------------------------------ *
  * 小工具
@@ -227,7 +268,9 @@ const EXT_MAP = { png: 'png', jpg: 'jpg', jpeg: 'jpg', gif: 'gif', webp: 'webp' 
  * 并把 markdown 中的 data:URI 替换为相对路径 ./assets/<date>/imgN.<ext>。
  * 返回 { md: 替换后的 markdown, images: [相对路径...], count }。
  */
-function extractImages(md, date) {
+function extractImages(md, date, ch) {
+  const ASSETS_DIR = ch.assetsDir;
+  const SRC_DIR = ch.srcDir;
   // 捕获到 markdown 图片闭合 ) 之前的全部 data 载荷（含偶发非标准字符），
   // 解码时再清洗——确保任何 data:image 内联图都被这条规则吃掉，不残留进 HTML。
   const re = /!\[([^\]]*)\]\(\s*data:image\/(png|jpe?g|gif|webp);base64,([^)]*?)\s*\)/gi;
@@ -349,7 +392,7 @@ function extractTitle(md, overview, date) {
     if (/^[「『]/.test(candidate) && !/[」』]/.test(candidate)) candidate = candidate.replace(/^[「『]/, '');
     if (/[」』]$/.test(candidate) && !/[「『]/.test(candidate)) candidate = candidate.replace(/[」』]$/, '');
     candidate = candidate.trim();
-    candidate = truncateSmart(candidate, 40).replace(/[，、；,;\s]+$/, '');
+    candidate = truncateSmart(candidate, 40).replace(/[，、；。,;\s]+$/, '');
   }
   // 3) 终极回退
   if (!candidate) candidate = `每日解读 · ${date}`;
@@ -408,7 +451,8 @@ function extractTags(md) {
 }
 
 /** 来源（spec §5.9）：从顶部 blockquote / 说明里解析来源星球名，best-effort。 */
-function extractSource(md) {
+function extractSource(md, ch) {
+  if (ch.id !== 'nbq') return ch.sourceDefault;
   // 取 H1 之后、第一个 ## 之前的「头部」区域
   const headEnd = md.search(/^##\s+/m);
   const head = headEnd === -1 ? md.slice(0, 1200) : md.slice(0, headEnd);
@@ -453,12 +497,17 @@ const THEME_ICONS =
   '<path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-13a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM5 12a1 1 0 0 1-1 1H3a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zm17 0a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zM6.34 6.34a1 1 0 0 1 0 1.41l-.7.71a1 1 0 1 1-1.42-1.42l.71-.7a1 1 0 0 1 1.41 0zm12.02 12.02a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.42l.7-.7a1 1 0 0 1 1.42 0zM6.34 17.66a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 0 1 1.42-1.41l.7.7a1 1 0 0 1 0 1.42zM18.36 5.64a1 1 0 0 1-1.42 0l-.7-.71a1 1 0 0 1 1.41-1.41l.71.7a1 1 0 0 1 0 1.42z"/></svg>';
 
 /** 站点页头（两页通用）。isArticle=true 时含「全部」返回链接。 */
-function siteHeader(isArticle) {
+function siteHeader(isArticle, ch) {
   const back = isArticle
     ? '\n    <a class="nav-back" href="./index.html">全部</a>'
     : '';
+  const tabs = CHANNELS.map((c) => {
+    const href = `${rootRel(ch)}${c.outSub ? `${c.outSub}/` : ''}index.html`;
+    const active = c.id === ch.id ? ' is-active" aria-current="page' : '';
+    return `<a class="channel-tab${active}" href="${escAttr(href)}">${esc(c.tab)}</a>`;
+  }).join('');
   return `<header class="site-header">
-  <a class="site-name" href="./index.html">南半球聊财经<span class="site-name-en"> 每日 Summary</span></a>
+  <nav class="channel-tabs" aria-label="栏目">${tabs}</nav>
   <nav class="site-nav">${back}
     <a class="rss-link" href="./feed.xml" aria-label="RSS 订阅">${RSS_SVG}</a>
     <button class="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false">${THEME_ICONS}</button>
@@ -467,20 +516,21 @@ function siteHeader(isArticle) {
 }
 
 /** 站点页脚（首页与文章页底部的站点级 footer）。 */
-function siteFooter() {
+function siteFooter(ch) {
   const year = new Date().getFullYear();
   return `<footer class="site-footer">
-  <p class="footer-disclaimer">本站内容为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。</p>
+  <p class="footer-disclaimer">${esc(ch.footerNote)}</p>
   <p class="footer-meta">
-    <span>© ${year} ${esc(SITE_NAME)}</span>
+    <span>© ${year} ${esc(ch.siteName)}</span>
     <a class="footer-rss" href="./feed.xml" aria-label="RSS 订阅">${RSS_SVG}<span> RSS 订阅</span></a>
   </p>
 </footer>`;
 }
 
 /** 通用 <head>（§4.1）。relCanonical = 形如 index.html / 2026-06-14.html。 */
-function pageHead({ title, description, canonicalPath, ogType }) {
-  const canonical = `${SITE_URL}/${canonicalPath}`;
+function pageHead({ title, description, canonicalPath, ogType, ch }) {
+  const canonical = `${SITE_URL}/${ch.outSub ? `${ch.outSub}/` : ''}${canonicalPath}`;
+  const rel = rootRel(ch);
   // 仅加载 Inter（+ 可选 JetBrains Mono）；不加载中文 webfont。
   const fontsHref =
     'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap';
@@ -494,16 +544,16 @@ function pageHead({ title, description, canonicalPath, ogType }) {
 <meta property="og:title" content="${escAttr(title)}">
 <meta property="og:description" content="${escAttr(description)}">
 <meta property="og:type" content="${ogType}">
-<meta property="og:site_name" content="${escAttr(SITE_NAME)}">
+<meta property="og:site_name" content="${escAttr(ch.siteName)}">
 <link rel="canonical" href="${escAttr(canonical)}">
 <meta property="og:url" content="${escAttr(canonical)}">
-<link rel="alternate" type="application/rss+xml" title="${escAttr(SITE_NAME)}" href="./feed.xml">
-<link rel="icon" type="image/svg+xml" href="./favicon.svg">
+<link rel="alternate" type="application/rss+xml" title="${escAttr(ch.siteName)}" href="./feed.xml">
+<link rel="icon" type="image/svg+xml" href="${rel}favicon.svg">
 <script>${THEME_INIT_SCRIPT}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="${escAttr(fontsHref)}">
-<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="${rel}styles.css">
 </head>`;
 }
 
@@ -512,7 +562,7 @@ function pageHead({ title, description, canonicalPath, ogType }) {
  * ------------------------------------------------------------------ */
 
 /** 首页 index.html（§4.3）。 */
-function renderIndex(posts) {
+function renderIndex(posts, ch) {
   const items = posts.map((p) => {
     // data-search：小写、空格分隔的可搜索串（日期 + 标题 + 预览 + 标签）
     const searchParts = [
@@ -525,7 +575,7 @@ function renderIndex(posts) {
     ].join(' ').toLowerCase().replace(/\s+/g, ' ').trim();
 
     const metaSpans = [];
-    if (p.postCount > 0) metaSpans.push(`<span>${p.postCount} 帖</span>`);
+    if (p.postCount > 0) metaSpans.push(`<span>${p.postCount} ${ch.countUnit}</span>`);
     metaSpans.push(`<span>约 ${p.minutes} 分钟</span>`);
     if (p.tags.length) metaSpans.push(`<span class="feed-tags">${esc(tagsDisplay(p.tags))}</span>`);
 
@@ -538,7 +588,7 @@ function renderIndex(posts) {
       : '';
 
     return `    <article class="feed-item" data-search="${escAttr(searchParts)}">
-      <a class="feed-item-link" href="./${escAttr(p.date)}.html">
+      <a class="feed-item-link" href="./${escAttr(p.id)}.html">
         <div class="feed-item-text">
           <div class="feed-date">${esc(dotDate(p.date))}</div>
           <h2 class="feed-title">${esc(p.title)}</h2>${previewHtml}
@@ -549,18 +599,19 @@ function renderIndex(posts) {
   }).join('\n');
 
   const head = pageHead({
-    title: SITE_NAME,
-    description: SITE_TAGLINE,
+    title: ch.siteName,
+    description: ch.tagline,
     canonicalPath: 'index.html',
     ogType: 'website',
+    ch,
   });
 
   return `${head}
 <body>
-${siteHeader(false)}
+${siteHeader(false, ch)}
 <section class="masthead">
-  <h1 class="masthead-title">南半球聊财经<span class="site-name-en"> 每日 Summary</span></h1>
-  <p class="masthead-tagline">${esc(SITE_TAGLINE)}</p>
+  <h1 class="masthead-title">${ch.nameHtml}</h1>
+  <p class="masthead-tagline">${esc(ch.tagline)}</p>
 </section>
 <div class="feed-tools">
   <input id="feed-filter" class="feed-filter" type="search" placeholder="按日期或关键词筛选…" aria-label="筛选">
@@ -568,19 +619,19 @@ ${siteHeader(false)}
 <main class="feed">
 ${items}
 </main>
-${siteFooter()}
-<script src="./app.js" defer></script>
+${siteFooter(ch)}
+<script src="${rootRel(ch)}app.js" defer></script>
 </body>
 </html>
 `;
 }
 
 /** 文章页 <date>.html（§4.4）。 */
-function renderArticle(post, prev, next) {
+function renderArticle(post, prev, next, ch) {
   // 文章级 meta：2026 · 06 · 01　·　来源星球 XXX　·　10 帖　·　约 9 分钟
   const metaBits = [dotDate(post.date)];
-  if (post.source) metaBits.push(`来源星球 ${post.source}`);
-  if (post.postCount > 0) metaBits.push(`${post.postCount} 帖`);
+  if (post.source) metaBits.push(`${ch.sourceLabel} ${post.source}`);
+  if (post.postCount > 0) metaBits.push(`${post.postCount} ${ch.countUnit}`);
   metaBits.push(`约 ${post.minutes} 分钟`);
   const metaLine = metaBits.join('　·　');
 
@@ -599,22 +650,23 @@ ${tocItems}
 
   let prevLink = '';
   let nextLink = '';
-  if (prev) prevLink = `    <a class="post-nav-prev" href="./${escAttr(prev.date)}.html">← ${esc(shortDate(prev.date))}</a>\n`;
-  if (next) nextLink = `    <a class="post-nav-next" href="./${escAttr(next.date)}.html">${esc(shortDate(next.date))} →</a>\n`;
+  if (prev) prevLink = `    <a class="post-nav-prev" href="./${escAttr(prev.id)}.html">← ${esc(shortDate(prev.date))}</a>\n`;
+  if (next) nextLink = `    <a class="post-nav-next" href="./${escAttr(next.id)}.html">${esc(shortDate(next.date))} →</a>\n`;
   const postNav = (prev || next)
     ? `  <nav class="post-nav">\n${prevLink}${nextLink}  </nav>\n`
     : '';
 
   const head = pageHead({
-    title: `${post.title} — ${SITE_NAME}`,
-    description: post.preview || SITE_TAGLINE,
-    canonicalPath: `${post.date}.html`,
+    title: `${post.title} — ${ch.siteName}`,
+    description: post.preview || ch.tagline,
+    canonicalPath: `${post.id}.html`,
     ogType: 'article',
+    ch,
   });
 
   return `${head}
 <body>
-${siteHeader(true)}
+${siteHeader(true, ch)}
 <main class="article">
   <div class="article-meta">${esc(metaLine)}</div>
   <h1 class="article-title">${esc(post.title)}</h1>
@@ -622,23 +674,24 @@ ${tocBlock}  <div class="article-body">
 ${post.bodyHtml}
   </div>
 ${postNav}  <footer class="article-footer">
-    <p>本文为对公开财经帖子的个人学习性解读，仅供参考，不构成任何投资建议。据此操作，风险自负。</p>
+    <p>${esc(ch.articleNote)}</p>
   </footer>
 </main>
-${siteFooter()}
-<script src="./app.js" defer></script>
+${siteFooter(ch)}
+<script src="${rootRel(ch)}app.js" defer></script>
 </body>
 </html>
 `;
 }
 
 /** feed.xml（§5.10）：最近 ~30 篇，绝对链接用 SITE_URL。 */
-function renderFeed(posts) {
+function renderFeed(posts, ch) {
   const recent = posts.slice(0, 30);
   const now = new Date().toUTCString();
+  const base = `${SITE_URL}/${ch.outSub ? `${ch.outSub}/` : ''}`;
   const itemsXml = recent.map((p) => {
-    const link = `${SITE_URL}/${p.date}.html`;
-    const desc = p.preview || SITE_TAGLINE;
+    const link = `${base}${p.id}.html`;
+    const desc = p.preview || ch.tagline;
     return `    <item>
       <title>${esc(p.title)}</title>
       <link>${esc(link)}</link>
@@ -651,9 +704,9 @@ function renderFeed(posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>${esc(SITE_NAME)}</title>
-    <link>${esc(SITE_URL + '/')}</link>
-    <description>${esc(SITE_TAGLINE)}</description>
+    <title>${esc(ch.siteName)}</title>
+    <link>${esc(base)}</link>
+    <description>${esc(ch.tagline)}</description>
     <language>zh-CN</language>
     <lastBuildDate>${now}</lastBuildDate>
 ${itemsXml}
@@ -701,12 +754,12 @@ function tagPostLabels(html) {
 /* ------------------------------------------------------------------ *
  * 单篇解析
  * ------------------------------------------------------------------ */
-function parsePost(filePath, date, mdLib) {
+function parsePost(filePath, id, date, mdLib, ch) {
   const raw = fs.readFileSync(filePath, 'utf8');
-  if (FAIL_HEAD_RE.test(raw.slice(0, 1500)) && !REAL_POST_RE.test(raw)) return null; // 失败通知，跳过
+  if (ch.skipFailures && FAIL_HEAD_RE.test(raw.slice(0, 1500)) && !REAL_POST_RE.test(raw)) return null; // 失败通知，跳过
 
   // 1) 抽 base64 图（替换为相对路径；HTML 内不残留 data:image）
-  const { md: mdNoB64, images, count: imgCount } = extractImages(raw, date);
+  const { md: mdNoB64, images, count: imgCount } = extractImages(raw, id, ch);
 
   // 2) 渲染 + h2 注入 id + TOC（去重复 H1）+ 帖内小标题着色
   const { html: renderedBody, toc } = renderWithToc(stripLeadingH1(mdNoB64), mdLib);
@@ -715,14 +768,20 @@ function parsePost(filePath, date, mdLib) {
   // 3) 各类提取（基于已抽图的 markdown）
   const overview = extractOverviewBlock(mdNoB64);
   const title = extractTitle(mdNoB64, overview, date);
-  const preview = extractPreview(overview);
+  let preview = extractPreview(overview);
+  // 速览首句就是标题时（粗体主线），预览从下一句开始，免得首页标题和预览重复
+  const lead = stripMarkdown(overview).trim();
+  if (title && lead.startsWith(title) && lead.length > title.length + 10) {
+    preview = extractPreview(lead.replace(/^[^。！？!?]*[。！？!?]\s*/, ''));
+  }
   const postCount = extractPostCount(mdNoB64);
   const plainAll = stripMarkdown(mdNoB64);
   const minutes = readingMinutes(plainAll);
   const tags = extractTags(mdNoB64);
-  const source = extractSource(raw);
+  const source = extractSource(raw, ch);
 
   return {
+    id,
     date,
     title,
     preview,
@@ -756,53 +815,45 @@ function copyAsset(name) {
 /* ------------------------------------------------------------------ *
  * 主流程
  * ------------------------------------------------------------------ */
-function main() {
-  console.log('=== 南半球聊财经每日Summary 构建 ===');
-  console.log(`源目录：${SRC_DIR}`);
-  console.log(`输出：${OUT_DIR}`);
-  console.log(`SITE_URL：${SITE_URL}`);
-
-  if (!fs.existsSync(SRC_DIR)) {
-    console.error(`[fatal] 源目录不存在：${SRC_DIR}`);
-    process.exit(1);
-  }
+function buildChannel(ch, mdLib) {
+  ch.outDir = ch.outSub ? path.join(OUT_DIR, ch.outSub) : OUT_DIR;
+  ch.assetsDir = path.join(ch.outDir, 'assets');
+  const label = ch.outSub ? `docs/${ch.outSub}/` : 'docs/';
+  console.log(`--- 栏目「${ch.tab}」：${ch.srcDir} → ${label} ---`);
 
   // 确保输出目录结构
-  fs.mkdirSync(OUT_DIR, { recursive: true });
-  fs.rmSync(ASSETS_DIR, { recursive: true, force: true }); // 清掉上次构建的旧图，避免孤儿残留
-  fs.mkdirSync(ASSETS_DIR, { recursive: true });
+  fs.mkdirSync(ch.outDir, { recursive: true });
+  fs.rmSync(ch.assetsDir, { recursive: true, force: true }); // 清掉上次构建的旧图，避免孤儿残留
+  fs.mkdirSync(ch.assetsDir, { recursive: true });
 
-  // 1) 收集匹配文件，按日期降序
-  const entries = fs.readdirSync(SRC_DIR)
+  // 1) 收集匹配文件，按 id（日期 + 可选序号）降序
+  const entries = (fs.existsSync(ch.srcDir) ? fs.readdirSync(ch.srcDir) : [])
     .map((name) => {
-      const m = FILE_RE.exec(name);
-      return m ? { name, date: m[1], path: path.join(SRC_DIR, name) } : null;
+      const m = ch.fileRe.exec(name);
+      return m ? { name, id: m[1] + (m[2] || ''), date: m[1], path: path.join(ch.srcDir, name) } : null;
     })
     .filter(Boolean)
-    .sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0)); // 降序
+    .sort((a, b) => (a.id < b.id ? 1 : a.id > b.id ? -1 : 0)); // 降序
 
-  console.log(`匹配到 ${entries.length} 篇 jason_解读 文档。`);
+  console.log(`匹配到 ${entries.length} 篇源文档。`);
   if (!entries.length) {
     console.warn('[warn] 没有匹配的源文档，仍会生成空首页与 feed。');
   }
-
-  const mdLib = makeRenderer();
-  installLazyImages(mdLib);
 
   // 2) 逐篇解析（单篇 try/catch 跳过不中断）
   const posts = [];
   const skipped = [];
   for (const e of entries) {
     try {
-      const post = parsePost(e.path, e.date, mdLib);
+      const post = parsePost(e.path, e.id, e.date, mdLib, ch);
       if (!post) {
-        skipped.push(e.date);
+        skipped.push(e.id);
         continue;
       }
       posts.push(post);
-      console.log(`  ✓ ${e.date}　标题「${post.title}」　图 ${post.imgCount}　帖 ${post.postCount}　约 ${post.minutes} 分钟`);
+      console.log(`  ✓ ${e.id}　标题「${post.title}」　图 ${post.imgCount}　${ch.countUnit} ${post.postCount}　约 ${post.minutes} 分钟`);
     } catch (err) {
-      console.error(`  ✗ ${e.date} 解析失败，已跳过：${err && err.stack ? err.stack : err}`);
+      console.error(`  ✗ ${e.id} 解析失败，已跳过：${err && err.stack ? err.stack : err}`);
     }
   }
   if (skipped.length) console.log(`  跳过「未能抓取」通知 ${skipped.length} 篇：${skipped.join(', ')}`);
@@ -816,39 +867,51 @@ function main() {
     const prev = posts[i + 1] || null; // 更早
     const next = posts[i - 1] || null; // 更晚
     try {
-      const html = renderArticle(post, prev, next);
-      fs.writeFileSync(path.join(OUT_DIR, `${post.date}.html`), html, 'utf8');
+      const html = renderArticle(post, prev, next, ch);
+      fs.writeFileSync(path.join(ch.outDir, `${post.id}.html`), html, 'utf8');
       articleCount += 1;
     } catch (err) {
-      console.error(`  ✗ ${post.date} 写页失败，已跳过：${err && err.stack ? err.stack : err}`);
+      console.error(`  ✗ ${post.id} 写页失败，已跳过：${err && err.stack ? err.stack : err}`);
     }
   }
 
-  // 清掉不再发布的旧文章页（如被跳过的失败通知）；只动根目录下 <日期>.html，不碰 research/ 等
-  const live = new Set(posts.map((p) => `${p.date}.html`));
-  for (const name of fs.readdirSync(OUT_DIR)) {
-    if (/^\d{4}-\d{2}-\d{2}\.html$/.test(name) && !live.has(name)) {
-      fs.rmSync(path.join(OUT_DIR, name));
-      console.log(`  删除旧文章页 docs/${name}`);
+  // 清掉不再发布的旧文章页（如被跳过的失败通知）；只动本栏目目录下 <日期>.html，不碰 research/ 等
+  const live = new Set(posts.map((p) => `${p.id}.html`));
+  for (const name of fs.readdirSync(ch.outDir)) {
+    if (/^\d{4}-\d{2}-\d{2}(-\d+)?\.html$/.test(name) && !live.has(name)) {
+      fs.rmSync(path.join(ch.outDir, name));
+      console.log(`  删除旧文章页 ${label}${name}`);
     }
   }
 
   // 3) 首页 + feed
-  fs.writeFileSync(path.join(OUT_DIR, 'index.html'), renderIndex(posts), 'utf8');
-  fs.writeFileSync(path.join(OUT_DIR, 'feed.xml'), renderFeed(posts), 'utf8');
+  fs.writeFileSync(path.join(ch.outDir, 'index.html'), renderIndex(posts, ch), 'utf8');
+  fs.writeFileSync(path.join(ch.outDir, 'feed.xml'), renderFeed(posts, ch), 'utf8');
 
-  // 4) 复制 styles.css / app.js（不存在则告警跳过）
+  const totalImgs = posts.reduce((s, p) => s + p.imgCount, 0);
+  console.log(`文章页：${articleCount} / ${posts.length}；Feed 含 ${Math.min(posts.length, 30)} 篇；抽出图片 ${totalImgs} 张`);
+}
+
+function main() {
+  console.log('=== prism 站点构建 ===');
+  console.log(`输出：${OUT_DIR}`);
+  console.log(`SITE_URL：${SITE_URL}`);
+
+  if (!fs.existsSync(SRC_DIR)) {
+    console.error(`[fatal] 源目录不存在：${SRC_DIR}`);
+    process.exit(1);
+  }
+  fs.mkdirSync(OUT_DIR, { recursive: true });
+
+  const mdLib = makeRenderer();
+  installLazyImages(mdLib);
+  for (const ch of CHANNELS) buildChannel(ch, mdLib);
+
+  // 复制 styles.css / app.js（不存在则告警跳过）
   copyAsset('styles.css');
   copyAsset('app.js');
   copyAsset('favicon.svg');
-
-  // 5) 汇总
-  const totalImgs = posts.reduce((s, p) => s + p.imgCount, 0);
   console.log('--- 构建完成 ---');
-  console.log(`文章页：${articleCount} / ${posts.length}`);
-  console.log(`首页：docs/index.html`);
-  console.log(`Feed：docs/feed.xml（含 ${Math.min(posts.length, 30)} 篇）`);
-  console.log(`抽出图片：${totalImgs} 张`);
 }
 
 main();

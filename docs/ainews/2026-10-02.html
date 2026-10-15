@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>开源 agent 框架 Pi 发 1.0 — AI News 每日解读</title>
+<meta name="description" content="编者把今天的版面给了 Earendil 旗下的 Pi：Pi 1.0 和 Pi Durable 同时登上 Hacker News 首页，前者补齐了 MCP 等生态能力，后者把 agent 的状态全部外置，做到进程崩了也能从上一步精确恢复。">
+<meta property="og:title" content="开源 agent 框架 Pi 发 1.0 — AI News 每日解读">
+<meta property="og:description" content="编者把今天的版面给了 Earendil 旗下的 Pi：Pi 1.0 和 Pi Durable 同时登上 Hacker News 首页，前者补齐了 MCP 等生态能力，后者把 agent 的状态全部外置，做到进程崩了也能从上一步精确恢复。">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AI News 每日解读">
+<link rel="canonical" href="https://vkazas.github.io/prism/ainews/2026-10-02.html">
+<meta property="og:url" content="https://vkazas.github.io/prism/ainews/2026-10-02.html">
+<link rel="alternate" type="application/rss+xml" title="AI News 每日解读" href="./feed.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<header class="site-header">
+  <nav class="channel-tabs" aria-label="栏目"><a class="channel-tab" href="../index.html">南半球聊财经</a><a class="channel-tab is-active" aria-current="page" href="../ainews/index.html">AI News</a></nav>
+  <nav class="site-nav">
+    <a class="nav-back" href="./index.html">全部</a>
+    <a class="rss-link" href="./feed.xml" aria-label="RSS 订阅"><svg class="icon icon-rss" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM2 9.91v2.84c4.55 0 8.25 3.7 8.25 8.25h2.84C13.09 14.76 8.24 9.91 2 9.91zm0-4.91v2.84c7.27 0 13.16 5.89 13.16 13.16H18C18 12.07 10.93 5 2 5z"/></svg></a>
+    <button class="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false"><svg class="icon icon-moon" data-icon="moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon icon-sun" data-icon="sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" hidden><path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-13a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM5 12a1 1 0 0 1-1 1H3a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zm17 0a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zM6.34 6.34a1 1 0 0 1 0 1.41l-.7.71a1 1 0 1 1-1.42-1.42l.71-.7a1 1 0 0 1 1.41 0zm12.02 12.02a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.42l.7-.7a1 1 0 0 1 1.42 0zM6.34 17.66a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 0 1 1.42-1.41l.7.7a1 1 0 0 1 0 1.42zM18.36 5.64a1 1 0 0 1-1.42 0l-.7-.71a1 1 0 0 1 1.41-1.41l.71.7a1 1 0 0 1 0 1.42z"/></svg></button>
+  </nav>
+</header>
+<main class="article">
+  <div class="article-meta">2026 · 10 · 02　·　来源 Latent Space · AINews　·　约 7 分钟</div>
+  <h1 class="article-title">开源 agent 框架 Pi 发 1.0</h1>
+  <nav class="toc" aria-label="本期目录">
+    <button class="toc-toggle" type="button" aria-expanded="false">本期目录</button>
+    <ol class="toc-list">
+      <li><a href="#sec-1">今日要点速览</a></li>
+      <li><a href="#sec-2">头条：Pi 1.0 与 Pi Durable 同日登上 HN 首页</a></li>
+      <li><a href="#sec-3">X 上在聊什么</a></li>
+      <li><a href="#sec-4">值得记住的数字</a></li>
+      <li><a href="#sec-5">延伸知识</a></li>
+    </ol>
+  </nav>
+  <div class="article-body">
+<p>标签：#Agent #开源 #模型发布</p>
+<blockquote>
+<p>来源：Latent Space《Pi 1.0, Pi Durable, and AIE NYC》（<a href="https://www.latent.space/p/ainews-pi-10-pi-durable-and-aie-nyc">原文</a>），覆盖 9/30–10/01。本文只解读免费公开的部分：编者按和 AI Twitter Recap。</p>
+</blockquote>
+<h2 id="sec-1">今日要点速览</h2>
+<p><strong>开源 agent 框架 Pi 发 1.0，同时推出可断点续跑的 Pi Durable。</strong> 编者把今天的版面给了 Earendil 旗下的 Pi：Pi 1.0 和 Pi Durable 同时登上 Hacker News 首页，前者补齐了 MCP 等生态能力，后者把 agent 的状态全部外置，做到进程崩了也能从上一步精确恢复。X 上的热点则是三家大厂的新模型：Google 的 Gemini 4 Argon 刚宣布就陷入&quot;代码能力到底行不行&quot;的争论，OpenAI 的 GPT-6.1 Sol 主打省钱提速，Black Forest Labs 的 FLUX 3 把图像生成推到 4K 并支持十张参考图。另外 AI Engineer NYC 大会两周后开幕，常规票最后召集。</p>
+<h2 id="sec-2">头条：Pi 1.0 与 Pi Durable 同日登上 HN 首页</h2>
+<p>Pi 是一个开源的编程 agent 框架（术语叫 harness，可以理解为&quot;把大模型包成一个能干活的助手&quot;的那层外壳：管对话、管工具调用、管上下文）。编者说，今年早些时候大家常把 Pi 和 OpenClaw 放在一起提，但今天轮到 Pi 所在的 Earendil 团队露脸：<a href="https://earendil.com/posts/pi-1-0/">Pi 1.0</a> 和 <a href="https://earendil.com/posts/pi-durable/">Pi Durable</a> 两条消息都冲上了 Hacker News 首页（<a href="https://news.ycombinator.com/item?id=49926069">Pi 1.0 的 HN 帖</a>、<a href="https://news.ycombinator.com/item?id=49925969">Pi Durable 的 HN 帖</a>）。</p>
+<p><strong>Pi 1.0 的新东西</strong>，按原文列表：</p>
+<ul>
+<li><a href="https://earendil.com/posts/you-said-no-mcp/">Codemode</a>：原生支持 MCP、Jev 和图像模型。MCP 是让模型接外部工具的通用协议，相当于工具世界的通用插头；Codemode 这个名字背后有个故事，链接标题就叫&quot;你说过不要 MCP&quot;，说明团队之前一直抵触 MCP，现在改了主意。Jev 是一种决策模型，这个品类后面几期会反复出现；图像模型的接入意味着 Pi 不再只调用一个聊天模型，而是能在同一个流程里调用不同类型的模型。</li>
+<li>扩展支持<a href="https://github.com/earendil-works/pi/releases">虚拟模型</a>。</li>
+<li>延迟加载工具（deferred tool loading）：agent 接的工具越多，每轮塞进上下文的工具说明就越长，既花钱又挤占模型的注意力。延迟加载的做法是先只给模型一个工具名清单，真正要用某个工具时再把完整说明拉进来。</li>
+<li>给 Anthropic 模型做缓存预热（cache warming）：Anthropic 的 API 对重复出现的提示词前缀有缓存折扣，但缓存有存活时间。预热就是在用户空闲时主动发一个轻量请求，让缓存不过期，下一轮真正的请求就能享受低价和低延迟。</li>
+<li><a href="https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/session-format.md">对话中途插入 system message</a>：传统做法是 system prompt 在对话开头定死。Pi 现在允许在对话进行中按已有记录动态调整提示词和工具，比如任务进入新阶段时换一套指令，而不用重开会话。</li>
+<li>新的终端界面主题，默认全屏模式。</li>
+</ul>
+<p><strong>Pi Durable</strong> 是更有野心的一块：把 Pi 移植到 TypeScript，并把所有有状态的组件都挪到外部存储。原文列的七个特性：</p>
+<ul>
+<li><strong>崩溃存活</strong>：每一步都记录成带检查点的任务，进程挂了或重启，agent 和子 agent 自动从上一个精确状态继续。</li>
+<li><strong>可移植</strong>：任何 JavaScript 运行时都能跑（Node、Bun、Cloudflare），存储后端可插拔（内存、SQLite、JSONL），执行环境可本地可远程。</li>
+<li><strong>并发</strong>：一个 harness 能同时跑多条并行、分叉的对话，比如一个主频道加几个独立线程，互不阻塞。</li>
+<li><strong>可扩展</strong>：开发者可以把自定义 system prompt、工具、hook 和持久任务（比如带回滚的多步结账流程）打包成可安装的 Extension。</li>
+<li><strong>上下文管理</strong>：后台自动压缩旧消息来控制 token 上限，不打断 agent 正在做的事。</li>
+<li><strong>多人协作与状态同步</strong>：应用状态（比如一张待办清单）和对话记录存在一起，多个用户或多个界面可以同时连上来看、同时操控同一个 agent。</li>
+<li><strong>热更新</strong>：agent 运行中可以直接更新工具和扩展代码，下一次工具调用自动用新代码。</li>
+</ul>
+<p>为什么重要：现在的编程 agent 大多是&quot;一个终端会话跑到结束&quot;的模式，一旦跑长任务、跑多人共享的任务，掉线就前功尽弃。Pi Durable 把这些问题当作基础设施问题来解，而且是 MIT 开源。另一层意义是生态位：编者把 Pi 和 OpenClaw 并列提起，说明在开源 agent 框架这个赛道上，Pi 已经被当作一个有代表性的选项来讨论，而不只是某个团队的实验项目。两条消息同天登上 HN 首页，也印证了开发者对&quot;可靠、可扩展的 agent 运行时&quot;这件事的关注度。</p>
+<p>编者按还顺带提了 AI Engineer NYC：<a href="https://ai.engineer/nyc">常规票最后召集</a>，两周后见；Latent Space 订阅者前 30 人可用 <a href="https://app.ai.engineer/e/ai-engineer-new-york-2026?discount=LS-NYC26">30% 折扣码</a>（仅限新票，不退款）。</p>
+<h2 id="sec-3">X 上在聊什么</h2>
+<h3>前沿与多模态发布：Gemini 4 Argon、GPT-6.1 Sol 和 FLUX 3</h3>
+<ul>
+<li><strong>Gemini 4 Argon 宣布，但代码能力有争议</strong>：Google 发布新一代 Gemini，参与者提到改过的预训练数据配比、长程后训练数据，以及内部用在内存优化、代码迁移和数学上。原文特别提醒这些是开发者自述，不是独立证据（<a href="https://x.com/mirrokni/status/2105500370675921213">Google 研究员</a>）。Logan Kilpatrick 说新版本发布前会经过数千名内部工程师几周的测试（<a href="https://x.com/OfficialLoganK/status/2105521401566486875">Logan Kilpatrick</a>）。另一边，一份流传的 Bloomberg 报道援引匿名内部人士说它写代码偏弱，随后又有帖子说一位 DeepMind 高级工程师否认了这个说法。原文建议把这事当作悬而未决（<a href="https://x.com/kimmonismus/status/2105570914574209283">报道的批评</a>、<a href="https://x.com/kimmonismus/status/2105709302484729879">报道的反驳</a>）。</li>
+<li><strong>GPT-6.1 Sol 本质是效率升级</strong>：Sam Altman 称它是公司增长最快的模型，发布时的负载问题已经改善（<a href="https://x.com/sama/status/2105688354834756036">更新</a>）。Artificial Analysis 测得在最高推理强度下每个 Intelligence Index 任务成本 $0.72，对比 GPT-6 Sol 的 $1.04 和 Astra 的 $3.26。省钱的原因不只是生成的 token 少，而是对话轮次更少、缓存读取更便宜（<a href="https://x.com/ArtificialAnlys/status/2105491868608004578">结果</a>、<a href="https://x.com/ArtificialAnlys/status/2105449959554441580">解释</a>）。</li>
+<li><strong>OpenAI 修了 Luna 和 Sol 的图像编码</strong>：Luna 在 Intelligence Index 上涨 1 分，视觉文档和知识工作类评测有改善；Sol 几乎没变（<a href="https://x.com/ArtificialAnlys/status/2105491868608004578">测量</a>）。</li>
+<li><strong>Upstage 的 Solar Mini 4：便宜但慢</strong>：这是韩国公司 Upstage 的闭源纯文本推理模型，自报 35B 总参数、3B 激活参数，1M token 上下文，最大输出 262K。权重不公开，所以参数量只能信厂商（<a href="https://x.com/ArtificialAnlys/status/2105459219059401036">分析</a>）。价格每百万 token 输入 $0.10、输出 $0.40、缓存命中 $0.01。Artificial Analysis 给它综合 24 分、长上下文推理 83%，但 Terminal-Bench 4.0 只有 1%。虽然输出速度有 208 token/秒，可每个任务平均要吐约 88K 个输出 token，平均 7.1 分钟才做完，成本大约是 Luna 的五倍。这是一个典型案例：单价便宜不等于用起来便宜，模型如果啰嗦，每任务的账单和等待时间都会把单价优势吃掉。Terminal-Bench 测的是在命令行里完成真实任务的能力，1% 意味着它基本做不了 agent 类的活。</li>
+<li><strong>FLUX 3 Image：原生 4K、十张参考图</strong>：Black Forest Labs 推出原生最高 4K 生成、最多十张参考图、用边界框控制布局、多轮针对性编辑。原文提醒&quot;未改动的像素完全保留&quot;是厂商说法，没有独立验证（<a href="https://x.com/bfl_ai/status/2105734605621825738">公告</a>）。商用权重已上线，开放权重版本承诺几周内发布，托管方包括 fal 和 Krea（<a href="https://x.com/fal/status/2105745492474802514">fal</a>、<a href="https://x.com/krea_ai/status/2105769469880799716">Krea</a>）。BFL 宣布 API 临时五折到 10 月 8 日，但帖子里没给基础价格（<a href="https://x.com/robrombach/status/2105765028460732816">细节</a>）。</li>
+<li><strong>视频对话 agent：Tavus Griffin</strong>：一个视频到视频的交互模型，也就是输入你的实时画面、输出一个会即时回应的数字人画面。它声称 48% 的现场参与者把它误认成真人，早期系统不到 3%。原文提醒，没看到测试协议之前，不要把它推广成&quot;通过了图灵测试&quot;：参与者看了多久、有没有被提前告知可能是 AI、对话内容是什么，都会大幅影响这个比例（<a href="https://x.com/tavus/status/2105704169009246248">公告</a>）。另外 Synthesia 发布 Sessions，是用于角色扮演和问卷访谈的对话式数字人，从原来只做单向培训视频往前走了一步（<a href="https://x.com/synthesiaIO/status/2105591908659540474">发布</a>）。</li>
+</ul>
+<h2 id="sec-4">值得记住的数字</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>数字</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPT-6.1 Sol 单任务成本</td>
+<td>$0.72</td>
+<td>Artificial Analysis Intelligence Index，最高推理强度；GPT-6 Sol 为 $1.04，Astra 为 $3.26</td>
+</tr>
+<tr>
+<td>Solar Mini 4 参数</td>
+<td>35B 总 / 3B 激活</td>
+<td>厂商自报，权重未公开</td>
+</tr>
+<tr>
+<td>Solar Mini 4 定价</td>
+<td>$0.10 / $0.40 / $0.01</td>
+<td>每百万 token 输入 / 输出 / 缓存命中</td>
+</tr>
+<tr>
+<td>Solar Mini 4 单任务耗时</td>
+<td>7.1 分钟</td>
+<td>平均输出约 88K token，成本约为 Luna 五倍</td>
+</tr>
+<tr>
+<td>Solar Mini 4 Terminal-Bench 4.0</td>
+<td>1%</td>
+<td>长上下文推理则有 83%</td>
+</tr>
+<tr>
+<td>FLUX 3 生成分辨率</td>
+<td>4K</td>
+<td>最多十张参考图</td>
+</tr>
+<tr>
+<td>FLUX 3 API 折扣</td>
+<td>50%</td>
+<td>临时，到 10 月 8 日</td>
+</tr>
+<tr>
+<td>Griffin 被误认为真人比例</td>
+<td>48%</td>
+<td>早期系统不到 3%，测试协议未公开</td>
+</tr>
+<tr>
+<td>Pi Durable 存储后端</td>
+<td>3 种</td>
+<td>内存、SQLite、JSONL</td>
+</tr>
+<tr>
+<td>AIE NYC 订阅者折扣</td>
+<td>30%</td>
+<td>前 30 人，仅新票</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sec-5">延伸知识</h2>
+<p><strong>什么是 agent harness？</strong> 大模型本身只会&quot;接收一段文字、吐出一段文字&quot;。要让它真正改代码、跑命令、查资料，需要有一层程序负责：把工具列表塞进提示词、解析模型想调用哪个工具、真正去执行、把结果塞回对话、管理上下文别超长。这层程序就是 harness。Pi、Claude Code、Codex、DeepSeek Harness 都是 harness。同一个模型配不同的 harness，表现可以差很多，后面几期 Hugging Face 的研究会专门讲这点。所以 Pi 1.0 这种更新虽然不涉及模型本身，对实际干活效率的影响并不小。</p>
+<p><strong>什么是 durable execution（持久执行）？</strong> 可以类比游戏存档。普通程序跑一个二十步的流程，第十五步崩了就得从头来；持久执行是每走一步都把状态写进数据库，重启后读档继续。Pi Durable 把 agent 的每一次工具调用、每一段对话都当作一个可存档的任务，所以才能做到&quot;崩了自动恢复&quot;&quot;多人同时围观同一个 agent&quot;&quot;运行中热换工具代码&quot;。这套思路在后端工程里早有先例（工作流引擎），Pi Durable 是把它搬进 agent 领域，并且顺带让 agent 能跑在 Cloudflare 这类无服务器平台上。无服务器平台的特点是进程随时可能被回收，正常的 agent 在这种环境下根本跑不了长任务，有了外置状态和检查点之后反而成了天然适配。</p>
+<p><strong>怎么读&quot;每任务成本&quot;这类数字？</strong> Artificial Analysis 的 Intelligence Index 是一组固定的评测题，他们把模型跑完整套题的 API 账单除以题数，得到&quot;每任务成本&quot;。这个数字同时反映了单价和模型的啰嗦程度，所以比价目表更接近真实开销。今天有两个对照：GPT-6.1 Sol 的 $0.72 低于 GPT-6 Sol 的 $1.04，原文特别说明省钱来自更少的对话轮次和更便宜的缓存读取，而不只是生成的 token 变少；Solar Mini 4 单价极低，却因为每任务要输出约 88K token，成本反而是 Luna 的五倍。两件事放在一起看，结论是：挑模型时要同时看单价、输出长度和轮次，三者缺一个都可能算错账。</p>
+
+  </div>
+  <nav class="post-nav">
+    <a class="post-nav-next" href="./2026-10-03.html">10 · 03 →</a>
+  </nav>
+  <footer class="article-footer">
+    <p>本文是对 Latent Space《AINews》公开部分的中文学习性解读，观点归原作者，详情以原文为准。</p>
+  </footer>
+</main>
+<footer class="site-footer">
+  <p class="footer-disclaimer">本栏目是对 Latent Space《AINews》公开部分的中文学习性解读，观点归原作者，详情以原文为准。</p>
+  <p class="footer-meta">
+    <span>© 2026 AI News 每日解读</span>
+    <a class="footer-rss" href="./feed.xml" aria-label="RSS 订阅"><svg class="icon icon-rss" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM2 9.91v2.84c4.55 0 8.25 3.7 8.25 8.25h2.84C13.09 14.76 8.24 9.91 2 9.91zm0-4.91v2.84c7.27 0 13.16 5.89 13.16 13.16H18C18 12.07 10.93 5 2 5z"/></svg><span> RSS 订阅</span></a>
+  </p>
+</footer>
+<script src="../app.js" defer></script>
+</body>
+</html>

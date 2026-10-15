@@ -182,7 +182,7 @@ button {
 }
 
 /* ---------------------------------------------------------------------
-   3. 站点页头  .site-header / .site-name / .site-name-en / .site-nav
+   3. 站点页头  .site-header / .channel-tabs / .site-name-en / .site-nav
                 .nav-back / .rss-link / .theme-toggle
    --------------------------------------------------------------------- */
 
@@ -201,14 +201,30 @@ button {
   border-bottom: 1px solid var(--hairline);
 }
 
-.site-name {
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: -0.01em;
-  color: var(--text);
-  white-space: nowrap;
+/* 栏目切换（南半球聊财经 / AI News …）：当前栏目实色，其余弱化 */
+.channel-tabs {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 0;
+  margin-left: calc(-1 * var(--space-2));
 }
-.site-name:hover {
+.channel-tab {
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  color: var(--text-muted);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+.channel-tab:hover {
+  color: var(--text);
+  background: var(--bg-subtle);
+}
+.channel-tab.is-active {
+  font-weight: 700;
   color: var(--text);
 }
 

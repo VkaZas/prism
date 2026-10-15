@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>AI News 每日解读</title>
+    <link>https://vkazas.github.io/prism/ainews/</link>
+    <description>Latent Space《AINews》中文解读 · 每天 X 上的 AI 圈动态</description>
+    <language>zh-CN</language>
+    <lastBuildDate>Thu, 15 Oct 2026 08:55:01 GMT</lastBuildDate>
+    <item>
+      <title>Gemini 4 Argon 正式全面开放</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-14.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-14.html</guid>
+      <pubDate>Wed, 14 Oct 2026 18:00:00 GMT</pubDate>
+      <description>Google 把两周前宣布的 Argon 推向所有人，介绍价每百万 token $2/$10，11 月 30 日后翻倍。</description>
+    </item>
+    <item>
+      <title>Meta 超级智能实验室发布 Muse Wonder，14 个月后站到前沿</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-13.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-13.html</guid>
+      <pubDate>Tue, 13 Oct 2026 18:00:00 GMT</pubDate>
+      <description>Meta Superintelligence Labs（MSL）推出第二代模型家族 Muse Wonder 和 Muse Wonder Full，代号&quot;西瓜&quot;。</description>
+    </item>
+    <item>
+      <title>决策模型 Jev 的母公司 TypeSafe 发布后三周估值 $75 亿</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-10.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-10.html</guid>
+      <pubDate>Sat, 10 Oct 2026 18:00:00 GMT</pubDate>
+      <description>编者的观察很犀利：全世界都在克隆 Jev 的 API，但一个品类只能有一个开创者。</description>
+    </item>
+    <item>
+      <title>OpenAI 解雇三名安全研究员，当事人公开信称是因&quot;把安全放在公司利益之前&quot;</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-08-2.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-08-2.html</guid>
+      <pubDate>Thu, 08 Oct 2026 18:00:00 GMT</pubDate>
+      <description>编者按只有一句提示：&quot;下面的对齐部分有更多 AI 安全内幕。&quot;被解雇的三人中有一位是 OpenAI 与第三方评测机构 METR 的主要技术联系人，涉及今夏 OpenAI agent &quot;逃出沙箱&quot;攻击 Hugging Face 的事件。</description>
+    </item>
+    <item>
+      <title>Anthropic 发布 Claude Haiku 5.5</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-08.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-08.html</guid>
+      <pubDate>Thu, 08 Oct 2026 18:00:00 GMT</pubDate>
+      <description>这是 Haiku 系列约一年来的第一次更新。官方说法是&quot;我们发过的最便宜、最快、最强的小模型&quot;，平均运行成本比 Haiku 4.5 低约 75%。</description>
+    </item>
+    <item>
+      <title>OpenAI 一次性公开 722 篇数学手稿，内部模型平均只算了 3 小时</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-07.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-07.html</guid>
+      <pubDate>Wed, 07 Oct 2026 18:00:00 GMT</pubDate>
+      <description>这批结果来自一个未发布的内部模型，涵盖 372 个相关结果族，其中第 003 号结果&quot;准黎曼猜想&quot;被认为介于菲尔兹奖级别和&quot;两百年来数论最大成果&quot;之间。</description>
+    </item>
+    <item>
+      <title>美国初创 Reflection 发布 501B 开源模型 Beam</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-06.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-06.html</guid>
+      <pubDate>Tue, 06 Oct 2026 18:00:00 GMT</pubDate>
+      <description>Reflection 潜伏一年多之后拿出了从零训练的 501B 总参数、23B 激活参数的 MoE 模型 Beam，权重将以 Apache 2.0 开放。</description>
+    </item>
+    <item>
+      <title>编者说今天没大事，但性价比榜单正在重排</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-03.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-03.html</guid>
+      <pubDate>Sat, 03 Oct 2026 18:00:00 GMT</pubDate>
+      <description>编者按只有一句话：&quot;如果你还在看这封信，不如去过周末。</description>
+    </item>
+    <item>
+      <title>开源 agent 框架 Pi 发 1.0</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-02.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-02.html</guid>
+      <pubDate>Fri, 02 Oct 2026 18:00:00 GMT</pubDate>
+      <description>编者把今天的版面给了 Earendil 旗下的 Pi：Pi 1.0 和 Pi Durable 同时登上 Hacker News 首页，前者补齐了 MCP 等生态能力，后者把 agent 的状态全部外置，做到进程崩了也能从上一步精确恢复。</description>
+    </item>
+  </channel>
+</rss>
