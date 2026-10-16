@@ -5,7 +5,7 @@
  *   图片（assets/）：先看缓存，没有再下载；最多留 400 张。
  *   样式 / 脚本 / 图标：先给缓存，同时后台更新，下次打开就是新的。
  */
-const VERSION = 'v1';
+const VERSION = 'v2';
 const PAGES = `prism-pages-${VERSION}`;
 const IMAGES = `prism-images-${VERSION}`;
 const STATIC = `prism-static-${VERSION}`;

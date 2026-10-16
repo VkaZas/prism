@@ -1491,13 +1491,15 @@ button {
   :root {
     --font-sans: var(--font-mobile);
     --sticky-top: calc(var(--appbar-h) + env(safe-area-inset-top));
+    /* 手势条区域的最大高度（Chrome 135+）；旧版本退回当前值 */
+    --sab-max: env(safe-area-max-inset-bottom, env(safe-area-inset-bottom, 0px));
   }
   html {
     scroll-padding-top: calc(var(--appbar-h) + 64px);
     -webkit-tap-highlight-color: transparent;
   }
   body {
-    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+    padding-bottom: calc(80px + var(--sab-max));
   }
 
   /* —— 顶栏 —— */
@@ -1512,8 +1514,9 @@ button {
     backdrop-filter: none;
     transition: transform 0.25s cubic-bezier(0.2, 0, 0, 1), background-color 0.2s ease;
   }
+  /* 顶栏和底栏都用页面底色：系统状态栏、手势条按 theme-color 着色时能接上，不出色带 */
   body.scrolled .site-header {
-    background: var(--surface-bar);
+    border-bottom-color: var(--hairline);
   }
   body.bar-hidden .site-header {
     transform: translateY(-100%);
@@ -1574,11 +1577,14 @@ button {
     position: fixed;
     left: 0;
     right: 0;
-    bottom: 0;
     z-index: 40;
-    height: calc(80px + env(safe-area-inset-bottom));
-    padding-bottom: env(safe-area-inset-bottom);
-    background: var(--surface-bar);
+    /* Chrome 推荐写法：高度按手势条最大高度留足，位置跟着 safe-area-inset-bottom 走，
+       手势条和 Chrome 底部「下巴」收起时都不会露出底下的系统色带 */
+    height: calc(80px + var(--sab-max));
+    padding-bottom: var(--sab-max);
+    bottom: calc(env(safe-area-inset-bottom, 0px) - var(--sab-max));
+    background: var(--bg);
+    border-top: 1px solid var(--hairline);
     view-transition-name: bottom-nav;
   }
   .bn-item {

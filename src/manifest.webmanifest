@@ -11,12 +11,51 @@
   "background_color": "#fdfcfa",
   "theme_color": "#fdfcfa",
   "icons": [
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
-    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
   ],
   "shortcuts": [
-    { "name": "AI 八卦", "url": "./ainews/index.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
-    { "name": "南半球聊财经", "url": "./index.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
-  ]
+    {
+      "name": "AI 八卦",
+      "url": "./ainews/index.html",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "南半球聊财经",
+      "url": "./index.html",
+      "icons": [
+        {
+          "src": "icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "user_preferences": {
+    "color_scheme_dark": {
+      "theme_color": "#16151a",
+      "background_color": "#16151a"
+    }
+  }
 }
