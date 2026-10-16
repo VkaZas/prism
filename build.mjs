@@ -838,7 +838,7 @@ function splitSections(html) {
   return { lead: html.slice(0, marks[0].start), sections };
 }
 
-const CRED = { '传闻': 'rumor', '爆料': 'leak', '有印证': 'multi', '当事人回应': 'reply', '已证实': 'ok' };
+const CRED = { '传闻': 'rumor', '爆料': 'leak', '有印证': 'multi', '当事人回应': 'reply', '已证实': 'ok', '观点': 'view' };
 const HEART_SVG = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.4 5c2 0 3.3 1.1 4 2.2.7-1.1 2-2.2 4-2.2 3.4 0 5.5 3.4 4 6.8C19.5 16.4 12 21 12 21z"/></svg>';
 const X_SVG = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg>';
 

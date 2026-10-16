@@ -76,6 +76,7 @@
   --cred-multi-bg: #e1efdc; --cred-multi: #2a5f22;
   --cred-reply-bg: #e4e7fb; --cred-reply: #2b3a8f;
   --cred-ok-bg: #d6f0e8;    --cred-ok: #0d5c4a;
+  --cred-view-bg: #ece6fb;  --cred-view: #4b2a8c;
 
   /* 主题切换图标显隐：浅色显示「月亮」（点了去深色） */
   --icon-sun-display: none;
@@ -113,6 +114,7 @@
   --cred-multi-bg: #23391f; --cred-multi: #a8d89b;
   --cred-reply-bg: #2a3060; --cred-reply: #c4cbff;
   --cred-ok-bg: #173d34;    --cred-ok: #8fdcc4;
+  --cred-view-bg: #33284d;  --cred-view: #d4c2ff;
 
   --icon-sun-display: inline; /* 深色显示「太阳」（点了回浅色） */
   --icon-moon-display: none;
@@ -150,6 +152,7 @@
     --cred-multi-bg: #23391f; --cred-multi: #a8d89b;
     --cred-reply-bg: #2a3060; --cred-reply: #c4cbff;
     --cred-ok-bg: #173d34;    --cred-ok: #8fdcc4;
+    --cred-view-bg: #33284d;  --cred-view: #d4c2ff;
 
     --icon-sun-display: inline;
     --icon-moon-display: none;
@@ -1361,6 +1364,7 @@ button {
 .cred--multi { --cred-bg: var(--cred-multi-bg); --cred-fg: var(--cred-multi); }
 .cred--reply { --cred-bg: var(--cred-reply-bg); --cred-fg: var(--cred-reply); }
 .cred--ok    { --cred-bg: var(--cred-ok-bg);    --cred-fg: var(--cred-ok); }
+.cred--view  { --cred-bg: var(--cred-view-bg);  --cred-fg: var(--cred-view); }
 .gcard-body {
   padding: 0 var(--space-5) var(--space-4);
   animation: card-open 0.22s cubic-bezier(0.2, 0, 0, 1);
