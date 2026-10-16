@@ -52,6 +52,9 @@ const CHANNELS = [
   {
     id: 'nbq',
     tab: '南半球聊财经',
+    navLabel: '南半球',
+    // 底部导航图标：上扬折线（财经）
+    navIcon: '<path d="M3 17l5-5 4 4 8-8M15 8h5v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
     siteName: SITE_NAME,
     nameHtml: '南半球聊财经<span class="site-name-en"> 每日 Summary</span>',
     tagline: SITE_TAGLINE,
@@ -67,7 +70,10 @@ const CHANNELS = [
   },
   {
     id: 'ainews',
-    tab: 'AI News',
+    tab: 'AI 八卦',
+    navLabel: 'AI 八卦',
+    // 底部导航图标：四角星（AI）
+    navIcon: '<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z" fill="currentColor"/>',
     siteName: 'AI News 每日八卦',
     nameHtml: 'AI News<span class="site-name-en"> 每日八卦</span>',
     tagline: 'X 上的 AI 圈爆料、八卦与热议 · 每日中文整理',
@@ -115,6 +121,12 @@ function dotDate(date) {
 function shortDate(date) {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
   return m ? `${m[2]} · ${m[3]}` : date;
+}
+
+/** 手机顶栏标题用的「10月15日」。 */
+function monthDay(date) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(date);
+  return m ? `${Number(m[2])}月${Number(m[3])}日` : date;
 }
 
 /** RFC-822 日期（feed.xml 用）；发帖默认 18:00 本地→当 UTC 处理，best-effort。 */
@@ -496,23 +508,56 @@ const THEME_ICONS =
   '<svg class="icon icon-sun" data-icon="sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" hidden>' +
   '<path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-13a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM5 12a1 1 0 0 1-1 1H3a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zm17 0a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zM6.34 6.34a1 1 0 0 1 0 1.41l-.7.71a1 1 0 1 1-1.42-1.42l.71-.7a1 1 0 0 1 1.41 0zm12.02 12.02a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.42l.7-.7a1 1 0 0 1 1.42 0zM6.34 17.66a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 0 1 1.42-1.41l.7.7a1 1 0 0 1 0 1.42zM18.36 5.64a1 1 0 0 1-1.42 0l-.7-.71a1 1 0 0 1 1.41-1.41l.71.7a1 1 0 0 1 0 1.42z"/></svg>';
 
-/** 站点页头（两页通用）。isArticle=true 时含「全部」返回链接。 */
-function siteHeader(isArticle, ch) {
+/** 24px 线条图标（手机顶栏用）。 */
+const ICON = (d) =>
+  `<svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="${d}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const BACK_SVG = ICON('M19 12H5M11 18l-6-6 6-6');
+const SEARCH_SVG = ICON('M11 18a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20l-4-4');
+const TOC_SVG = ICON('M4 6h16M4 12h16M4 18h10');
+
+/** 栏目首页的相对地址（从 ch 栏目的页面出发）。 */
+function channelHref(from, to) {
+  return `${rootRel(from)}${to.outSub ? `${to.outSub}/` : ''}index.html`;
+}
+
+/**
+ * 站点页头（两页通用）。
+ * 宽屏：栏目标签 + RSS + 主题；文章页多一个「全部」。
+ * 手机（≤640px，CSS 切换）：Material 顶栏 —— 文章页左侧返回箭头，标题，右侧搜索 / 目录 + 主题。
+ */
+function siteHeader(isArticle, ch, { appTitle = ch.tab, hasToc = false } = {}) {
   const back = isArticle
     ? '\n    <a class="nav-back" href="./index.html">全部</a>'
     : '';
   const tabs = CHANNELS.map((c) => {
-    const href = `${rootRel(ch)}${c.outSub ? `${c.outSub}/` : ''}index.html`;
     const active = c.id === ch.id ? ' is-active" aria-current="page' : '';
-    return `<a class="channel-tab${active}" href="${escAttr(href)}">${esc(c.tab)}</a>`;
+    return `<a class="channel-tab${active}" href="${escAttr(channelHref(ch, c))}">${esc(c.tab)}</a>`;
   }).join('');
-  return `<header class="site-header">
+  const appBack = isArticle
+    ? `\n  <a class="app-btn app-back" href="./index.html" aria-label="返回${escAttr(ch.tab)}">${BACK_SVG}</a>`
+    : '';
+  const appAction = isArticle
+    ? (hasToc ? `\n    <button class="app-btn app-toc" type="button" aria-label="本期目录">${TOC_SVG}</button>` : '')
+    : `\n    <button class="app-btn app-search" type="button" aria-label="搜索">${SEARCH_SVG}</button>`;
+  return `<header class="site-header">${appBack}
+  <span class="app-title">${esc(appTitle)}</span>
   <nav class="channel-tabs" aria-label="栏目">${tabs}</nav>
-  <nav class="site-nav">${back}
+  <nav class="site-nav">${back}${appAction}
     <a class="rss-link" href="./feed.xml" aria-label="RSS 订阅">${RSS_SVG}</a>
     <button class="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false">${THEME_ICONS}</button>
   </nav>
 </header>`;
+}
+
+/** 手机底部导航（≤640px 才显示）：每个栏目一个目的地，当前栏目带药丸高亮。 */
+function bottomNav(ch) {
+  const items = CHANNELS.map((c) => {
+    const active = c.id === ch.id ? ' is-active" aria-current="page' : '';
+    return `  <a class="bn-item${active}" href="${escAttr(channelHref(ch, c))}">` +
+      `<span class="bn-icon"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">${c.navIcon}</svg></span>` +
+      `<span class="bn-label">${esc(c.navLabel)}</span></a>`;
+  }).join('\n');
+  return `<nav class="bottom-nav" aria-label="栏目">\n${items}\n</nav>`;
 }
 
 /** 站点页脚（首页与文章页底部的站点级 footer）。 */
@@ -531,15 +576,19 @@ function siteFooter(ch) {
 function pageHead({ title, description, canonicalPath, ogType, ch }) {
   const canonical = `${SITE_URL}/${ch.outSub ? `${ch.outSub}/` : ''}${canonicalPath}`;
   const rel = rootRel(ch);
-  // 仅加载 Inter（+ 可选 JetBrains Mono）；不加载中文 webfont。
+  // 宽屏加载 Inter（+ JetBrains Mono）；手机用系统字体（Roboto / 思源黑体），不下载。
   const fontsHref =
     'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap';
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)}</title>
+<link rel="manifest" href="${rel}manifest.webmanifest">
+<meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16151a" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="${rel}icon-192.png">
 <meta name="description" content="${escAttr(description)}">
 <meta property="og:title" content="${escAttr(title)}">
 <meta property="og:description" content="${escAttr(description)}">
@@ -552,7 +601,7 @@ function pageHead({ title, description, canonicalPath, ogType, ch }) {
 <script>${THEME_INIT_SCRIPT}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="${escAttr(fontsHref)}">
+<link rel="stylesheet" href="${escAttr(fontsHref)}" media="(min-width: 641px)">
 <link rel="stylesheet" href="${rel}styles.css">
 </head>`;
 }
@@ -620,6 +669,7 @@ ${siteHeader(false, ch)}
 ${items}
 </main>
 ${siteFooter(ch)}
+${bottomNav(ch)}
 <script src="${rootRel(ch)}app.js" defer></script>
 </body>
 </html>
@@ -656,6 +706,11 @@ ${tocItems}
     ? `  <nav class="post-nav">\n${prevLink}${nextLink}  </nav>\n`
     : '';
 
+  // 南半球按帖折叠成卡片时，正文上方给一个「全部展开」
+  const cardTools = post.cards === 'post'
+    ? '  <div class="card-tools"><button class="expand-all" type="button" aria-pressed="false">全部展开</button></div>\n'
+    : '';
+
   const head = pageHead({
     title: `${post.title} — ${ch.siteName}`,
     description: post.preview || ch.tagline,
@@ -666,11 +721,11 @@ ${tocItems}
 
   return `${head}
 <body>
-${siteHeader(true, ch)}
+${siteHeader(true, ch, { appTitle: monthDay(post.date), hasToc: post.toc.length > 0 })}
 <main class="article">
   <div class="article-meta">${esc(metaLine)}</div>
   <h1 class="article-title">${esc(post.title)}</h1>
-${tocBlock}  <div class="article-body">
+${tocBlock}${cardTools}  <div class="article-body">
 ${post.bodyHtml}
   </div>
 ${postNav}  <footer class="article-footer">
@@ -678,6 +733,7 @@ ${postNav}  <footer class="article-footer">
   </footer>
 </main>
 ${siteFooter(ch)}
+${bottomNav(ch)}
 <script src="${rootRel(ch)}app.js" defer></script>
 </body>
 </html>
@@ -752,6 +808,156 @@ function tagPostLabels(html) {
 }
 
 /* ------------------------------------------------------------------ *
+ * 卡片化（手机原生化改版）
+ *   AI 八卦：「- **标题**【可信度】：正文（赞 N · 原帖…）」→ 可展开卡片 + 分类筛选条
+ *   南半球：每个「帖 N」小节 → 可展开卡片，收起时只露标题和一句话核心
+ * 都用 <details>，没有 JavaScript 也能展开。
+ * ------------------------------------------------------------------ */
+
+/** HTML 片段 → 纯文本（只用于计数和比较，不回写页面）。 */
+function htmlText(s) {
+  return String(s).replace(/<[^>]+>/g, '')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&')
+    .trim();
+}
+
+/** 按 <h2 id="sec-N"> 切开正文：{ lead（第一个 h2 之前）, sections:[{id, inner, text, body}] }。 */
+function splitSections(html) {
+  const re = /<h2 id="(sec-\d+)">([\s\S]*?)<\/h2>/g;
+  const marks = [];
+  let m;
+  while ((m = re.exec(html)) !== null) marks.push({ start: m.index, end: re.lastIndex, id: m[1], inner: m[2] });
+  if (!marks.length) return { lead: html, sections: [] };
+  const sections = marks.map((mk, i) => ({
+    id: mk.id,
+    inner: mk.inner,
+    text: htmlText(mk.inner),
+    body: html.slice(mk.end, i + 1 < marks.length ? marks[i + 1].start : html.length),
+  }));
+  return { lead: html.slice(0, marks[0].start), sections };
+}
+
+const CRED = { '传闻': 'rumor', '爆料': 'leak', '有印证': 'multi', '当事人回应': 'reply', '已证实': 'ok' };
+const HEART_SVG = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.4 5c2 0 3.3 1.1 4 2.2.7-1.1 2-2.2 4-2.2 3.4 0 5.5 3.4 4 6.8C19.5 16.4 12 21 12 21z"/></svg>';
+const X_SVG = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg>';
+
+/** 一条八卦 <li> → 卡片；格式对不上就返回 null（整张列表保持原样）。 */
+function gossipCard(li) {
+  const m = /^<li><strong>([\s\S]+?)<\/strong>\s*【([^】]+)】\s*[：:]\s*([\s\S]*)<\/li>$/.exec(li.trim());
+  if (!m || !CRED[m[2]]) return null;
+  const [, title, tag] = m;
+  let body = m[3].trim();
+  // 句尾「（赞 1214 / 371 · <a>原帖</a> · <a>原帖</a>）」拆成点赞数和原帖按钮
+  let likes = '';
+  let links = [];
+  const tail = /（\s*(?:赞\s*([^·（）]*?)\s*·\s*)?((?:<a href="[^"]+">[^<]*<\/a>[\s·、,，]*)+)）\s*$/.exec(body);
+  if (tail) {
+    likes = (tail[1] || '').split('/')[0].trim();
+    links = [...tail[2].matchAll(/<a href="([^"]+)">[^<]*<\/a>/g)].map((x) => x[1]);
+    body = body.slice(0, tail.index).trim();
+  }
+  const who = (/@[A-Za-z0-9_]{1,15}/.exec(body) || [''])[0];
+  const meta = [`<span class="cred cred--${CRED[tag]}">${tag}</span>`];
+  if (likes) meta.push(`<span class="gcard-likes">${HEART_SVG}${likes}</span>`);
+  if (who) meta.push(`<span class="gcard-who">${who}</span>`);
+  const chips = links.map((href, i) =>
+    `<a class="src-chip" href="${href}" target="_blank" rel="noopener">${X_SVG}原帖${links.length > 1 ? ` ${i + 1}` : ''}</a>`).join('');
+  return `<details class="gcard" data-cred="${CRED[tag]}">
+<summary class="gcard-sum"><span class="gcard-title">${title}</span><span class="gcard-meta">${meta.join('')}</span></summary>
+<div class="gcard-body"><p>${body}</p>${chips ? `<div class="gcard-links">${chips}</div>` : ''}</div>
+</details>`;
+}
+
+/** AI 八卦正文：列表改卡片，按 h2 分节，节前加分类筛选条。返回 { html, cards }。 */
+function gossipCards(html) {
+  const { lead, sections } = splitSections(html);
+  let total = 0;
+  const chips = [];
+  const out = sections.map((s) => {
+    let n = 0;
+    const body = s.body.replace(/<ul>\n([\s\S]*?)<\/ul>/g, (whole, inner) => {
+      const items = inner.match(/<li>[\s\S]*?<\/li>/g) || [];
+      const cards = items.map(gossipCard);
+      if (!cards.length || cards.some((c) => !c)) return whole;
+      n += cards.length;
+      return `<div class="gcards">\n${cards.join('\n')}\n</div>`;
+    });
+    total += n;
+    if (n) chips.push(`<button class="chip" type="button" data-filter="${s.id}">${esc(s.text)}<b>${n}</b></button>`);
+    return `<section class="sec${n ? ' sec--cards' : ''}" data-sec="${s.id}">\n<h2 id="${s.id}">${s.inner}</h2>${body}</section>\n`;
+  });
+  if (!total) return { html, cards: 0 };
+  // 开头那行「标签：#…」首页卡片里已经有了，正文不再重复
+  const leadClean = lead.replace(/<p>标签[：:][^<]*<\/p>\s*/, '');
+  const row =`<div class="chip-row" role="toolbar" aria-label="按分类筛选"><button class="chip is-on" type="button" data-filter="all">全部<b>${total}</b></button>${chips.join('')}</div>\n`;
+  // 筛选条放在第一节卡片前面（速览之后）
+  const first = out.findIndex((x) => x.includes('sec--cards'));
+  out.splice(first, 0, row);
+  return { html: leadClean + out.join(''), cards: total };
+}
+
+// 帖子小节的标题：「帖 1」「帖1」「帖子 1」「第 1 帖」「第 1 篇」
+const POST_RE = /^(?:第\s*\d+\s*[帖篇]|帖子?\s*\d+)/;
+
+/** 一个帖子 → 卡片。head 是 summary 里的标题元素（h2 或 h3，原样保留 id 以便目录跳转）。 */
+function postCard(head, body, secId) {
+  // 一句话核心：新格式是 h3 + 段落，旧格式是加粗小标签开头的段落；收起时露在外面，正文里去掉
+  let core = '';
+  let rest = body.replace(/\s*<hr>\s*$/, '\n'); // 卡片之间不再需要分隔线
+  const h3 = /<h3 class="post-label ps--core">[^<]*<\/h3>\s*<p>([\s\S]*?)<\/p>/.exec(rest);
+  const old = /<p class="ps ps--core"><strong class="post-label">[^<]*<\/strong>\s*([\s\S]*?)<\/p>/.exec(rest);
+  const hit = h3 || old;
+  if (hit) {
+    core = hit[1].trim();
+    rest = rest.slice(0, hit.index) + rest.slice(hit.index + hit[0].length);
+  } else {
+    // 没有「一句话核心」的老文章：取正文第一段有字的段落，截成一两句
+    for (const p of rest.matchAll(/<p>([\s\S]*?)<\/p>/g)) {
+      const t = htmlText(p[1].replace(/<img[^>]*>/g, ''));
+      if (t.length >= 12) { core = esc(firstSentences(t, 90)); break; }
+    }
+  }
+  const tags = [...new Set([...htmlText(head + rest).matchAll(/#([一-鿿A-Za-z0-9]+)#?/g)].map((x) => x[1]))].slice(0, 2);
+  const imgs = (rest.match(/<img\b/g) || []).length;
+  const meta = [...tags.map((t) => `#${t}`), imgs ? `${imgs} 张图` : ''].filter(Boolean).join(' · ');
+  return `<details class="pcard"${secId ? ` data-sec="${secId}"` : ''}>
+<summary class="pcard-sum">${head}${meta ? `<span class="pcard-meta">${esc(meta)}</span>` : ''}${core ? `<span class="pcard-core">${core}</span>` : ''}<span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">${rest}</div>
+</details>\n`;
+}
+
+/** 一节正文里按「帖 N」样式的 h3 再切（老文章把帖子放在「逐帖解读」这一个 h2 下面）。 */
+function h3PostCards(body) {
+  const re = /<h3( [^>]*)?>([\s\S]*?)<\/h3>/g;
+  const marks = [];
+  let m;
+  while ((m = re.exec(body)) !== null) {
+    if (POST_RE.test(htmlText(m[2]))) marks.push({ start: m.index, end: re.lastIndex, tag: m[0] });
+  }
+  if (marks.length < 2) return { html: body, cards: 0 };
+  const parts = marks.map((mk, i) =>
+    postCard(mk.tag, body.slice(mk.end, i + 1 < marks.length ? marks[i + 1].start : body.length), ''));
+  return { html: body.slice(0, marks[0].start) + parts.join(''), cards: marks.length };
+}
+
+/** 南半球正文：每个帖子折叠成卡片。返回 { html, cards }。 */
+function postCards(html) {
+  const { lead, sections } = splitSections(html);
+  let n = 0;
+  const out = sections.map((s) => {
+    if (POST_RE.test(s.text)) {
+      n += 1;
+      return postCard(`<h2 id="${s.id}">${s.inner}</h2>`, s.body, s.id);
+    }
+    const inner = h3PostCards(s.body);
+    n += inner.cards;
+    return `<section class="sec" data-sec="${s.id}">\n<h2 id="${s.id}">${s.inner}</h2>${inner.html}</section>\n`;
+  });
+  if (!n) return { html, cards: 0 };
+  return { html: lead + out.join(''), cards: n };
+}
+
+/* ------------------------------------------------------------------ *
  * 单篇解析
  * ------------------------------------------------------------------ */
 function parsePost(filePath, id, date, mdLib, ch) {
@@ -763,7 +969,13 @@ function parsePost(filePath, id, date, mdLib, ch) {
 
   // 2) 渲染 + h2 注入 id + TOC（去重复 H1）+ 帖内小标题着色
   const { html: renderedBody, toc } = renderWithToc(stripLeadingH1(mdNoB64), mdLib);
-  const bodyHtml = tagPostLabels(renderedBody);
+  let bodyHtml = tagPostLabels(renderedBody);
+  let cards = '';
+  const carded = ch.id === 'ainews' ? gossipCards(bodyHtml) : postCards(bodyHtml);
+  if (carded.cards) {
+    bodyHtml = carded.html;
+    cards = ch.id === 'ainews' ? 'gossip' : 'post';
+  }
 
   // 3) 各类提取（基于已抽图的 markdown）
   const overview = extractOverviewBlock(mdNoB64);
@@ -791,6 +1003,7 @@ function parsePost(filePath, id, date, mdLib, ch) {
     source,
     toc,
     bodyHtml,
+    cards,
     images,
     imgCount,
     thumb: images.length ? images[0] : null,
@@ -911,6 +1124,8 @@ function main() {
   copyAsset('styles.css');
   copyAsset('app.js');
   copyAsset('favicon.svg');
+  // 装到手机主屏幕（PWA）：manifest、图标、离线缓存
+  for (const f of ['manifest.webmanifest', 'sw.js', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png']) copyAsset(f);
   console.log('--- 构建完成 ---');
 }
 

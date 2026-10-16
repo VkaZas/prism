@@ -2,8 +2,12 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>资金流向与美元资产 — 南半球聊财经每日Summary</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16151a" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="./icon-192.png">
 <meta name="description" content="今天 9 帖，主线有四条：（1）资金流向与美元资产——Brad Setser 拆解亚洲贸易盈余如何回流美国、外资更爱企业债和股票、英国成了美债边际买家；（2）发达国家的结构性困境——加拿大人均 GDP 增速 G7 垫底被韩国反超、">
 <meta property="og:title" content="资金流向与美元资产 — 南半球聊财经每日Summary">
 <meta property="og:description" content="今天 9 帖，主线有四条：（1）资金流向与美元资产——Brad Setser 拆解亚洲贸易盈余如何回流美国、外资更爱企业债和股票、英国成了美债边际买家；（2）发达国家的结构性困境——加拿大人均 GDP 增速 G7 垫底被韩国反超、">
@@ -16,14 +20,17 @@
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" media="(min-width: 641px)">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 <header class="site-header">
-  <nav class="channel-tabs" aria-label="栏目"><a class="channel-tab is-active" aria-current="page" href="./index.html">南半球聊财经</a><a class="channel-tab" href="./ainews/index.html">AI News</a></nav>
+  <a class="app-btn app-back" href="./index.html" aria-label="返回南半球聊财经"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <span class="app-title">6月20日</span>
+  <nav class="channel-tabs" aria-label="栏目"><a class="channel-tab is-active" aria-current="page" href="./index.html">南半球聊财经</a><a class="channel-tab" href="./ainews/index.html">AI 八卦</a></nav>
   <nav class="site-nav">
     <a class="nav-back" href="./index.html">全部</a>
+    <button class="app-btn app-toc" type="button" aria-label="本期目录"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <a class="rss-link" href="./feed.xml" aria-label="RSS 订阅"><svg class="icon icon-rss" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM2 9.91v2.84c4.55 0 8.25 3.7 8.25 8.25h2.84C13.09 14.76 8.24 9.91 2 9.91zm0-4.91v2.84c7.27 0 13.16 5.89 13.16 13.16H18C18 12.07 10.93 5 2 5z"/></svg></a>
     <button class="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false"><svg class="icon icon-moon" data-icon="moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon icon-sun" data-icon="sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" hidden><path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-13a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM5 12a1 1 0 0 1-1 1H3a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zm17 0a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zM6.34 6.34a1 1 0 0 1 0 1.41l-.7.71a1 1 0 1 1-1.42-1.42l.71-.7a1 1 0 0 1 1.41 0zm12.02 12.02a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.42l.7-.7a1 1 0 0 1 1.42 0zM6.34 17.66a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 0 1 1.42-1.41l.7.7a1 1 0 0 1 0 1.42zM18.36 5.64a1 1 0 0 1-1.42 0l-.7-.71a1 1 0 0 1 1.41-1.41l.71.7a1 1 0 0 1 0 1.42z"/></svg></button>
   </nav>
@@ -48,11 +55,13 @@
       <li><a href="#sec-12">今日全图索引</a></li>
     </ol>
   </nav>
+  <div class="card-tools"><button class="expand-all" type="button" aria-pressed="false">全部展开</button></div>
   <div class="article-body">
 <blockquote>
 <p>来源：知识星球「南半球聊财经」，星主 <strong>Jason 不跪</strong> 当天发布的全部帖子。
 今日 Jason 不跪共发帖 <strong>9 条</strong>（发布时间 11:42–13:32，美西时区）。</p>
 </blockquote>
+<section class="sec" data-sec="sec-1">
 <h2 id="sec-1">⚠️ 关于图片的说明（本期重要）</h2>
 <p>本期帖子里包含大量图表（共约 28 张）。今天抓取时，浏览器环境异常不稳定：截图通道反复&quot;冻结&quot;、剪贴板写入卡死、下载被扩展拦截、系统级截屏返回全黑、JS 取原图的返回又被长度截断——<strong>所有&quot;把图片落到磁盘 / 嵌进报告&quot;的通道都失败了</strong>。因此本期报告<strong>没有嵌入图表原图</strong>。</p>
 <p>为弥补：</p>
@@ -62,18 +71,22 @@
 <li>原始图表你可以在星球 App 里对照本报告查看。</li>
 </ul>
 <hr>
+</section>
+<section class="sec" data-sec="sec-2">
 <h2 id="sec-2">今日要点速览</h2>
 <p>今天 9 帖，主线有四条：<strong>（1）资金流向与美元资产</strong>——Brad Setser 拆解亚洲贸易盈余如何回流美国、外资更爱企业债和股票、英国成了美债边际买家；<strong>（2）发达国家的结构性困境</strong>——加拿大人均 GDP 增速 G7 垫底被韩国反超、OECD 养老开支挤出其他投资、澳洲在高利率下房价&quot;投降&quot;；<strong>（3）股市风格切换</strong>——欧洲股市因油价大跌、经济数据修复而开始跑赢美国；<strong>（4）地缘与中观</strong>——伊以停火/霍尔木兹反复、美伊瑞士谈判，以及一篇中国上市险企 2025 年报分析。穿插一条轻松的&quot;高盛用模型给世界杯算命&quot;。</p>
 <p>整体基调：<strong>Jason 在提示&quot;美元资产的资金来源结构正在变化&quot;和&quot;发达经济体增长动能在被人口/财政结构拖累&quot;这两个中长期主题</strong>，同时用欧股、油价、地缘提醒短期市场风格和风险点。</p>
 <hr>
-<h2 id="sec-3">第 1 帖 · 13:32 · 高盛世界杯算命</h2>
+</section>
+<details class="pcard" data-sec="sec-3">
+<summary class="pcard-sum"><h2 id="sec-3">第 1 帖 · 13:32 · 高盛世界杯算命</h2><span class="pcard-core">高盛把自己的量化模型拿来给 2026 世界杯&quot;算命&quot;，给出每支球队进各轮和夺冠的概率——一个轻松但能看出&quot;投行模型文化&quot;的小帖。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p class="ps ps--source"><strong class="post-label">帖子原文</strong></p>
 <blockquote>
 <p>高盛世界杯算命
 （配图：高盛研报 Exhibit 5 — 2026 世界杯晋级概率模型表）</p>
 </blockquote>
-<p class="ps ps--core"><strong class="post-label">一句话核心</strong>
-高盛把自己的量化模型拿来给 2026 世界杯&quot;算命&quot;，给出每支球队进各轮和夺冠的概率——一个轻松但能看出&quot;投行模型文化&quot;的小帖。</p>
+
 <p class="ps ps--data"><strong class="post-label">背景与关键数据</strong>
 这是高盛全球投资研究部（Goldman Sachs Global Investment Research）的常规&quot;娱乐研报&quot;。每逢大赛，高盛、UBS 等都会用平时给股票/宏观建模的同一套统计方法（蒙特卡洛模拟 + 球队实力评分 <a href="http://eloratings.net">eloratings.net</a>），跑几万次比赛、统计夺冠频率。下表是&quot;截至 2026 年 6 月 20 日&quot;的夺冠概率（按夺冠概率排序，节选主要球队）：</p>
 <table>
@@ -211,15 +224,17 @@
 <li><strong>蒙特卡洛模拟</strong>：用随机抽样跑成千上万次&quot;可能的未来&quot;，再统计各结果出现的频率当作概率。金融里用它给期权定价、算 VaR（在险价值）、做退休金能否支撑的测算——和给世界杯算命是同一种工具。</li>
 <li><strong>&quot;东道主红利&quot;在金融里的类比</strong>：美国进八强概率被赛程&quot;垫高&quot;，类似某些资产因为&quot;被纳入指数/被动资金必须买&quot;而短期估值偏高，但基本面不一定撑得住——这就是&quot;结构性买盘 vs 基本面&quot;的差别。</li>
 </ul>
-<hr>
-<h2 id="sec-4">第 2 帖 · 13:03 · Brad Setser：亚洲贸易盈余更集中，回流美国的资金模式不同 #金融</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-4">
+<summary class="pcard-sum"><h2 id="sec-4">第 2 帖 · 13:03 · Brad Setser：亚洲贸易盈余更集中，回流美国的资金模式不同 #金融</h2><span class="pcard-meta">#金融</span><span class="pcard-core">钱还是从亚洲流向美国，但&quot;怎么流、买什么&quot;变了：过去外资主要买美国国债，现在更愿意买美国的公司债和股票；而买美债的&quot;边际增量&quot;竟然来自英国（很可能是经由伦敦的对冲基金/做市商）。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p class="ps ps--source"><strong class="post-label">帖子原文</strong></p>
 <blockquote>
 <p>Brad Setser：亚洲的贸易盈余更加集中，流入美国的资金模式也不同。外资显著提升了对企业债、股票的持仓偏好。美债的边际买家来自英国。
 （配图：3 张图——亚洲各经济体贸易盈余对比 / 外资持有美国资产结构 / 各国持有美债变化，其中英国增持突出）</p>
 </blockquote>
-<p class="ps ps--core"><strong class="post-label">一句话核心</strong>
-钱还是从亚洲流向美国，但&quot;怎么流、买什么&quot;变了：过去外资主要买美国国债，现在更愿意买美国的公司债和股票；而买美债的&quot;边际增量&quot;竟然来自英国（很可能是经由伦敦的对冲基金/做市商）。</p>
+
 <p class="ps ps--data"><strong class="post-label">背景与关键数据</strong>
 Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美国财政部官员，专门盯<strong>全球资金流和各国国际收支</strong>，是这个领域最被市场引用的分析者之一。他这条要点拆成三层：</p>
 <ol>
@@ -241,15 +256,17 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
 <li><strong>&quot;边际买家/边际卖家&quot;思维</strong>：价格由增量供需决定，不是由存量。理解谁是&quot;边际&quot;力量（如美债的对冲基金、黄金的央行、原油的页岩商），比盯着&quot;谁持有最多&quot;更能预判价格拐点。</li>
 <li><strong>&quot;伦敦记账&quot;的陷阱</strong>：官方持债统计按托管地记，很多其实是亚洲、中东资金借道伦敦/比利时（欧清）买的，所以&quot;英国持有美债飙升&quot;要打个问号——它常常只是别人的通道。</li>
 </ul>
-<hr>
-<h2 id="sec-5">第 3 帖 · 12:57 · AMP：加息后澳储行仍鹰派，投资者在房价上&quot;投降&quot; #其他国家经济</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-5">
+<summary class="pcard-sum"><h2 id="sec-5">第 3 帖 · 12:57 · AMP：加息后澳储行仍鹰派，投资者在房价上&quot;投降&quot; #其他国家经济</h2><span class="pcard-meta">#其他国家经济</span><span class="pcard-core">澳洲央行（RBA）又加了息且口风依然偏紧（鹰派），市场原本赌的&quot;很快降息、房价回升&quot;落空，于是开始&quot;认输&quot;——下调对房价的乐观预期。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p class="ps ps--source"><strong class="post-label">帖子原文</strong></p>
 <blockquote>
 <p>AMP：加息后，澳储银行依然鹰派，投资者开始在房价上投降
 （配图：澳洲政策利率走势 / 房价或房价预期 / 市场对利率路径的定价 等图表）</p>
 </blockquote>
-<p class="ps ps--core"><strong class="post-label">一句话核心</strong>
-澳洲央行（RBA）又加了息且口风依然偏紧（鹰派），市场原本赌的&quot;很快降息、房价回升&quot;落空，于是开始&quot;认输&quot;——下调对房价的乐观预期。</p>
+
 <p class="ps ps--data"><strong class="post-label">背景与关键数据</strong></p>
 <ul>
 <li><strong>AMP</strong> 是澳洲老牌资管/财富管理公司，其首席经济学家（Shane Oliver）的宏观点评在澳洲很有影响力。</li>
@@ -269,16 +286,18 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
 <li><strong>货币政策传导速度取决于&quot;债务结构&quot;</strong>：浮动利率主导（澳、英、北欧）→ 加息见效快；固定利率主导（美国）→ 加息对存量家庭&quot;钝化&quot;，这也是为什么美国这轮加息后消费还很韧。</li>
 <li><strong>&quot;higher for longer&quot;</strong>：2023 年以来的市场关键词，指&quot;利率不是不降，而是停在高位更久&quot;。它对成长股、长久期资产（地产、长债）杀伤最大，因为它们的估值最依赖&quot;未来低利率&quot;的假设。</li>
 </ul>
-<hr>
-<h2 id="sec-6">第 4 帖 · 12:38 · hudson：特朗普务实算计选择&quot;协议+拖延&quot;，另有人想挑起美以摩擦 #金融</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-6">
+<summary class="pcard-sum"><h2 id="sec-6">第 4 帖 · 12:38 · hudson：特朗普务实算计选择&quot;协议+拖延&quot;，另有人想挑起美以摩擦 #金融</h2><span class="pcard-meta">#金融</span><span class="pcard-core">一篇地缘政治评论（来自 Hudson 智库类来源）：认为特朗普出于现实利益，倾向于用&quot;达成协议、拖延时间&quot;来处理中东冲突，而另一些势力则在试图激化美国与以色列之间的矛盾。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p class="ps ps--source"><strong class="post-label">帖子原文</strong></p>
 <blockquote>
 <p>hudson：特朗普基于务实计算，选择了协议，拖延时间，其他人试图挑起美以之间的摩擦
 （配图：地缘/政策相关图表，可能含油价、谈判时间线或各方立场示意）
 评论区互动：&quot;今日笑话，伊朗侵略以色列。&quot;</p>
 </blockquote>
-<p class="ps ps--core"><strong class="post-label">一句话核心</strong>
-一篇地缘政治评论（来自 Hudson 智库类来源）：认为特朗普出于现实利益，倾向于用&quot;达成协议、拖延时间&quot;来处理中东冲突，而另一些势力则在试图激化美国与以色列之间的矛盾。</p>
+
 <p class="ps ps--data"><strong class="post-label">背景与关键数据</strong></p>
 <ul>
 <li><strong>Hudson Institute</strong>（哈德逊研究所）是华盛顿偏鹰派的外交/安全智库，常对中东、对华政策发声。</li>
@@ -294,15 +313,17 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
 <li><strong>&quot;地缘风险溢价&quot;</strong>：油价里有一块是为&quot;潜在供应中断&quot;付的保险费。冲突预期升温它就鼓起来，缓和它就瘪下去——所以同样的库存、同样的供需，油价能因一条新闻波动好几美元。</li>
 <li><strong>读地缘新闻的&quot;市场化&quot;方法</strong>：别陷进站队，而是问三件事——①影响哪条供应链/商品？②通过什么变量传导（油、粮、航运、芯片）？③这个变量现在被市场 price-in 了多少？这样地缘新闻就变成可操作的判断。</li>
 </ul>
-<hr>
-<h2 id="sec-7">第 5 帖 · 12:29 · 中国人寿：2025 上市险企年报分析 #金融</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-7">
+<summary class="pcard-sum"><h2 id="sec-7">第 5 帖 · 12:29 · 中国人寿：2025 上市险企年报分析 #金融</h2><span class="pcard-meta">#金融</span><span class="pcard-core">一组针对 A 股/H 股<strong>上市保险公司 2025 年年报</strong>的横向分析图，把中国人寿和同业（平安、太保、新华、人保等）放在一起比保费、价值、投资、利润等关键指标。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p class="ps ps--source"><strong class="post-label">帖子原文</strong></p>
 <blockquote>
 <p>中国人寿：2025 上市险企年报分析
 （配图：约 9 张图——保费增速、新业务价值 NBV、内含价值 EV、投资收益率、综合成本率/赔付、利润、偿付能力等同业对比图）</p>
 </blockquote>
-<p class="ps ps--core"><strong class="post-label">一句话核心</strong>
-一组针对 A 股/H 股<strong>上市保险公司 2025 年年报</strong>的横向分析图，把中国人寿和同业（平安、太保、新华、人保等）放在一起比保费、价值、投资、利润等关键指标。</p>
+
 <p class="ps ps--data"><strong class="post-label">背景与关键数据</strong>
 看懂险企年报，先抓这几个核心指标（中国寿险业通用语）：</p>
 <ul>
@@ -326,15 +347,17 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
 <li><strong>寿险的&quot;利差损&quot;风险</strong>：如果当初卖的保单承诺收益（预定利率）高于现在能赚到的投资收益率，公司就要倒贴——这正是 1990 年代日本寿险业、以及当年中国老保单的&quot;历史伤疤&quot;。所以监管近年不断下调预定利率上限，就是为了防利差损。</li>
 <li><strong>P/EV 估值法</strong>：普通公司看 PE/PB，寿险常看 <strong>市值 / 内含价值</strong>。P/EV &lt; 1 常被视为&quot;破净&quot;式低估，但前提是 EV 的精算假设（投资收益率、折现率）靠谱——假设一变，EV 就要重估。</li>
 </ul>
-<hr>
-<h2 id="sec-8">第 6 帖 · 12:23 · bloomberg：油价大跌+数据修复，欧股开始跑赢美股 #股市</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-8">
+<summary class="pcard-sum"><h2 id="sec-8">第 6 帖 · 12:23 · bloomberg：油价大跌+数据修复，欧股开始跑赢美股 #股市</h2><span class="pcard-meta">#股市</span><span class="pcard-core">压制欧股三个月的两大利空（地缘战争、高油价）正在缓解——油价一个月跌近 30%，欧洲经济数据由弱转强，于是欧股本月开始反超美股，机构看好这轮&quot;风格切换&quot;延续。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p class="ps ps--source"><strong class="post-label">帖子原文</strong></p>
 <blockquote>
 <p>bloomberg：自战争开始三个月以来，欧洲 Stoxx Europe 600 指数一直落后于美国同行，但本月上涨约 1.5%，因为过去一个月油价已下跌近 30%。花旗的经济意外指数显示，欧洲经济数据开始修复，正值美国似乎达到峰值之际。华尔街机构看好欧洲股市继续上涨。
 （配图：Stoxx 600 vs 美股相对走势 / 油价 / 花旗经济意外指数 对比图）</p>
 </blockquote>
-<p class="ps ps--core"><strong class="post-label">一句话核心</strong>
-压制欧股三个月的两大利空（地缘战争、高油价）正在缓解——油价一个月跌近 30%，欧洲经济数据由弱转强，于是欧股本月开始反超美股，机构看好这轮&quot;风格切换&quot;延续。</p>
+
 <p class="ps ps--data"><strong class="post-label">背景与关键数据</strong></p>
 <ul>
 <li><strong>Stoxx Europe 600</strong>：覆盖欧洲 600 家大中型公司的宽基指数，是欧股的代表。</li>
@@ -355,15 +378,17 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
 <li><strong>经济意外指数的&quot;均值回归&quot;特性</strong>：CESI 很难一直高位——预期会随好数据被不断上调，最终&quot;好数据也难超更高的预期&quot;，指数见顶回落。所以它常常领先于&quot;数据见顶&quot;，是个好用的短期择时温度计，而非长期趋势指标。</li>
 <li><strong>&quot;相对强弱&quot;思维</strong>：投资很多时候不是赌&quot;涨不涨&quot;，而是赌&quot;谁比谁强&quot;（欧股 vs 美股、价值 vs 成长）。同一笔钱，从相对弱的挪到相对强的，就是 rotation，看相对走势图比看单一指数更能抓到这种机会。</li>
 </ul>
-<hr>
-<h2 id="sec-9">第 7 帖 · 12:19 · CharlesLammam：加拿大人均 GDP 增速 G7 垫底，2023 年被韩国反超 #其他国家经济</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-9">
+<summary class="pcard-sum"><h2 id="sec-9">第 7 帖 · 12:19 · CharlesLammam：加拿大人均 GDP 增速 G7 垫底，2023 年被韩国反超 #其他国家经济</h2><span class="pcard-meta">#其他国家经济</span><span class="pcard-core">加拿大的&quot;人均 GDP 增长&quot;在七大工业国里垫底，而且 2023 年人均 GDP 水平已被非 G7 的韩国反超——一个关于加拿大&quot;增长质量恶化&quot;的警示。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p class="ps ps--source"><strong class="post-label">帖子原文</strong></p>
 <blockquote>
 <p>CharlesLammam：加拿大人均 GDP 增速不仅是 G7 里面最低，2023 年还被韩国超过
 （配图：G7 各国 + 韩国 人均 GDP 增速/水平 对比图）</p>
 </blockquote>
-<p class="ps ps--core"><strong class="post-label">一句话核心</strong>
-加拿大的&quot;人均 GDP 增长&quot;在七大工业国里垫底，而且 2023 年人均 GDP 水平已被非 G7 的韩国反超——一个关于加拿大&quot;增长质量恶化&quot;的警示。</p>
+
 <p class="ps ps--data"><strong class="post-label">背景与关键数据</strong></p>
 <ul>
 <li><strong>Charles Lammam</strong> 是加拿大的公共政策经济学者（曾在 Fraser Institute 等智库），长期批评加拿大生产率和人均增长疲弱。</li>
@@ -379,15 +404,17 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
 <li><strong>&quot;人口增长 vs 人均增长&quot;陷阱</strong>：判断一国是否真在变富，要看人均（per capita）而非总量。靠移民/生育堆总量、人均却原地踏步，是&quot;虚胖&quot;。</li>
 <li><strong>生产率（productivity）才是长期增长的发动机</strong>：长期看，人均 GDP 增长 ≈ 劳动生产率增长。生产率靠的是投资、技术、教育和制度效率——加拿大被诟病的正是企业投资和创新长期不足。</li>
 </ul>
-<hr>
-<h2 id="sec-10">第 8 帖 · 11:57 · FT：OECD 养老开支上升，老龄化削弱活力并挤出投资 #其他国家经济</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-10">
+<summary class="pcard-sum"><h2 id="sec-10">第 8 帖 · 11:57 · FT：OECD 养老开支上升，老龄化削弱活力并挤出投资 #其他国家经济</h2><span class="pcard-meta">#其他国家经济</span><span class="pcard-core">《金融时报》指出：发达国家（OECD）花在老年人身上的财政支出越来越多，人口越来越老，既拖累了经济活力，又&quot;挤出&quot;了本可用于教育、基建、科研等更能促增长的投资。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p class="ps ps--source"><strong class="post-label">帖子原文</strong></p>
 <blockquote>
 <p>FT：OECD 国家对老年人的财政开支不断提升，日益偏老的人口结构削弱了经济活力，也挤出了其他投资
 （配图：OECD 养老/老年相关财政开支占比走势 / 人口结构（老龄化）/ 财政支出结构对比图）</p>
 </blockquote>
-<p class="ps ps--core"><strong class="post-label">一句话核心</strong>
-《金融时报》指出：发达国家（OECD）花在老年人身上的财政支出越来越多，人口越来越老，既拖累了经济活力，又&quot;挤出&quot;了本可用于教育、基建、科研等更能促增长的投资。</p>
+
 <p class="ps ps--data"><strong class="post-label">背景与关键数据</strong></p>
 <ul>
 <li><strong>OECD</strong>：经济合作与发展组织，约 38 个主要发达经济体的俱乐部。</li>
@@ -408,15 +435,17 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
 <li><strong>&quot;现收现付制 vs 积累制&quot;养老金</strong>：多数发达国家是&quot;现收现付&quot;（在职者交的钱直接发给现在的退休者）。人口一老化，交钱的人少、领钱的人多，缺口就要靠财政补——这就是养老开支挤压财政的制度根源。</li>
 <li><strong>与利率的关系（&quot;长期停滞&quot;假说）</strong>：老龄化、高储蓄、低投资被认为是压低发达国家长期自然利率（r*）的结构性力量之一，理解它有助于判断&quot;利率长期到底能多高&quot;。</li>
 </ul>
-<hr>
-<h2 id="sec-11">第 9 帖 · 11:42 · zerohedge：伊以停火反复、霍尔木兹再关闭、美伊将瑞士谈判 #金融</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-11">
+<summary class="pcard-sum"><h2 id="sec-11">第 9 帖 · 11:42 · zerohedge：伊以停火反复、霍尔木兹再关闭、美伊将瑞士谈判 #金融</h2><span class="pcard-meta">#金融</span><span class="pcard-core">一条中东战况的实时综述：停火协议被指违反、霍尔木兹海峡再度&quot;关闭&quot;传闻、美伊将在瑞士谈判、海峡商船与石油运量数据、黎巴嫩遭袭、以及以色列民意对美伊协议的强烈反对。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p class="ps ps--source"><strong class="post-label">帖子原文</strong></p>
 <blockquote>
 <p>zerohedge：伊朗称由于以色列违反停火协议，霍尔木兹再次关闭，巴基斯坦表示美伊谈判将于周日在瑞士开启。美国中央司令部周六表示，海峡内的商船交通增加，55 艘商船通过货物和超过 1700 万桶石油。黎巴嫩军队周六在 X 频道发帖称，以色列袭击了该国南部和贝卡山谷，造成人员伤亡和大量财产破坏。以色列收视率最高的第 12 频道电视台播出的一项民调显示，67% 的以色列人认为美伊协议对他们的国家不利，9% 认为是好的，其余人尚未决定。
 （配图：霍尔木兹海峡/航运、油价、或事件相关图 共 4 张）</p>
 </blockquote>
-<p class="ps ps--core"><strong class="post-label">一句话核心</strong>
-一条中东战况的实时综述：停火协议被指违反、霍尔木兹海峡再度&quot;关闭&quot;传闻、美伊将在瑞士谈判、海峡商船与石油运量数据、黎巴嫩遭袭、以及以色列民意对美伊协议的强烈反对。</p>
+
 <p class="ps ps--data"><strong class="post-label">背景与关键数据</strong></p>
 <ul>
 <li><strong>zerohedge</strong> 是一家以&quot;抢快、偏空、博眼球&quot;著称的金融博客——信息快但<strong>情绪化、需交叉验证</strong>。<strong>再次提醒：以下均为帖子/来源转述的、我知识截止之后的高度动态时事，仅复述不背书。</strong></li>
@@ -433,7 +462,9 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
 <li><strong>油运咽喉（chokepoints）</strong>：除霍尔木兹外，还有苏伊士运河/曼德海峡（红海）、马六甲海峡、巴拿马运河。任一受阻都会推高运费和相关商品价格——是地缘投资里必须知道的&quot;地图常识&quot;。</li>
 <li><strong>信息源分层</strong>：把消息源分级——一手官方数据（CENTCOM、海关、EIA 库存）&gt; 严肃机构（FT、Bloomberg、Setser）&gt; 情绪型博客（zerohedge）。越靠后越要交叉验证、越要用&quot;硬数据&quot;去校准它的&quot;强叙事&quot;。这是建立宏观判断力的基本功。</li>
 </ul>
-<hr>
+</div>
+</details>
+<section class="sec" data-sec="sec-12">
 <h2 id="sec-12">今日全图索引</h2>
 <table>
 <thead>
@@ -526,6 +557,7 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
 </blockquote>
 <hr>
 <p><em>本报告基于知识星球「南半球聊财经」星主 Jason 不跪 2026-06-20 当日 9 条帖子的完整正文整理与解读。涉及地缘政治的第 4、9 帖内容为帖子/原始来源（hudson、zerohedge）的转述，属动态时事，本文仅复述并做市场含义解读，不作事实背书，请以权威信源为准。</em></p>
+</section>
 
   </div>
   <nav class="post-nav">
@@ -543,6 +575,10 @@ Brad Setser 是美国外交关系委员会（CFR）的资深研究员、前美�
     <a class="footer-rss" href="./feed.xml" aria-label="RSS 订阅"><svg class="icon icon-rss" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM2 9.91v2.84c4.55 0 8.25 3.7 8.25 8.25h2.84C13.09 14.76 8.24 9.91 2 9.91zm0-4.91v2.84c7.27 0 13.16 5.89 13.16 13.16H18C18 12.07 10.93 5 2 5z"/></svg><span> RSS 订阅</span></a>
   </p>
 </footer>
+<nav class="bottom-nav" aria-label="栏目">
+  <a class="bn-item is-active" aria-current="page" href="./index.html"><span class="bn-icon"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 17l5-5 4 4 8-8M15 8h5v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="bn-label">南半球</span></a>
+  <a class="bn-item" href="./ainews/index.html"><span class="bn-icon"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z" fill="currentColor"/></svg></span><span class="bn-label">AI 八卦</span></a>
+</nav>
 <script src="./app.js" defer></script>
 </body>
 </html>

@@ -2,8 +2,12 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Anthropic 发布 Claude Haiku 5.5 — AI News 每日八卦</title>
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16151a" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="../icon-192.png">
 <meta name="description" content="这是 Haiku 系列约一年来的第一次更新。官方说法是&quot;我们发过的最便宜、最快、最强的小模型&quot;，平均运行成本比 Haiku 4.5 低约 75%。">
 <meta property="og:title" content="Anthropic 发布 Claude Haiku 5.5 — AI News 每日八卦">
 <meta property="og:description" content="这是 Haiku 系列约一年来的第一次更新。官方说法是&quot;我们发过的最便宜、最快、最强的小模型&quot;，平均运行成本比 Haiku 4.5 低约 75%。">
@@ -16,14 +20,17 @@
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" media="(min-width: 641px)">
 <link rel="stylesheet" href="../styles.css">
 </head>
 <body>
 <header class="site-header">
-  <nav class="channel-tabs" aria-label="栏目"><a class="channel-tab" href="../index.html">南半球聊财经</a><a class="channel-tab is-active" aria-current="page" href="../ainews/index.html">AI News</a></nav>
+  <a class="app-btn app-back" href="./index.html" aria-label="返回AI 八卦"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <span class="app-title">10月8日</span>
+  <nav class="channel-tabs" aria-label="栏目"><a class="channel-tab" href="../index.html">南半球聊财经</a><a class="channel-tab is-active" aria-current="page" href="../ainews/index.html">AI 八卦</a></nav>
   <nav class="site-nav">
     <a class="nav-back" href="./index.html">全部</a>
+    <button class="app-btn app-toc" type="button" aria-label="本期目录"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <a class="rss-link" href="./feed.xml" aria-label="RSS 订阅"><svg class="icon icon-rss" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM2 9.91v2.84c4.55 0 8.25 3.7 8.25 8.25h2.84C13.09 14.76 8.24 9.91 2 9.91zm0-4.91v2.84c7.27 0 13.16 5.89 13.16 13.16H18C18 12.07 10.93 5 2 5z"/></svg></a>
     <button class="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false"><svg class="icon icon-moon" data-icon="moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon icon-sun" data-icon="sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" hidden><path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-13a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM5 12a1 1 0 0 1-1 1H3a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zm17 0a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zM6.34 6.34a1 1 0 0 1 0 1.41l-.7.71a1 1 0 1 1-1.42-1.42l.71-.7a1 1 0 0 1 1.41 0zm12.02 12.02a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.42l.7-.7a1 1 0 0 1 1.42 0zM6.34 17.66a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 0 1 1.42-1.41l.7.7a1 1 0 0 1 0 1.42zM18.36 5.64a1 1 0 0 1-1.42 0l-.7-.71a1 1 0 0 1 1.41-1.41l.71.7a1 1 0 0 1 0 1.42z"/></svg></button>
   </nav>
@@ -188,6 +195,10 @@
     <a class="footer-rss" href="./feed.xml" aria-label="RSS 订阅"><svg class="icon icon-rss" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM2 9.91v2.84c4.55 0 8.25 3.7 8.25 8.25h2.84C13.09 14.76 8.24 9.91 2 9.91zm0-4.91v2.84c7.27 0 13.16 5.89 13.16 13.16H18C18 12.07 10.93 5 2 5z"/></svg><span> RSS 订阅</span></a>
   </p>
 </footer>
+<nav class="bottom-nav" aria-label="栏目">
+  <a class="bn-item" href="../index.html"><span class="bn-icon"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 17l5-5 4 4 8-8M15 8h5v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="bn-label">南半球</span></a>
+  <a class="bn-item is-active" aria-current="page" href="../ainews/index.html"><span class="bn-icon"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z" fill="currentColor"/></svg></span><span class="bn-label">AI 八卦</span></a>
+</nav>
 <script src="../app.js" defer></script>
 </body>
 </html>

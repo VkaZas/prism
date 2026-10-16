@@ -2,8 +2,12 @@
 <html lang="zh-CN">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>&quot;资源权力&quot;正在从石油转向别的东西 — 南半球聊财经每日Summary</title>
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16151a" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="./icon-192.png">
 <meta name="description" content="今天 Jason 一口气发了 9 条，主线其实很清楚，可以串成三条大逻辑：">
 <meta property="og:title" content="&quot;资源权力&quot;正在从石油转向别的东西 — 南半球聊财经每日Summary">
 <meta property="og:description" content="今天 Jason 一口气发了 9 条，主线其实很清楚，可以串成三条大逻辑：">
@@ -16,14 +20,17 @@
 <script>(function(){try{var t=localStorage.getItem('nbq-theme');if(t!=='light'&&t!=='dark'){t=(window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';}document.documentElement.dataset.theme=t;}catch(e){}})();</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" media="(min-width: 641px)">
 <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
 <header class="site-header">
-  <nav class="channel-tabs" aria-label="栏目"><a class="channel-tab is-active" aria-current="page" href="./index.html">南半球聊财经</a><a class="channel-tab" href="./ainews/index.html">AI News</a></nav>
+  <a class="app-btn app-back" href="./index.html" aria-label="返回南半球聊财经"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M19 12H5M11 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  <span class="app-title">7月25日</span>
+  <nav class="channel-tabs" aria-label="栏目"><a class="channel-tab is-active" aria-current="page" href="./index.html">南半球聊财经</a><a class="channel-tab" href="./ainews/index.html">AI 八卦</a></nav>
   <nav class="site-nav">
     <a class="nav-back" href="./index.html">全部</a>
+    <button class="app-btn app-toc" type="button" aria-label="本期目录"><svg class="icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M4 6h16M4 12h16M4 18h10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
     <a class="rss-link" href="./feed.xml" aria-label="RSS 订阅"><svg class="icon icon-rss" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM2 9.91v2.84c4.55 0 8.25 3.7 8.25 8.25h2.84C13.09 14.76 8.24 9.91 2 9.91zm0-4.91v2.84c7.27 0 13.16 5.89 13.16 13.16H18C18 12.07 10.93 5 2 5z"/></svg></a>
     <button class="theme-toggle" type="button" aria-label="切换深色模式" aria-pressed="false"><svg class="icon icon-moon" data-icon="moon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><svg class="icon icon-sun" data-icon="sun" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false" hidden><path fill="currentColor" d="M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0-13a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1zm0 14a1 1 0 0 1 1 1v1a1 1 0 1 1-2 0v-1a1 1 0 0 1 1-1zM5 12a1 1 0 0 1-1 1H3a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zm17 0a1 1 0 0 1-1 1h-1a1 1 0 1 1 0-2h1a1 1 0 0 1 1 1zM6.34 6.34a1 1 0 0 1 0 1.41l-.7.71a1 1 0 1 1-1.42-1.42l.71-.7a1 1 0 0 1 1.41 0zm12.02 12.02a1 1 0 0 1 0 1.41l-.71.71a1 1 0 0 1-1.41-1.42l.7-.7a1 1 0 0 1 1.42 0zM6.34 17.66a1 1 0 0 1-1.41 0l-.71-.71a1 1 0 0 1 1.42-1.41l.7.7a1 1 0 0 1 0 1.42zM18.36 5.64a1 1 0 0 1-1.42 0l-.7-.71a1 1 0 0 1 1.41-1.41l.71.7a1 1 0 0 1 0 1.42z"/></svg></button>
   </nav>
@@ -47,6 +54,7 @@
       <li><a href="#sec-11">今日全图索引</a></li>
     </ol>
   </nav>
+  <div class="card-tools"><button class="expand-all" type="button" aria-pressed="false">全部展开</button></div>
   <div class="article-body">
 <blockquote>
 <p>星球：南半球聊财经 · 星主：Jason 不跪
@@ -54,6 +62,7 @@
 抓取方式：已登录网页版原图 + 逐帖转写；价格/数据仅作背景说明，非投资建议。</p>
 </blockquote>
 <hr>
+<section class="sec" data-sec="sec-1">
 <h2 id="sec-1">今日要点速览</h2>
 <p>今天 Jason 一口气发了 9 条，主线其实很清楚，可以串成三条大逻辑：</p>
 <ol>
@@ -63,15 +72,17 @@
 </ol>
 <p>一句话总结今天的情绪：<strong>旧秩序（石油美元）在松动，新秩序（矿产、供应链、纸面财富）在成形，而黄金和地缘风险是这个过渡期的关键词。</strong></p>
 <hr>
-<h2 id="sec-2">帖 1 · NBER 论文：中国的&quot;元素周期表特权&quot;</h2>
+</section>
+<details class="pcard" data-sec="sec-2">
+<summary class="pcard-sum"><h2 id="sec-2">帖 1 · NBER 论文：中国的&quot;元素周期表特权&quot;</h2><span class="pcard-meta">#论文或书籍推荐 · 1 张图</span><span class="pcard-core">绿色转型没消灭&quot;能源地缘政治&quot;，只是把它从石油换成了锂、钴、稀土这些关键金属——而中国站在了这张供应链网络的中心。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p><strong>时间</strong>：2026-07-25 14:41 ｜ <strong>标签</strong>：#论文或书籍推荐</p>
 <h3 class="post-label ps--source">帖子原文</h3>
 <blockquote>
 <p>NBER：绿色转型并没有让世界摆脱能源地缘政治，而只是把战略依赖从&quot;石油天然气&quot;转移到了&quot;关键矿产供应链&quot;；而中国通过主动构建供应链中心地位，获得了类似石油时代产油国的定价权。美元的特权来自全球金融体系的中心节点，中国是不是正在获得一种元素周期表的嚣张特权?</p>
 </blockquote>
 <p><img src="./assets/2026-07-25/img1.jpg" alt="" loading="lazy"></p>
-<h3 class="post-label ps--core">一句话核心</h3>
-<p>绿色转型没消灭&quot;能源地缘政治&quot;，只是把它从石油换成了锂、钴、稀土这些关键金属——而中国站在了这张供应链网络的中心。</p>
+
 <h3 class="post-label ps--data">背景与关键数据</h3>
 <p>图片是这篇论文的封面与摘要：NBER 工作论文第 35497 号，2026 年 7 月发布，作者是 Josh Kirk、Evgenia Passari 和 <strong>Hélène Rey</strong>（Rey 是研究&quot;美元特权&quot;的顶级国际金融学者，分量很重）。</p>
 <p>标题玩了个双关——<strong>&quot;Exorbitant Privilege of the Periodic Table&quot;（元素周期表的过度特权）</strong>。&quot;Exorbitant Privilege（过度特权）&quot;这个词原本专指美元：因为全世界都用美元结算、储备，美国能以极低成本借钱、印钞买全球商品，这是别国没有的&quot;特权&quot;。作者把这个概念搬到了金属上。</p>
@@ -85,16 +96,18 @@
 <li><strong>什么是&quot;过度特权 / Exorbitant Privilege&quot;</strong>：这个词最早是 1960 年代法国财长（后来的总统）德斯坦抱怨美国的。因为美元是全球储备货币，美国可以长期贸易逆差却不用担心还不起债——相当于全世界借钱给它花。理解这个概念，就能理解为什么&quot;矿产版特权&quot;是个很有冲击力的类比。</li>
 <li><strong>&quot;轮辐结构&quot;vs&quot;多边结构&quot;</strong>：想象机场。石油像很多城市之间互相直飞（多边、分散，谁都能替代谁）；关键矿产像所有航班都必须先飞到北京中转（轮辐，中枢一停摆全网瘫痪）。中枢化程度越高，中心国的议价权越大——这正是论文的核心机制。</li>
 </ul>
-<hr>
-<h2 id="sec-3">帖 2 · CNBC/高盛：黄金是客户&quot;押得最准&quot;的品种</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-3">
+<summary class="pcard-sum"><h2 id="sec-3">帖 2 · CNBC/高盛：黄金是客户&quot;押得最准&quot;的品种</h2><span class="pcard-meta">#金融 · 1 张图</span><span class="pcard-core">过去十年，高盛客户在黄金上&quot;既敢押多、又押得准&quot;，而在利率、汇率上的判断基本靠运气。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p><strong>时间</strong>：2026-07-25 14:05 ｜ <strong>标签</strong>：#金融</p>
 <h3 class="post-label ps--source">帖子原文</h3>
 <blockquote>
 <p>CNBC：过去十年高盛客户对黄金不仅长期偏多，而且这种偏多判断的命中率也明显高于其他资产。利率和大宗商品则更像抛硬币。</p>
 </blockquote>
 <p><img src="./assets/2026-07-25/img2.jpg" alt="" loading="lazy"></p>
-<h3 class="post-label ps--core">一句话核心</h3>
-<p>过去十年，高盛客户在黄金上&quot;既敢押多、又押得准&quot;，而在利率、汇率上的判断基本靠运气。</p>
+
 <h3 class="post-label ps--data">背景与关键数据</h3>
 <p>图片是 CNBC 根据**高盛 Marquee QuickPoll（客户情绪调查，数据截至 2026 年 6 月）**做的一张表。两列指标：</p>
 <table>
@@ -148,16 +161,18 @@
 <li><strong>为什么利率/汇率最难判断</strong>：利率和汇率是两个&quot;零和博弈&quot;最激烈、又最受央行政策扰动的市场，信息高度有效，任何人（包括机构客户）想持续赢过市场都极难，命中率贴着 50% 很正常。这也是&quot;有效市场假说&quot;在现实里的一个侧写。</li>
 <li><strong>看多比例 ≠ 命中率</strong>：注意汇率那行——看多只有 36.5%（即客户大多看空美元或某货币），但命中率 55%。两个指标要分开看：一个是&quot;仓位往哪偏&quot;，一个是&quot;最后对没对&quot;。</li>
 </ul>
-<hr>
-<h2 id="sec-4">帖 3 · BofA：美国低收入者支出更猛，减税是隐形推手</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-4">
+<summary class="pcard-sum"><h2 id="sec-4">帖 3 · BofA：美国低收入者支出更猛，减税是隐形推手</h2><span class="pcard-meta">#其他国家经济 · 1 张图</span><span class="pcard-core">美国低收入家庭今年花钱比高收入的还猛，一个可能的原因是&quot;少预扣了税&quot;，到手工资变多了。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p><strong>时间</strong>：2026-07-25 14:02 ｜ <strong>标签</strong>：#其他国家经济</p>
 <h3 class="post-label ps--source">帖子原文</h3>
 <blockquote>
 <p>BOFA：美国低收入者支出增长速度快于高收入者的趋势是否会持续到下半年，还有待观察。一种可能是依赖于大美丽法案，一些中低收入家庭今年减少了税收预扣，从而提高了他们的实际收入。</p>
 </blockquote>
 <p><img src="./assets/2026-07-25/img3.jpg" alt="" loading="lazy"></p>
-<h3 class="post-label ps--core">一句话核心</h3>
-<p>美国低收入家庭今年花钱比高收入的还猛，一个可能的原因是&quot;少预扣了税&quot;，到手工资变多了。</p>
+
 <h3 class="post-label ps--data">背景与关键数据</h3>
 <p>图片是美国银行研究院（Bank of America Institute）的两张图，用的是 BofA 自己的<strong>银行账户聚合数据</strong>（比官方统计更即时）。</p>
 <ul>
@@ -173,16 +188,18 @@
 <li><strong>什么是&quot;税收预扣&quot;（tax withholding）</strong>：美国雇主每次发工资时会先替你扣一部分预缴给税务局，年底报税时多退少补。预扣调低，当下每月到手就变多（但可能明年退税变少或要补税）。所以&quot;预扣下降&quot;更像<strong>把未来的钱挪到现在花</strong>，是现金流的时间平移，未必是真实财富增加。</li>
 <li><strong>为什么盯&quot;低收入 vs 高收入&quot;分层</strong>：因为总量数据会掩盖结构。总消费看着稳，但可能是低收入撑着、高收入在收缩，或反过来。分层能看清&quot;这轮消费到底谁在扛&quot;，对判断经济韧性质量很重要。</li>
 </ul>
-<hr>
-<h2 id="sec-5">帖 4 · 美国战略石油储备跌至 1983 年以来最低</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-5">
+<summary class="pcard-sum"><h2 id="sec-5">帖 4 · 美国战略石油储备跌至 1983 年以来最低</h2><span class="pcard-meta">#金融 · 1 张图</span><span class="pcard-core">美国的&quot;石油应急水库&quot;被抽干了一半，只剩 3.11 亿桶，是 40 多年来最低。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p><strong>时间</strong>：2026-07-25 13:55 ｜ <strong>标签</strong>：#金融</p>
 <h3 class="post-label ps--source">帖子原文</h3>
 <blockquote>
 <p>charlie：美国战略石油储备现已降至自1983年3月以来的最低水平。过去五年我们见证了3.1亿桶的减少，下降了50%。</p>
 </blockquote>
 <p><img src="./assets/2026-07-25/img4.jpg" alt="" loading="lazy"></p>
-<h3 class="post-label ps--core">一句话核心</h3>
-<p>美国的&quot;石油应急水库&quot;被抽干了一半，只剩 3.11 亿桶，是 40 多年来最低。</p>
+
 <h3 class="post-label ps--data">背景与关键数据</h3>
 <p>图片是知名数据博主 Charlie Bilello（Creative Planning）的图，数据源 YCharts，截至 2026 年 7 月 25 日。<strong>美国战略石油储备（SPR）当前值 311.45 百万桶（3.11 亿桶）</strong>。图上标注：过去 5 年减少了 <strong>3.1 亿桶（-50%）</strong>，是 <strong>1983 年 3 月以来最低</strong>。曲线显示 SPR 在 2010 年前后见顶（约 7 亿桶），2022 年起断崖式下跌至今。</p>
 <h3 class="post-label ps--image">图片解读</h3>
@@ -194,16 +211,18 @@
 <li><strong>战略石油储备（SPR）是什么</strong>：美国在墨西哥湾沿岸的地下盐穴里储存的国家石油应急库，1975 年石油危机后建立，设计容量约 7 亿桶。它不是用来&quot;赚钱&quot;的，而是应急和政策工具。低价时买、高价时抛，理论上还能平抑价格。</li>
 <li><strong>释放 SPR 的&quot;双刃剑&quot;</strong>：短期能压油价、缓解通胀（政治上讨好选民），但透支了应急能力，且未来还得回补（回补时又会推高需求）。所以 SPR 见底往往被解读为**&quot;政策空间被用尽&quot;**的信号。</li>
 </ul>
-<hr>
-<h2 id="sec-6">帖 5 · 何亚福：韩国出生人口回升，真正主因是什么</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-6">
+<summary class="pcard-sum"><h2 id="sec-6">帖 5 · 何亚福：韩国出生人口回升，真正主因是什么</h2><span class="pcard-meta">#其他国家经济 · 1 张图</span><span class="pcard-core">韩国这两年出生人口回升，主因不是&quot;非婚生育&quot;或&quot;娶外国新娘&quot;，而是结婚数回升、婚育高峰人口进入育龄、以及加码的生育补贴。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p><strong>时间</strong>：2026-07-25 13:54 ｜ <strong>标签</strong>：#其他国家经济</p>
 <h3 class="post-label ps--source">帖子原文</h3>
 <blockquote>
 <p>何亚福：非婚生育与外娶，仅是韩国近年出生人口回升的两个次要原因，而不是主要原因。</p>
 </blockquote>
 <p><img src="./assets/2026-07-25/img5.jpg" alt="" loading="lazy"></p>
-<h3 class="post-label ps--core">一句话核心</h3>
-<p>韩国这两年出生人口回升，主因不是&quot;非婚生育&quot;或&quot;娶外国新娘&quot;，而是结婚数回升、婚育高峰人口进入育龄、以及加码的生育补贴。</p>
+
 <h3 class="post-label ps--data">背景与关键数据</h3>
 <p>图片是人口学者何亚福的分析文字，列了三条<strong>主因</strong>：</p>
 <ol>
@@ -221,8 +240,11 @@
 <li><strong>什么是&quot;人口回声效应（echo）&quot;</strong>：一波婴儿潮长大后进入育龄，会带来一个较小的&quot;次生婴儿潮&quot;，像回声一样。韩国 1991–95 高峰的后代现在生育，就是典型的回声——但这是一次性的、会随时间衰减的因素，不能持续。</li>
 <li><strong>生育率 vs 出生人口</strong>：注意区分。出生人口回升可能只是&quot;育龄人口变多&quot;（分母大了），而每个女性平均生几个（生育率/TFR）可能还在跌。看人口趋势要盯生育率，而不是被绝对出生数的短期反弹迷惑。</li>
 </ul>
-<hr>
-<h2 id="sec-7">帖 6 · 麦肯锡：2025 全球家庭财富创纪录 570 万亿美元</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-7">
+<summary class="pcard-sum"><h2 id="sec-7">帖 6 · 麦肯锡：2025 全球家庭财富创纪录 570 万亿美元</h2><span class="pcard-meta">#金融 · 4 张图</span><span class="pcard-core">2025 年全球家庭财富冲到 570 万亿美元的历史新高，但这一年的增长几乎全靠&quot;股票涨价&quot;这种纸面财富，房地产反而在多国下跌——这是一个和过去 25 年完全不同的信号。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p><strong>时间</strong>：2026-07-25 13:48 ｜ <strong>标签</strong>：#金融</p>
 <h3 class="post-label ps--source">帖子原文</h3>
 <blockquote>
@@ -234,8 +256,7 @@
 <img src="./assets/2026-07-25/img7.jpg" alt="" loading="lazy">
 <img src="./assets/2026-07-25/img8.jpg" alt="" loading="lazy">
 <img src="./assets/2026-07-25/img9.jpg" alt="" loading="lazy"></p>
-<h3 class="post-label ps--core">一句话核心</h3>
-<p>2025 年全球家庭财富冲到 570 万亿美元的历史新高，但这一年的增长几乎全靠&quot;股票涨价&quot;这种纸面财富，房地产反而在多国下跌——这是一个和过去 25 年完全不同的信号。</p>
+
 <h3 class="post-label ps--data">背景与关键数据</h3>
 <p>麦肯锡全球研究院（McKinsey Global Institute）的报告。核心数字：</p>
 <ul>
@@ -263,8 +284,11 @@
 <li><strong>&quot;纸面财富 vs 真实财富&quot;</strong>：如果你的房子/股票涨价，账面身家变多了，但这只是&quot;估值&quot;变了，没有新增任何实物产出。当所有人都想把纸面财富变现（卖股卖房换钱花）时，价格就会跌——纸面财富有&quot;人人有、人人变不了现&quot;的合成谬误。这也是为什么麦肯锡强调&quot;与实体经济脱钩&quot;是个警讯。</li>
 <li><strong>企业利润占 GDP 的均值回归</strong>：经济学里有个经典判断（Jeremy Grantham 常引用）——&quot;企业利润率是所有金融序列里均值回归最强的指标之一&quot;。因为高利润会吸引竞争、招致监管或工资上涨，把利润拉回来。美国利润份额翻倍到 11%，是支撑美股的关键，也是最需要警惕反转的变量。</li>
 </ul>
-<hr>
-<h2 id="sec-8">帖 7 · TKL：中国是储蓄&quot;超级大国&quot;，收紧外流是&quot;连攻带守&quot;</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-8">
+<summary class="pcard-sum"><h2 id="sec-8">帖 7 · TKL：中国是储蓄&quot;超级大国&quot;，收紧外流是&quot;连攻带守&quot;</h2><span class="pcard-meta">#金融 · 2 张图</span><span class="pcard-core">中国超高的国民储蓄是金融体系可支配的&quot;弹药库&quot;，管住资本外流，就是把这份弹药牢牢攥在自己手里——既是防守也是进攻。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p><strong>时间</strong>：2026-07-25 13:34 ｜ <strong>标签</strong>：#金融</p>
 <h3 class="post-label ps--source">帖子原文</h3>
 <blockquote>
@@ -272,8 +296,7 @@
 </blockquote>
 <p><img src="./assets/2026-07-25/img10.jpg" alt="" loading="lazy">
 <img src="./assets/2026-07-25/img11.jpg" alt="" loading="lazy"></p>
-<h3 class="post-label ps--core">一句话核心</h3>
-<p>中国超高的国民储蓄是金融体系可支配的&quot;弹药库&quot;，管住资本外流，就是把这份弹药牢牢攥在自己手里——既是防守也是进攻。</p>
+
 <h3 class="post-label ps--data">背景与关键数据</h3>
 <p>两张图：</p>
 <ul>
@@ -294,8 +317,11 @@
 <li><strong>什么是 M2</strong>：广义货币供应量，约等于&quot;流通中的现金 + 所有活期和定期存款&quot;。M2 增速远超 GDP，通常说明货币在&quot;空转&quot;或沉淀在资产里，没有充分推动实体增长——容易催生资产泡沫，也是&quot;钱多但通胀不高&quot;这种中国式现象的背景。</li>
 <li><strong>&quot;不可能三角&quot;</strong>：一国无法同时拥有①独立货币政策、②固定汇率、③资本自由流动，最多三选二。中国选择了独立货币政策 + 相对稳定汇率，代价就是<strong>放弃资本自由流动</strong>（保留管制）。TKL 说的&quot;收紧外流&quot;正是这个三角的必然选择。</li>
 </ul>
-<hr>
-<h2 id="sec-9">帖 8 · zerohedge：特朗普暂停伊朗轰炸，红海战线升温</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-9">
+<summary class="pcard-sum"><h2 id="sec-9">帖 8 · zerohedge：特朗普暂停伊朗轰炸，红海战线升温</h2><span class="pcard-meta">#其他国家经济 · 3 张图</span><span class="pcard-core">美国暂停对伊朗的军事行动、阿曼出面斡旋，但胡塞武装在红海继续找事，油价逼近 100 美元，且这轮军事开支可能远超官方口径。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p><strong>时间</strong>：2026-07-25 13:29 ｜ <strong>标签</strong>：#其他国家经济</p>
 <h3 class="post-label ps--source">帖子原文</h3>
 <blockquote>
@@ -304,8 +330,7 @@
 <p><img src="./assets/2026-07-25/img12.jpg" alt="" loading="lazy">
 <img src="./assets/2026-07-25/img13.jpg" alt="" loading="lazy">
 <img src="./assets/2026-07-25/img14.jpg" alt="" loading="lazy"></p>
-<h3 class="post-label ps--core">一句话核心</h3>
-<p>美国暂停对伊朗的军事行动、阿曼出面斡旋，但胡塞武装在红海继续找事，油价逼近 100 美元，且这轮军事开支可能远超官方口径。</p>
+
 <h3 class="post-label ps--data">背景与关键数据</h3>
 <p>三张图拼出一个中东地缘 + 能源市场的画面：</p>
 <ul>
@@ -331,8 +356,11 @@
 <li><strong>两大能源咽喉的分量</strong>：霍尔木兹海峡是波斯湾石油出海的唯一通道，全球约五分之一的石油海运要过这里；曼德海峡连接红海与亚丁湾，是苏伊士运河航线的南大门。这两个&quot;卡点&quot;是全球能源供应链最脆弱的物理节点，任何风吹草动都会被油价立刻定价。</li>
 <li><strong>&quot;风险溢价&quot;怎么理解</strong>：油价 = 供需基本面价格 + 地缘风险溢价。冲突时期，即使实际供应还没减少，市场也会因为&quot;怕未来断供&quot;而提前加价，这部分就是风险溢价。理解这点，就能明白为什么&quot;还没真打起来&quot;油价就先涨了。</li>
 </ul>
-<hr>
-<h2 id="sec-10">帖 9 · 荣鼎（Rhodium）：中国电动车&quot;横扫&quot;泰国</h2>
+</div>
+</details>
+<details class="pcard" data-sec="sec-10">
+<summary class="pcard-sum"><h2 id="sec-10">帖 9 · 荣鼎（Rhodium）：中国电动车&quot;横扫&quot;泰国</h2><span class="pcard-meta">#经济数据 · 3 张图</span><span class="pcard-core">靠零关税的自贸协定 + 泰国自己的电动车补贴计划，中国车企五年内从&quot;查无此车&quot;干到泰国近 30% 市场份额、纯电市场 89%，但也把当地传统车企和 11 万工人挤到了裁员边缘。</span><span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<div class="pcard-body">
 <p><strong>时间</strong>：2026-07-25 13:24 ｜ <strong>标签</strong>：#经济数据</p>
 <h3 class="post-label ps--source">帖子原文</h3>
 <blockquote>
@@ -344,8 +372,7 @@
 <p><img src="./assets/2026-07-25/img15.jpg" alt="" loading="lazy">
 <img src="./assets/2026-07-25/img16.jpg" alt="" loading="lazy">
 <img src="./assets/2026-07-25/img17.jpg" alt="" loading="lazy"></p>
-<h3 class="post-label ps--core">一句话核心</h3>
-<p>靠零关税的自贸协定 + 泰国自己的电动车补贴计划，中国车企五年内从&quot;查无此车&quot;干到泰国近 30% 市场份额、纯电市场 89%，但也把当地传统车企和 11 万工人挤到了裁员边缘。</p>
+
 <h3 class="post-label ps--data">背景与关键数据</h3>
 <p>荣鼎集团（Rhodium Group，知名研究机构）的报告，三张图：</p>
 <ul>
@@ -371,7 +398,9 @@
 <li><strong>什么是&quot;原产地规则&quot;与自贸协定套利</strong>：自贸协定给成员国零/低关税，但要求商品达到一定&quot;本地增加值&quot;才算原产。中国车企在泰国建厂做本地组装，既享受泰中自贸的零关税，又满足泰国 EV 计划的本地化要求——一举两得。理解这点，就懂为什么&quot;建厂&quot;是出海的关键动作，而不只是出口整车。</li>
 <li><strong>&quot;产业挤出效应&quot;</strong>：外来高效竞争者进入，会挤垮本土效率较低的产业和就业。经济学上这是&quot;创造性破坏&quot;的一部分（长期提升效率），但短期的失业阵痛是真实的政治问题。泰国 11 万工人的风险，就是这个抽象概念的具体人肉代价——也是为什么各国对中国产能又爱（便宜）又怕（抢饭碗）。</li>
 </ul>
-<hr>
+</div>
+</details>
+<section class="sec" data-sec="sec-11">
 <h2 id="sec-11">今日全图索引</h2>
 <table>
 <thead>
@@ -453,6 +482,7 @@
 <blockquote>
 <p>本报告由自动化每日跟读任务生成。图片为知识星球原图，均已本地保存于 <code>jason_images/2026-07-25/</code> 并内嵌于本文件。内容仅供学习参考，不构成任何投资建议。</p>
 </blockquote>
+</section>
 
   </div>
   <nav class="post-nav">
@@ -470,6 +500,10 @@
     <a class="footer-rss" href="./feed.xml" aria-label="RSS 订阅"><svg class="icon icon-rss" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.18 17.82a2.18 2.18 0 1 1-4.36 0 2.18 2.18 0 0 1 4.36 0zM2 9.91v2.84c4.55 0 8.25 3.7 8.25 8.25h2.84C13.09 14.76 8.24 9.91 2 9.91zm0-4.91v2.84c7.27 0 13.16 5.89 13.16 13.16H18C18 12.07 10.93 5 2 5z"/></svg><span> RSS 订阅</span></a>
   </p>
 </footer>
+<nav class="bottom-nav" aria-label="栏目">
+  <a class="bn-item is-active" aria-current="page" href="./index.html"><span class="bn-icon"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M3 17l5-5 4 4 8-8M15 8h5v5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="bn-label">南半球</span></a>
+  <a class="bn-item" href="./ainews/index.html"><span class="bn-icon"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M18.5 15.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z" fill="currentColor"/></svg></span><span class="bn-label">AI 八卦</span></a>
+</nav>
 <script src="./app.js" defer></script>
 </body>
 </html>

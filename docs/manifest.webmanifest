@@ -1,0 +1,22 @@
+{
+  "id": "./",
+  "name": "prism",
+  "short_name": "prism",
+  "description": "AI 圈 X 八卦日报 · 南半球聊财经每日解读",
+  "lang": "zh-CN",
+  "start_url": "./ainews/index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fdfcfa",
+  "theme_color": "#fdfcfa",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "AI 八卦", "url": "./ainews/index.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] },
+    { "name": "南半球聊财经", "url": "./index.html", "icons": [{ "src": "icon-192.png", "sizes": "192x192" }] }
+  ]
+}
