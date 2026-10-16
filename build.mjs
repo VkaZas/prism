@@ -588,7 +588,8 @@ function pageHead({ title, description, canonicalPath, ogType, ch }) {
 <link rel="manifest" href="${rel}manifest.webmanifest">
 <meta name="theme-color" content="#fdfcfa" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16151a" media="(prefers-color-scheme: dark)">
-<link rel="apple-touch-icon" href="${rel}icon-192.png">
+<link rel="apple-touch-icon" href="${rel}apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="prism">
 <meta name="description" content="${escAttr(description)}">
 <meta property="og:title" content="${escAttr(title)}">
 <meta property="og:description" content="${escAttr(description)}">
@@ -1125,7 +1126,7 @@ function main() {
   copyAsset('app.js');
   copyAsset('favicon.svg');
   // 装到手机主屏幕（PWA）：manifest、图标、离线缓存
-  for (const f of ['manifest.webmanifest', 'sw.js', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png']) copyAsset(f);
+  for (const f of ['manifest.webmanifest', 'sw.js', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'apple-touch-icon.png']) copyAsset(f);
   console.log('--- 构建完成 ---');
 }
 
