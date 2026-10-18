@@ -16,6 +16,7 @@
  *   - styles.css / app.js 若不存在则跳过复制并告警（不崩）。
  */
 
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -842,6 +843,36 @@ const CRED = { '传闻': 'rumor', '爆料': 'leak', '有印证': 'multi', '当�
 const HEART_SVG = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 5 6.4 5c2 0 3.3 1.1 4 2.2.7-1.1 2-2.2 4-2.2 3.4 0 5.5 3.4 4 6.8C19.5 16.4 12 21 12 21z"/></svg>';
 const X_SVG = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M17.8 3h3.1l-6.8 7.8 8 10.2h-6.3l-4.9-6.4L5.3 21H2.2l7.3-8.3L1.8 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"/></svg>';
 
+/* —— 朗读音频：tts/make_audio.py 生成到 ../prism-audio，发布在单独的仓库 VkaZas/prism-audio —— */
+const AUDIO_DIR = path.resolve(__dirname, '..', 'prism-audio');
+const AUDIO_URL = 'https://vkazas.github.io/prism-audio';
+let audioNow = null; // 正在解析的这一篇的音频清单；parsePost 设置，卡片函数读取
+
+function loadAudio(ch, id) {
+  try {
+    const m = JSON.parse(fs.readFileSync(path.join(AUDIO_DIR, ch.id, `${id}.json`), 'utf8'));
+    return { ...m, channel: ch.id };
+  } catch (e) {
+    return null; // 没有音频（太早的文章、或还没生成）
+  }
+}
+
+/** 帖子标题 → 音频 key。必须和 make_audio.py 的 key_of 一致：去标签、去空白和 *_` 后取 sha1 前 12 位。 */
+function audioKey(titleHtml) {
+  const t = htmlText(titleHtml).replace(/[\s*_`]+/g, '');
+  return crypto.createHash('sha1').update(t, 'utf8').digest('hex').slice(0, 12);
+}
+
+const PLAY_SVG = '<svg class="play-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg>';
+
+/** 有音频就给一个播放按钮（放在卡片的 summary 里，JS 拦住点击，不让它顺带展开卡片）。 */
+function playButton(titleHtml) {
+  const a = audioNow && audioNow.items[audioKey(titleHtml)];
+  if (!a) return '';
+  const dur = `${Math.floor(a.dur / 60)}:${String(Math.round(a.dur % 60)).padStart(2, '0')}`;
+  return `<button class="play-btn" type="button" data-src="${AUDIO_URL}/${audioNow.channel}/${a.file}" data-dur="${a.dur}" aria-label="播放这条">${PLAY_SVG}<span class="play-dur">${dur}</span></button>`;
+}
+
 /** 一条八卦 <li> → 卡片；格式对不上就返回 null（整张列表保持原样）。 */
 function gossipCard(li) {
   const m = /^<li><strong>([\s\S]+?)<\/strong>\s*【([^】]+)】\s*[：:]\s*([\s\S]*)<\/li>$/.exec(li.trim());
@@ -861,6 +892,8 @@ function gossipCard(li) {
   const meta = [`<span class="cred cred--${CRED[tag]}">${tag}</span>`];
   if (likes) meta.push(`<span class="gcard-likes">${HEART_SVG}${likes}</span>`);
   if (who) meta.push(`<span class="gcard-who">${who}</span>`);
+  const play = playButton(title);
+  if (play) meta.push(play);
   const chips = links.map((href, i) =>
     `<a class="src-chip" href="${href}" target="_blank" rel="noopener">${X_SVG}原帖${links.length > 1 ? ` ${i + 1}` : ''}</a>`).join('');
   return `<details class="gcard" data-cred="${CRED[tag]}">
@@ -922,7 +955,7 @@ function postCard(head, body, secId) {
   const imgs = (rest.match(/<img\b/g) || []).length;
   const meta = [...tags.map((t) => `#${t}`), imgs ? `${imgs} 张图` : ''].filter(Boolean).join(' · ');
   return `<details class="pcard"${secId ? ` data-sec="${secId}"` : ''}>
-<summary class="pcard-sum">${head}${meta ? `<span class="pcard-meta">${esc(meta)}</span>` : ''}${core ? `<span class="pcard-core">${core}</span>` : ''}<span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span></span></summary>
+<summary class="pcard-sum">${head}${meta ? `<span class="pcard-meta">${esc(meta)}</span>` : ''}${core ? `<span class="pcard-core">${core}</span>` : ''}<span class="pcard-more"><span class="more-closed">读全文</span><span class="more-open">收起</span>${playButton(head)}</span></summary>
 <div class="pcard-body">${rest}</div>
 </details>\n`;
 }
@@ -972,7 +1005,9 @@ function parsePost(filePath, id, date, mdLib, ch) {
   const { html: renderedBody, toc } = renderWithToc(stripLeadingH1(mdNoB64), mdLib);
   let bodyHtml = tagPostLabels(renderedBody);
   let cards = '';
+  audioNow = loadAudio(ch, id);
   const carded = ch.id === 'ainews' ? gossipCards(bodyHtml) : postCards(bodyHtml);
+  audioNow = null;
   if (carded.cards) {
     bodyHtml = carded.html;
     cards = ch.id === 'ainews' ? 'gossip' : 'post';

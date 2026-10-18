@@ -1884,6 +1884,161 @@ button {
 }
 
 /* ---------------------------------------------------------------------
+   19. 朗读  卡片上的播放键 .play-btn + 底部迷你播放器 .player
+   （手机上浮在底部导航上面；锁屏 / 通知栏控制由 app.js 的 Media Session 提供）
+   --------------------------------------------------------------------- */
+
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 28px;
+  margin-left: auto;
+  padding: 0 10px 0 8px;
+  border: none;
+  border-radius: 14px;
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+  font-size: 12.5px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  -webkit-tap-highlight-color: transparent;
+}
+.play-btn:active {
+  filter: brightness(0.94);
+}
+.play-btn.is-current {
+  background: var(--accent);
+  color: #fff;
+}
+.play-btn.is-playing .play-icon {
+  animation: play-pulse 1.2s ease-in-out infinite;
+}
+@keyframes play-pulse {
+  50% { opacity: 0.35; }
+}
+details.is-playing {
+  box-shadow: 0 0 0 2px var(--accent-border), var(--card-shadow);
+}
+/* 南半球卡片：「读全文」的箭头紧跟文字，播放键放到最右 */
+.pcard-more .play-btn {
+  order: 2;
+}
+
+.player {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  width: min(560px, calc(100% - 24px));
+  padding: 6px 8px 4px 4px;
+  border-radius: 16px;
+  background: var(--surface-sheet);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+  transform: translateX(-50%);
+  overflow: hidden;
+}
+.player[hidden] {
+  display: none;
+}
+.player-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--hairline);
+  cursor: pointer;
+}
+.player-progress::after {
+  content: '';
+  position: absolute;
+  inset: -8px 0;
+}
+.player-fill {
+  width: 0;
+  height: 100%;
+  background: var(--accent);
+}
+.player-btn {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text);
+  -webkit-tap-highlight-color: transparent;
+}
+.player-btn:active {
+  background: var(--state-press);
+}
+.player .i-play,
+.player.is-paused .i-pause {
+  display: none;
+}
+.player .i-pause,
+.player.is-paused .i-play {
+  display: block;
+}
+.player-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 4px 6px;
+  border: none;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+}
+.player-title {
+  max-width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.player-time {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+.player-speed {
+  flex: none;
+  min-width: 44px;
+  height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 16px;
+  background: transparent;
+  color: var(--text-soft);
+  font-size: 13px;
+  font-weight: 600;
+}
+body.has-player {
+  padding-bottom: 88px;
+}
+@media (max-width: 640px) {
+  .player {
+    bottom: calc(80px + env(safe-area-inset-bottom, 0px) + 8px);
+    width: calc(100% - 16px);
+  }
+  body.has-player {
+    padding-bottom: calc(80px + var(--sab-max) + 80px);
+  }
+}
+
+/* ---------------------------------------------------------------------
    14. 动效降级  prefers-reduced-motion
    --------------------------------------------------------------------- */
 

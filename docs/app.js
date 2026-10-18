@@ -18,6 +18,7 @@
  *   - .expand-all + details.pcard   南半球「全部展开」
  *   - meta[name=theme-color]   手动切主题时同步状态栏颜色
  *   - sw.js                    离线缓存（装到主屏幕后可离线读）
+ *   - .play-btn[data-src]      朗读音频：点了播放、自动接下一条，底部迷你播放器 + 锁屏控制
  *
  * localStorage key：'nbq-theme'（值 'light' | 'dark'）
  *
@@ -448,6 +449,140 @@
   }
 
   /* ------------------------------------------------------------------ *
+   * 10. 朗读：每条卡片的 .play-btn 是一段音频；按页面顺序组成播放列表，
+   *     放完自动接下一条。底部迷你播放器 + Media Session（锁屏 / 通知栏控制）。
+   * ------------------------------------------------------------------ */
+  function initAudio(scriptSrc) {
+    var btns = Array.prototype.slice.call(document.querySelectorAll('.play-btn[data-src]'));
+    if (!btns.length) return;
+    var SPEEDS = [1, 1.25, 1.5, 2];
+    var speed = 1;
+    try { speed = parseFloat(localStorage.getItem('prism-speed')) || 1; } catch (e) {}
+    var audio = new Audio();
+    audio.preload = 'auto';
+    var cur = -1;
+    var channel = (document.querySelector('.channel-tab.is-active') || {}).textContent || 'prism';
+    var art = scriptSrc ? new URL('icon-512.png', scriptSrc).href : '';
+
+    var bar = document.createElement('div');
+    bar.className = 'player';
+    bar.hidden = true;
+    bar.innerHTML =
+      '<div class="player-progress"><div class="player-fill"></div></div>' +
+      '<button class="player-btn player-prev" type="button" aria-label="上一条"><svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M6 6h2v12H6zM9.5 12L18 6v12z"/></svg></button>' +
+      '<button class="player-btn player-toggle" type="button" aria-label="播放 / 暂停"><svg class="i-play" viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M8 5.5v13l11-6.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" width="26" height="26"><path fill="currentColor" d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg></button>' +
+      '<button class="player-btn player-next" type="button" aria-label="下一条"><svg viewBox="0 0 24 24" width="22" height="22"><path fill="currentColor" d="M16 6h2v12h-2zM6 6l8.5 6L6 18z"/></svg></button>' +
+      '<button class="player-info" type="button" aria-label="跳到正在读的这条"><span class="player-title"></span><span class="player-time"></span></button>' +
+      '<button class="player-speed" type="button" aria-label="播放速度"></button>' +
+      '<button class="player-btn player-close" type="button" aria-label="关闭"><svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg></button>';
+    document.body.appendChild(bar);
+    var $ = function (sel) { return bar.querySelector(sel); };
+    $('.player-speed').textContent = speed + '×';
+
+    function titleOf(btn) {
+      var card = btn.closest('details');
+      var t = card && card.querySelector('.gcard-title, .pcard-sum h2, .pcard-sum h3');
+      return t ? t.textContent.trim() : '';
+    }
+    function fmt(sec) {
+      sec = Math.max(0, Math.round(sec || 0));
+      return Math.floor(sec / 60) + ':' + String(sec % 60).padStart(2, '0');
+    }
+    function mark() {
+      btns.forEach(function (b, i) {
+        var on = i === cur;
+        b.classList.toggle('is-current', on);
+        b.classList.toggle('is-playing', on && !audio.paused);
+        var card = b.closest('details');
+        if (card) card.classList.toggle('is-playing', on);
+      });
+      bar.classList.toggle('is-paused', audio.paused);
+      if ('mediaSession' in navigator) navigator.mediaSession.playbackState = audio.paused ? 'paused' : 'playing';
+    }
+    function play(i) {
+      if (i < 0 || i >= btns.length) return;
+      cur = i;
+      audio.src = btns[i].getAttribute('data-src');
+      audio.playbackRate = speed;
+      audio.play().catch(function () {});
+      bar.hidden = false;
+      document.body.classList.add('has-player');
+      $('.player-title').textContent = titleOf(btns[i]);
+      if ('mediaSession' in navigator && window.MediaMetadata) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: titleOf(btns[i]),
+          artist: channel.trim() + ' · prism',
+          album: document.querySelector('.app-title') ? document.querySelector('.app-title').textContent : '',
+          artwork: art ? [{ src: art, sizes: '512x512', type: 'image/png' }] : [],
+        });
+      }
+      mark();
+    }
+    function toggle() {
+      if (cur < 0) return play(0);
+      if (audio.paused) audio.play().catch(function () {}); else audio.pause();
+    }
+    function close() {
+      audio.pause();
+      bar.hidden = true;
+      document.body.classList.remove('has-player');
+      cur = -1;
+      mark();
+    }
+
+    btns.forEach(function (b, i) {
+      b.addEventListener('click', function (e) {
+        e.preventDefault();       // 按钮在 <summary> 里：别让它顺带展开 / 收起卡片
+        e.stopPropagation();
+        if (i === cur) toggle(); else play(i);
+      });
+    });
+    audio.addEventListener('play', mark);
+    audio.addEventListener('pause', mark);
+    audio.addEventListener('ended', function () { if (cur + 1 < btns.length) play(cur + 1); else mark(); });
+    audio.addEventListener('timeupdate', function () {
+      var d = audio.duration || parseFloat(btns[cur] && btns[cur].getAttribute('data-dur')) || 0;
+      $('.player-fill').style.width = d ? (audio.currentTime / d * 100) + '%' : '0';
+      $('.player-time').textContent = fmt(audio.currentTime) + ' / ' + fmt(d);
+      if ('mediaSession' in navigator && navigator.mediaSession.setPositionState && audio.duration) {
+        try { navigator.mediaSession.setPositionState({ duration: audio.duration, position: audio.currentTime, playbackRate: audio.playbackRate }); } catch (e) {}
+      }
+    });
+    $('.player-toggle').addEventListener('click', toggle);
+    $('.player-prev').addEventListener('click', function () {
+      if (audio.currentTime > 3) audio.currentTime = 0; else play(Math.max(0, cur - 1));
+    });
+    $('.player-next').addEventListener('click', function () { play(cur + 1); });
+    $('.player-close').addEventListener('click', close);
+    $('.player-speed').addEventListener('click', function () {
+      speed = SPEEDS[(SPEEDS.indexOf(speed) + 1) % SPEEDS.length] || 1;
+      audio.playbackRate = speed;
+      $('.player-speed').textContent = speed + '×';
+      try { localStorage.setItem('prism-speed', String(speed)); } catch (e) {}
+    });
+    $('.player-info').addEventListener('click', function () {
+      var card = btns[cur] && btns[cur].closest('details');
+      if (card) card.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+    $('.player-progress').addEventListener('click', function (e) {
+      var r = this.getBoundingClientRect();
+      if (audio.duration) audio.currentTime = (e.clientX - r.left) / r.width * audio.duration;
+    });
+
+    if ('mediaSession' in navigator) {
+      var ms = navigator.mediaSession;
+      var set = function (a, fn) { try { ms.setActionHandler(a, fn); } catch (e) {} };
+      set('play', function () { audio.play(); });
+      set('pause', function () { audio.pause(); });
+      set('previoustrack', function () { play(Math.max(0, cur - 1)); });
+      set('nexttrack', function () { play(cur + 1); });
+      set('seekbackward', function () { audio.currentTime = Math.max(0, audio.currentTime - 10); });
+      set('seekforward', function () { audio.currentTime = Math.min(audio.duration || 0, audio.currentTime + 10); });
+      set('seekto', function (d) { if (d.seekTime != null) audio.currentTime = d.seekTime; });
+    }
+  }
+
+  /* ------------------------------------------------------------------ *
    * 启动
    * ------------------------------------------------------------------ */
   var SCRIPT_SRC = document.currentScript && document.currentScript.src;
@@ -462,6 +597,7 @@
     initChips();
     initExpandAll();
     initServiceWorker(SCRIPT_SRC);
+    initAudio(SCRIPT_SRC);
   }
 
   if (document.readyState === 'loading') {
