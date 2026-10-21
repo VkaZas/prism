@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/ainews/</link>
     <description>X 上的 AI 圈爆料、八卦与热议 · 每日中文整理</description>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 21 Oct 2026 07:11:02 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 21 Oct 2026 15:41:51 GMT</lastBuildDate>
+    <item>
+      <title>DeepSeek 晒出推理账本，SpaceX 称算力供不应求</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-21.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-21.html</guid>
+      <pubDate>Wed, 21 Oct 2026 18:00:00 GMT</pubDate>
+      <description>第一条是 DeepSeek：它开源了自家推理引擎 DeepInfer，工程报告里写明「单个集群每天服务 155 万亿 token、非高峰价下每 GPU 小时收入 38 美元」，</description>
+    </item>
     <item>
       <title>Anthropic 新模型将至，Fable 5.5 泄露疑乌龙</title>
       <link>https://vkazas.github.io/prism/ainews/2026-10-20.html</link>
