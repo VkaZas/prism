@@ -5,7 +5,14 @@
     <link>https://vkazas.github.io/prism/ainews/</link>
     <description>X 上的 AI 圈爆料、八卦与热议 · 每日中文整理</description>
     <language>zh-CN</language>
-    <lastBuildDate>Thu, 22 Oct 2026 04:51:06 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 22 Oct 2026 15:09:05 GMT</lastBuildDate>
+    <item>
+      <title>PHP 漏洞由 AI 挖出，补丁未发细节先泄，NSA 喊断网</title>
+      <link>https://vkazas.github.io/prism/ainews/2026-10-22.html</link>
+      <guid isPermaLink="true">https://vkazas.github.io/prism/ainews/2026-10-22.html</guid>
+      <pubDate>Thu, 22 Oct 2026 18:00:00 GMT</pubDate>
+      <description>第一条是 PHP2Shell：OpenAI 的 Patch the Planet 计划称牵头协调了约两个月，两个 PHP 引擎漏洞（CVE-2026-109618 和 CVE-2026-109619）才对外披露，</description>
+    </item>
     <item>
       <title>DeepSeek 晒出推理账本，SpaceX 称算力供不应求</title>
       <link>https://vkazas.github.io/prism/ainews/2026-10-21.html</link>
